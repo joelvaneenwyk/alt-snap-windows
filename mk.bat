@@ -1,9 +1,12 @@
-@taskkill /IM AltSnap.exe 2> nul
-@taskkill /IM AltSnap.exe 2> nul
+@echo off
+setlocal
+cd /d "%~dp0"
+taskkill /IM AltSnap.exe 2> nul
+taskkill /IM AltSnap.exe 2> nul
 
 make %1
 
-@if !%1 == !clean GOTO FINISH
-@start AltSnap.exe
+if !%1 == !clean GOTO FINISH
+start AltSnap.exe
 
 :FINISH

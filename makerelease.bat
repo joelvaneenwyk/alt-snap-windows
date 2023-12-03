@@ -1,33 +1,36 @@
+@echo off
+setlocal
+cd /d "%~dp0"
 if !%VERSION% == ! goto FAIL
 
 taskkill /IM AltSnap.exe 2> nul
 
-del AltSnap%version%bin_x64.zip
-del AltSnap%version%bin.zip
-del AltSnap%version%src.zip
-del AltSnap%version%bin.zip
-del AltSnap%version%-x64-inst.exe
+if exist "%~dp0AltSnap%version%bin_x64.zip" del "%~dp0AltSnap%version%bin_x64.zip"
+if exist "%~dp0AltSnap%version%bin.zip" del "%~dp0AltSnap%version%bin.zip"
+if exist "%~dp0AltSnap%version%src.zip" del "%~dp0AltSnap%version%src.zip"
+if exist "%~dp0AltSnap%version%bin.zip" del "%~dp0AltSnap%version%bin.zip"
+if exist "%~dp0AltSnap%version%-x64-inst.exe" del "%~dp0AltSnap%version%-x64-inst.exe"
 
 make -fMakefileX64 clean
 make -fMakefileX64
-call nsi.bat
-rename AltSnap%VERSION%-inst.exe AltSnap%VERSION%-x64-inst.exe 
+call "%~dp0nsi.bat"
+rename "%~dp0AltSnap%VERSION%-inst.exe" "%~dp0AltSnap%VERSION%-x64-inst.exe"
 
-call ziprelease.bat
-rename AltSnap_bin.zip AltSnap%version%bin_x64.zip
+call "%~dp0ziprelease.bat"
+rename "%~dp0AltSnap_bin.zip" "%~dp0AltSnap%version%bin_x64.zip"
 
 make clean
 make
-call nsi.bat
+call "%~dp0nsi.bat"
 
-rhash --sha256 AltSnap%VERSION%-x64-inst.exe > SHA256.TXT
-rhash --sha256 AltSnap%VERSION%-inst.exe >> SHA256.TXT
+rhash --sha256 "%~dp0AltSnap%VERSION%-x64-inst.exe" > SHA256.TXT
+rhash --sha256 "%~dp0AltSnap%VERSION%-inst.exe" >> SHA256.TXT
 
-call ziprelease.bat
-rename AltSnap_bin.zip AltSnap%version%bin.zip
+call "%~dp0ziprelease.bat"
+rename "%~dp0AltSnap_bin.zip" "%~dp0AltSnap%version%bin.zip"
 
-call zzip.bat
-rename AltSnap_src.zip AltSnap%version%src.zip
+call "%~dp0zzip.bat"
+rename "%~dp0AltSnap_src.zip" "%~dp0AltSnap%version%src.zip"
 
 @GOTO END
 :FAIL

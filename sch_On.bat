@@ -3,6 +3,9 @@
 :: schtasks.exe /CREATE /TN "AltSnap" /TR "%~dp0AltSnap.exe" /SC onlogon /RL highest /DELAY 0:10
 :: However AltSnap will be killed after 3 days by default.
 :: The only way not to have this autokill is to use an xml file.
+@echo off
+setlocal
+cd /d "%~dp0"
 @echo =============================================================================
 @echo = Setup Scheduled task for elevated AltSnap auto-start without UAC prompt   =
 @echo = If you do not want to continue, close the window or hit Ctrl+C            =

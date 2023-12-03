@@ -1,3 +1,6 @@
+@echo off
+setlocal
+cd /d "%~dp0"
 @echo =============================================================================
 @echo = This batch will remove the AltSnap's Scheduled task!                      =
 @echo = If you do not want to continue, close the window or hit Ctrl+C            =
