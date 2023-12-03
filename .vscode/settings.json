@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "Makefile*": "makefile",
+        "*.ejs": "html"
+    }
+}
