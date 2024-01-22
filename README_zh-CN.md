@@ -1,10 +1,12 @@
 [English](./README.md) | 中文 | [한국어](./README_ko-KR.md)
+
 # AltSnap
+
 由Stefan Sundin的AltDrag制作的一个的分支。
 
-查看Wiki：https://github.com/RamonUnch/AltSnap/wiki
+查看Wiki：<https://github.com/RamonUnch/AltSnap/wiki>
 
-原始文档：https://stefansundin.github.io/altdrag/doc/
+原始文档：<https://stefansundin.github.io/altdrag/doc/>
 
 请注意，因为这是一个分支，所以原始的文档并不是100%准确的。请阅读更新日志来了解更多详细信息。
 
@@ -31,6 +33,7 @@
 在选项对话框中可以看到许多新功能，但其中一些功能只能通过编辑AltSnap.ini文件才能使用（用鼠标中键单击该文件的托盘图标）。
 
 # 构建
+
 AltSnap使用gcc构建，对于i686来说，我使用Mingw-w64。
 只需要安装最新版本（我使用基于MinGW64的TDM-gcc 10.3）并使用：
 
