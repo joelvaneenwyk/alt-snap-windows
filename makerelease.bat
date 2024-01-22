@@ -1,38 +1,38 @@
 @echo off
-setlocal EnableExtensions
+setlocal EnableDelayedExpansion
+cd /d "%~dp0"
 
+if !%VERSION% == ! set "VERSION=%~1"
 if !%VERSION% == ! goto FAIL
 
 taskkill /IM AltSnap.exe 2> nul
 
-set "_root=%~dp0"
+if exist "%~dp0AltSnap%version%bin_x64.zip" del "%~dp0AltSnap%version%bin_x64.zip"
+if exist "%~dp0AltSnap%version%bin.zip" del "%~dp0AltSnap%version%bin.zip"
+if exist "%~dp0AltSnap%version%src.zip" del "%~dp0AltSnap%version%src.zip"
+if exist "%~dp0AltSnap%version%bin.zip" del "%~dp0AltSnap%version%bin.zip"
+if exist "%~dp0AltSnap%version%-x64-inst.exe" del "%~dp0AltSnap%version%-x64-inst.exe"
 
-del "%_root%\AltSnap%version%bin_x64.zip"
-del "%_root%\AltSnap%version%bin.zip"
-del "%_root%\AltSnap%version%src.zip"
-del "%_root%\AltSnap%version%bin.zip"
-del "%_root%\AltSnap%version%-x64-inst.exe"
-
-make -f"%_root%\MakefileX64" clean
-make -f"%_root%\MakefileX64"
-call "%_root%\nsi.bat"
-rename "%_root%\AltSnap%VERSION%-inst.exe" "%_root%\AltSnap%VERSION%-x64-inst.exe"
+make -fMakefileX64 clean
+make -fMakefileX64
+call "%~dp0nsi.bat"
+rename "%~dp0AltSnap%VERSION%-inst.exe" "%~dp0AltSnap%VERSION%-x64-inst.exe"
 
 call "%~dp0ziprelease.bat"
-rename "%_root%\AltSnap_bin.zip" "%_root%\AltSnap%version%bin_x64.zip"
+rename "%~dp0AltSnap_bin.zip" "%~dp0AltSnap%version%bin_x64.zip"
 
 make clean
 make
-call "%_root%\nsi.bat"
+call "%~dp0nsi.bat"
 
-rhash --sha256 "%_root%\AltSnap%VERSION%-x64-inst.exe" > "%_root%\SHA256.TXT"
-rhash --sha256 "%_root%\AltSnap%VERSION%-inst.exe" >> "%_root%\SHA256.TXT"
+rhash --sha256 "%~dp0AltSnap%VERSION%-x64-inst.exe" > SHA256.TXT
+rhash --sha256 "%~dp0AltSnap%VERSION%-inst.exe" >> SHA256.TXT
 
-call "%_root%\ziprelease.bat" "%_root%\
-rename "%_root%\AltSnap_bin.zip" "%_root%\AltSnap%version%bin.zip"
+call "%~dp0ziprelease.bat"
+rename "%~dp0AltSnap_bin.zip" "%~dp0AltSnap%version%bin.zip"
 
-call "%_root%\zzip.bat"
-rename "%_root%\AltSnap_src.zip" "%_root%\AltSnap%version%src.zip"
+call "%~dp0zzip.bat"
+rename "%~dp0AltSnap_src.zip" "%~dp0AltSnap%version%src.zip"
 
 @GOTO END
 :FAIL

@@ -1,5 +1,31 @@
 {
     "files.associations": {
-        "Makefile*": "makefile"
+        "Makefile*": "makefile",
+        "*.ejs": "html"
+    },
+    "makefile.alwaysPreConfigure": true,
+    "makefile.loggingLevel": "Verbose",
+    "makefile.makefilePath": "MakefileX64",
+    "[makefile]": {
+        "editor.defaultFormatter": "ms-vscode.makefile-tools",
+        "editor.defaultFoldingRangeProvider": "ms-vscode.makefile-tools"
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
     }
 }

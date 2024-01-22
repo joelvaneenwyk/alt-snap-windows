@@ -1,6 +1,6 @@
-English | [中文](./README_zh-CN.md) | [한국어](./README_ko-KR.md)
-
 # AltSnap
+
+English | [中文](./README_zh-CN.md) | [한국어](./README_ko-KR.md)
 
 Fork from Stefan Sundin's AltDrag.
 
@@ -43,7 +43,7 @@ Just install the latest version (I use TDM-gcc 10.3, MinGW64 based) and use:
 
 `> make` for i386 Win32 GCC build.
 
-`> make -fMakefiledb` for i386 GCC debug build.
+`> make -fMakefileDebug` for i386 GCC debug build.
 
 `> make -fMakefileX64` for x86_64 GCC build.
 
@@ -53,6 +53,6 @@ Just install the latest version (I use TDM-gcc 10.3, MinGW64 based) and use:
 
 `> make -fMakefileTCC` for i386 build using tcc, [Bellard's Tiny C Compiler](https://bellard.org/tcc/).
 
-You can also use mk.bat and mk64.bat files.
 For Clang, I use LLVM5.0.1 with the headers and libs from Mingw-w64.
+
 Be sure to adjust your include and lib directories on the command line with `-IPath\to\mingw\include` and `-LPath\to\mingw\lib`.

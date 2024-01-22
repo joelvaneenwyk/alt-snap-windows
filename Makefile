@@ -82,6 +82,8 @@ EXELD = $(LDFLAGS) \
 	-lshell32 \
 	-Wl
 
+all: AltSnap.exe hooks.dll
+
 default: AltSnap.exe hooks.dll
 
 hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.c snap.c
