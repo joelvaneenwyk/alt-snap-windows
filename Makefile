@@ -79,8 +79,7 @@ EXELD = $(LDFLAGS) \
 	-Wl,--tsaware \
 	-lcomctl32 \
 	-ladvapi32 \
-	-lshell32 \
-	-Wl
+	-lshell32
 
 all: AltSnap.exe hooks.dll
 
