@@ -13,6 +13,8 @@ CFLAGS=-Os -fno-stack-check -fno-stack-protector -fno-ident -fomit-frame-pointer
 	-D__USE_MINGW_ANSI_STDIO=0 -Wp,-D_FORTIFY_SOURCE=2 -fshort-enums\
     $(INCLUDE) $(WARNINGS) -fno-exceptions -fno-dwarf2-cfi-asm -fno-asynchronous-unwind-tables
 
+.phony: default clean
+
 default: AltSnap.exe hooks.dll
 
 hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.c snap.c

@@ -1,6 +1,8 @@
 @echo off
-setlocal
+setlocal EnableDelayedExpansion
 cd /d "%~dp0"
+
+if !%VERSION% == ! set "VERSION=%~1"
 if !%VERSION% == ! goto FAIL
 
 taskkill /IM AltSnap.exe 2> nul

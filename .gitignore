@@ -1,2 +1,7 @@
 *.o
 .gdn
+c/
+SHA256.TXT
+
+AltSnap_bin.zip
+AltSnap.exe
