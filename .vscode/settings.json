@@ -30,7 +30,7 @@
     },
     "explorer.fileNesting.patterns": {
         "Makefile": "Makefile*",
-        "mk.bat": "mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat",
+        "setup.bat": "env.bat,mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat",
         "README.md": "README*"
     }
 }

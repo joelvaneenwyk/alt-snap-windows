@@ -1,6 +1,6 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 vars:
   GREETING: Hello, World!
@@ -20,7 +20,7 @@ tasks:
 
   db:
     cmds:
-      - make -fMakefiledb
+      - make -fMakefileDebug
 
   X64:
     cmds:
@@ -37,4 +37,3 @@ tasks:
   TCC:
     cmds:
       - make -fMakefileTCC
-
