@@ -1,8 +1,18 @@
-*.o
-.gdn
-c/
-.vs/
-SHA256.TXT
+#
+# AltSnap ignore file
+#
 
+.gdn/
+c/
+
+SHA256.TXT
 AltSnap_bin.zip
 AltSnap.exe
+
+cmake-*/
+CMakeLists.txt~
+
+.vs/
+*.o
+*.obj
+*.bin
