@@ -1,3 +1,9 @@
+@echo off
+setlocal EnableExtensions
+
+cd /d "%~dp0"
+call "%~dp0env.bat"
+
 rc hooks.rc
 rc altsnap.rc
 
@@ -6,10 +12,17 @@ rc altsnap.rc
 
 cl /c /Tp altsnap.c /nologo /Ox /Oi /Os /Gy  %DEFINES%
 
-link altsnap.obj altsnap.res /nodefaultlib /filealign:512 /subsystem:windows /OPT:REF /OPT:ICF,7 /LARGEADDRESSAWARE  /machine:I386  /entry:unfuckWinMain kernel32.lib user32.lib shell32.lib advapi32.lib gdi32.lib comctl32.lib
+link ^
+    altsnap.obj altsnap.res ^
+    /nodefaultlib /filealign:512 /subsystem:windows /OPT:REF /OPT:ICF,7 ^
+    /LARGEADDRESSAWARE /machine:I386 /entry:unfuckWinMain ^
+    kernel32.lib user32.lib shell32.lib advapi32.lib gdi32.lib comctl32.lib
 
 cl /c /Tp hooks.c /nologo /Ox /Oi /Os /Gy /GS- /LD %DEFINES%
 
-link hooks.obj hooks.res /nodefaultlib /DLL /filealign:512 /subsystem:windows /OPT:REF /OPT:ICF,7 /LARGEADDRESSAWARE  /machine:I386  /entry:DllMain kernel32.lib user32.lib gdi32.lib
+link ^
+    hooks.obj hooks.res /nodefaultlib /DLL /filealign:512 ^
+    /subsystem:windows /OPT:REF /OPT:ICF,7 /LARGEADDRESSAWARE ^
+    /machine:I386  /entry:DllMain kernel32.lib user32.lib gdi32.lib
 
 @set DEFINES=

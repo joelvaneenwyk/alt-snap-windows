@@ -1,8 +1,16 @@
-::schtasks /CREATE /XML .\AltSnap.xml /TR "%~dp0AltSnap.exe"
+::
+:: AltSnap
+::
+:: > schtasks /CREATE /XML .\AltSnap.xml /TR "%~dp0AltSnap.exe"
+::
 :: If you do not want to use the xml file you can use:
-:: schtasks.exe /CREATE /TN "AltSnap" /TR "%~dp0AltSnap.exe" /SC onlogon /RL highest /DELAY 0:10
+::
+:: > schtasks.exe /CREATE /TN "AltSnap" /TR "%~dp0AltSnap.exe" /SC onlogon /RL highest /DELAY 0:10
+::
 :: However AltSnap will be killed after 3 days by default.
+::
 :: The only way not to have this autokill is to use an xml file.
+::
 @echo off
 setlocal
 cd /d "%~dp0"

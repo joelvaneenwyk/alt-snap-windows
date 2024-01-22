@@ -1,18 +1,17 @@
 @echo off
 setlocal EnableExtensions
 
-setlocal
 cd /d "%~dp0"
 call "%~dp0env.bat"
 taskkill /IM AltSnap.exe 2> nul
 taskkill /IM AltSnap.exe 2> nul
 
-if !%1 == !db GOTO:DEBUG
+if !%~1 == !db GOTO:DEBUG
 
 call make -fMakefileX64 "clean"
 call make -fMakefileX64 "%~1"
 
-if !%1 == !clean GOTO:FINISH
+if !%~1 == !clean GOTO:FINISH
 if exist "%~dp0AltSnap.exe" start "%~dp0AltSnap.exe"
 GOTO:FINISH
 

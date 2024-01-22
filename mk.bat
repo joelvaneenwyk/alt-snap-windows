@@ -7,7 +7,7 @@ taskkill /IM AltSnap.exe 2> nul
 
 make "%~1"
 
-if !%1 == !clean goto:FINISH
+if !%~1 == !clean goto:FINISH
 if not exist "%~dp0AltSnap.exe" goto:FINISH
 start "%~dp0AltSnap.exe"
 

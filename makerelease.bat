@@ -25,8 +25,8 @@ make clean
 make
 call "%~dp0nsi.bat"
 
-rhash --sha256 "%~dp0AltSnap%VERSION%-x64-inst.exe" > SHA256.TXT
-rhash --sha256 "%~dp0AltSnap%VERSION%-inst.exe" >> SHA256.TXT
+rhash --sha256 "%~dp0AltSnap%VERSION%-x64-inst.exe" > "%~dp0SHA256.TXT"
+rhash --sha256 "%~dp0AltSnap%VERSION%-inst.exe" >> "%~dp0SHA256.TXT"
 
 call "%~dp0ziprelease.bat"
 rename "%~dp0AltSnap_bin.zip" "%~dp0AltSnap%version%bin.zip"
