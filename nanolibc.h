@@ -17,7 +17,7 @@
 #define noreturn __attribute__((noreturn))
 #define fastcall __attribute__((fastcall))
 #define ainline __attribute__((always_inline))
-#define mallocatrib __attribute__((malloc, freeL))
+#define mallocattrib __attribute__((malloc, freeL))
 #define allnonnull __attribute__((nonnull))
 #define nonnull1(x) __attribute__((nonnull (x)))
 #define nonnull2(x, y) __attribute__((nonnull (x, y)))
@@ -30,7 +30,7 @@
 #define noreturn
 #define fastcall
 #define ainline
-#define mallocatrib
+#define mallocattrib
 #define allnonnull
 #define nonnull1(x)
 #define nonnull2(x, y)
@@ -687,14 +687,14 @@ static void *reallocL(void *mem, size_t sz)
 }
 #define realloc reallocL
 
-static mallocatrib void *mallocL(size_t sz)
+static mallocattrib void *mallocL(size_t sz)
 {
 //    if (rand()%256 < 200) return NULL;
     return HeapAlloc(GetProcessHeap(), 0, sz);
 }
 #define malloc mallocL
 
-static mallocatrib void *callocL(size_t sz, size_t mult)
+static mallocattrib void *callocL(size_t sz, size_t mult)
 {
     return HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sz*mult);
 }
