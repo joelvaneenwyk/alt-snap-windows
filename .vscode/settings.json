@@ -27,5 +27,10 @@
         "Git Bash": {
             "source": "Git Bash"
         }
+    },
+    "explorer.fileNesting.patterns": {
+        "Makefile": "Makefile*",
+        "mk.bat": "mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat",
+        "README.md": "README*"
     }
 }
