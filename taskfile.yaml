@@ -1,0 +1,40 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    deps:
+      - make
+      - db
+      - X64
+      - X64db
+    silent: true
+
+  make:
+    cmds:
+      - make -fMakefile
+
+  db:
+    cmds:
+      - make -fMakefiledb
+
+  X64:
+    cmds:
+      - make -fMakefileX64
+
+  X64db:
+    cmds:
+      - make -fMakefileX64db
+
+  Clang:
+    cmds:
+      - make -fMakefileClang
+
+  TCC:
+    cmds:
+      - make -fMakefileTCC
+

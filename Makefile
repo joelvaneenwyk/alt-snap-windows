@@ -80,7 +80,7 @@ EXELD = $(LDFLAGS) \
 	-lcomctl32 \
 	-ladvapi32 \
 	-lshell32 \
-	-Wl,--disable-reloc-section
+	-Wl
 
 default: AltSnap.exe hooks.dll
 
