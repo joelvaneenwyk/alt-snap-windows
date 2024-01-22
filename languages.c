@@ -131,7 +131,7 @@ void ListAllTranslations()
 
     GetModuleFileName(NULL, szDir, ARR_SZ(szDir));
     PathRemoveFileSpecL(szDir);
-    lstrcat_s(szDir, ARR_SZ(szDir), TEXT("\\Lang\\*.ini"));
+    lstrcat_s(szDir, ARR_SZ(szDir), TEXT("\\languages\\*.ini"));
     lstrcpy_s(fpath, ARR_SZ(fpath), szDir);
     TCHAR *end = fpath; // not the star!
     end += lstrlen(fpath)-5;

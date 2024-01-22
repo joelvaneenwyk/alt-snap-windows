@@ -105,9 +105,9 @@ LANGUAGES
 AltSnap is fully translated in French, Italian and mostly translated in many
 other languages. All translations are simple ini files encoded in UTF-16 LE.
 If you want to create or improve a translation, just add or modify the
-associated ini file in the Lang directory, and no not forget to send it to
+associated ini file in the languages directory, and no not forget to send it to
 me via a GitHub pull request/issue or PM me, so that everyone can enjoy your
-translation. You can use "Lang\_en_US baseline.txt" as a starting point if
+translation. You can use "languages\_en_US baseline.txt" as a starting point if
 you want to translate everything to a new language.
 ______
 UPDATE
@@ -315,8 +315,8 @@ Note that this version has some more feature.
 
  + Tray icon theme support was added, put an icon theme in the Themes\
    folder and then set `Theme=ThemeName` in the [General] secion of the ini
-   file. A theme is a folder containing three tray icons named: TRAY_OFF.ico,
-   TRAY_ON.ico, TRAY_SUS.ico. Thanks to @erasmion for supplying a theme,
+   file. A theme is a folder containing three tray icons named: tray-off.ico,
+   tray-on.ico, tray-sus.ico. Thanks to @erasmion for supplying a theme,
    You can try it with Theme=erasmion. #313
 
  + The maximum width in characters of an item in a window list menu can now
@@ -596,7 +596,7 @@ Note that this version has some more feature.
    used to ensure that we are inside a titlebar and not caption buttons.
    This fixes an annoying Windows 10 bug.
 
- * Fixed, now the common french e dans l'o `œ` character is available in
+ * Fixed, now the common french e dans l'o `ï¿½` character is available in
    the default extended character menu (LATIN SMALL/CAPITAL LIGATURE OE).
 
  * Updated Chinese translation, thanks to @yatli.
@@ -1078,7 +1078,7 @@ Note that this version has some more feature.
 + New: AltDrag.xml file that can be imported from the Task Scheduler in
   order to setup auto start in elevated mode.
 
-+ Updated Spanish translation by *Carlos Sánchez*.
++ Updated Spanish translation by *Carlos Sï¿½nchez*.
 
 * Now an AMD64 build of AltDrag, can be compiled. builds are not provided
   because there are no real benefits for now (use mk64.bat).
@@ -1616,10 +1616,10 @@ Note that this version has some more feature.
 * Fixed: Now the Transparency action will not ignore blacklists.
 
 * Improved translation handling, now all translations are ini files in the
-  "Lang" subdirectory of AltDrag. This will simplify addition of new
+  "languages" subdirectory of AltDrag. This will simplify addition of new
   Locals, this also allow anyone with notepad to fix his own language.
   Finally you can remove languages that you donot need and if you want only
-  english you can remove the whole "Lang" directory.
+  english you can remove the whole "languages" directory.
 
 * Updated zh_CN.ini (Chinese) with Zepp Lu's corrections
 
