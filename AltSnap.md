@@ -9,7 +9,7 @@
 *-------------------------------------------------------------------------*
 - Download MEGA: https://mega.nz/folder/mW5ExCCT#gI8DQICICk-y4FIjxaqtGg   *
 - Download GitHub: https://github.com/RamonUnch/AltSnap/releases/         *
-- Original Stefan Sundin: https://stefansundin.github.io/altdrag/         *
+- Original Stefan Sundin: https://stefansundin.github.io/AltDrag/         *
 *=========================================================================*
 ```
 
@@ -66,7 +66,7 @@ AltSnap can be configured quite finely You can set any button to perform
 any action among a list: Move, Resize, Close, Minimize, Maximize, Lower,
 AlwaysOnTop, Borderless, Center, Roll, Menu, Kill and Nothing.
 
-By default the middle mouse button is configured for the Maximize action,
+By default, the middle mouse button is configured for the Maximize action,
 that maximizes/restores the window. Press Shift to minimize.
 
 ## Tricks You Should Know About
@@ -95,12 +95,12 @@ that maximizes/restores the window. Press Shift to minimize.
 - If you can't move a particular window, try elevating AltSnap.
   Normal programs can't interact with programs that are started with
   administrator privileges.
-- If you need to Alt+Click on a program and do not want to blacklist the
-  program, you can use the Winkey instead of Alt. If this is not enough
-  or if you do not want to use the Winkey, you can hit Ctrl and release it
+- If you need to <kbd>Alt</kbd>+<kbd>Click</kbd> on a program and do not want to blocklist the
+  program, you can use the <kbd>Win</kbd> instead of Alt. If this is not enough
+  or if you do not want to use the <kbd>Win</kbd>, you can hit Ctrl and release it
   while keeping Alt pressed and then click.
 - A key combo can be used in order to activate AltSnap, this allows using
-  Alt+Winkey to drag windows and leaves alone the Win+Click and the Alt+Click
+  <kbd>Alt</kbd>+<kbd>Win</kbd> to drag windows and leaves alone the <kbd>Win</kbd>+<kbd>Click</kbd> and the <kbd>Alt</kbd>+<kbd>Click</kbd>
   that some programs may require.
 - Try to add the Shift modifier key for any action, usually it has an effect.
 
@@ -138,49 +138,48 @@ may take a few days before getting updated.
 
 ## Blocklist
 
-Sometime an AltSnap action interacts with a window you do not want.
-For example if you use Alt+Click on a specific window and you do not want
+Sometimes an AltSnap action interacts with a window you do not want.
+For example if you use <kbd>Alt</kbd>+<kbd>Click</kbd> on a specific window, and you do not want
 AltSnap to move the window you can add the window name to the windows
-blacklist. more details below:
+blocklist. more details below:
 All the list are coma separated and take no spaces before the coma.
 A space can be present in the item itself or before the item.
 
-- Process blacklist: List of programs names for which move/resize from
+- Process blocklist: List of programs names for which move/resize from
   AltSnap as well as the scroll actions are disabled. Example: Notepad.exe
-- Windows blacklist: List of windows with the title|class format for which
+- Windows blocklist: List of windows with the title|class format for which
   move/resize actions from AltSnap will be disabled
-  Example: Program Manager|Progman,|Shell_TrayWnd,*|Notepad
+  Example: `Program Manager|Progman,|Shell_TrayWnd,*|Notepad`
 - Windows that should ignore the scroll action: List of windows with the
   title|class format that for which the scroll action of AltSnap will not
-  apply. Example: *|Photoshop
+  apply. Example: `*|Photoshop`
 - MDIs not to be treated as such: List of windows for which AltSnap will not
   try to find MDI subwindow. This only applies if the Support MDI is enabled
-  and by default contains *|PPTFrameClass,*|MMCMainFrame which correspond to
+  and by default contains `*|PPTFrameClass,*|MMCMainFrame` which correspond to
   the PowerPoint window and all the Microsoft Management application such as
-  the services.msc windows or the device drivers window.
+  the `services.msc` windows or the device drivers window.
 - Process not to be paused or killed: Only applies for the Pause and kill
-  action when enabled on Alt+Shift+Pause of Ctrl+Alt+F4,
+  action when enabled on <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Pause</kbd> of Ctrl+<kbd>Alt</kbd>+F4,
   this are program names.
 
-  Program names are pretty straightforward to find. However a finer control can
+  Program names are pretty straightforward to find. However, a finer control can
   be done using the window's title|class information; they can be found for a
   specific window using the small target in the identify window section of the
-  Blacklist tab. You can include all the possible names by using the *|class
+  Blocklist tab. You can include all the possible names by using the *|class
   format. This is useful for most programs that have a non-constant title, for
-  example notepad's title is actually the name of the file you are currently
+  example Notepad's title is actually the name of the file you are currently
   editing.
-  The other way around can be used and you can specify title|* which means that
+  The other way around can be used, and you can specify `title|*` which means that
   all the windows that have this title regardless of their class name will be
   blacklisted. This is a much less common usage.
 
-  The title can also be empty for example: |Shell_TrayWnd corresponds to the
+  The title can also be empty for example: `|Shell_TrayWnd` corresponds to the
   Windows task bar and has an empty title.
 
   Finally more blacklists can be found in the AltSnap.ini file:
 - Snaplist: List of windows with the name|class format to which other windows
-  should snap. By default windows that have no borders cannot be snapped to.
-- MMBLower: List of windows that should not be lowered with mouse middle
-  click on the title bar.
+  should snap. By default, windows that have no borders cannot be snapped to.
+- MMBLower: List of windows that should not be lowered with mouse middle-click on the title bar.
 - Default: `CASCADIA_HOSTING_WINDOW_CLASS` that corresponds to the Windows Terminal window.
 
 ### Usage
@@ -191,10 +190,10 @@ Enjoy dragging windows...
 
 You will see a new Icon in the tray
 
-- Right click on the Tray Icon to see the option menu
-- Left click on the Tray Icon to enable/disable
+- Right-click on the Tray Icon to see the option menu
+- Left-click on the Tray Icon to enable/disable
 - Go to the "Configure" menu entry for basic options
-- Middle click on the Tray Icon to open config file AltSnap.ini (advanced)
+- Middle-click on the Tray Icon to open config file AltSnap.ini (advanced)
 - You can hide the icon if you want. To show it again relaunch AltSnap.exe
 
 AltSnap Wiki: <https://github.com/RamonUnch/AltSnap/wiki>
@@ -213,7 +212,7 @@ Note that this version has some more feature.
    multiplication factors. See #451 and #452 for more details.
 - Fix Action without click #455, #456. (huge regression, sorry for that).
 - Always focus the window on Always On Top toggle #442
-- Fixed: Allow `xxbutton` as hotclick (1.55 regression). #433
+- Fixed: Allow `xxbutton` as hot-click (1.55 regression). #433
 - Fixed: the send Original click option must be shown on hotclick,
    not just for the titlebar action.
 - Fixed: AltSnap hotkeys not working properly when using AltSnap elevated
@@ -222,15 +221,15 @@ Note that this version has some more feature.
 - Partially fixed window resizing when going to a monitor with a
    different DPI. #413
 - Fixed French translation, thanks to @TroudhuK
-- Updated Japaneese translation, thanks to @kakakaya
+- Updated Japanese translation, thanks to @kakakaya
 - Updated Korean translation, thanks to @1kko-ahnlabio
 - Add Finish Translation by @6sto based on AltDrag 1.0, see
-   <https://github.com/stefansundin/altdrag/issues/170>
+   <https://github.com/stefansundin/AltDrag/issues/170>
 
 ### AltSnap 1.60
 
-- Added the `ZSnapMode` option in the [Zones] section of the ini file,
-   to change the strategy for choosing the zone zone on which the dragged
+- Added the `ZSnapMode` option in the `[Zones]` section of the ini file,
+   to change the strategy for choosing the zone on which the dragged
    windows will snap. #405
    Set to 0 to snap to the pointed zones (default, old behavior).
    Set to 1 to snap to the zone which center is the nearest from cursor.
@@ -239,7 +238,7 @@ Note that this version has some more feature.
 - The test Window will now have a full-screen mode (toggle with F11).
 - Added the `MenuShowEmptyLabelWin` Advanced option to display the windows
    with empty titles inside the Windows list menu. #401 @mbartlett21
-- Add the **All windows list** action that will behave like the
+- Add **All windows list** action that will behave like the
    Window list action but will even display windows outside the
    current monitor. Thanks to @mbartlett21 for this. #384
 - You can now set `IgnoreMinMaxInfo` option in the Advanced section
@@ -248,14 +247,14 @@ Note that this version has some more feature.
    the minimum size, 2 to ignore maximum size and 3 to ignore both. #374
 - You can set the `MenuShowOffscreenWin=1` in the [Advanced] section
    of the ini file to still display windows in a windows menu even
-   if they are outside of any monitors. Thanks to @mbartlett21. #384
+   if they are outside any monitors. Thanks to @mbartlett21. #384
 - The *clear AltSnap state* key can now be set to any other key, using
    the `ESCkeys` key list in the [Input] section of the ini file. Default
    value is `1B` (ESCAPE), like with previous AltSnap versions. #386
 - Fixed inconsistent key state leading to drag-free actions not working
    and to blocked LMB in some cases. #392, #388.
 - Fixed: Now FancyZones snapped Windows will be restored to their proper
-   dpi-scaled size. If this causes any issues for you you can always set
+   dpi-scaled size. If this causes any issues for you, you can always set
    `FancyZone=2` in the [Zones] section to prevent scaling.
 - Updated Chinese translation, thanks to @yatli,
    Updated Polish translation, thanks to @xeophyte,
@@ -275,18 +274,18 @@ Note that this version has some more feature.
    if a move or a resize action was started. You can configure them in the
    Mouse tab of the config dialog by selecting the **While moving** and
    **While resizing** radio buttons. Those options are available via the
-   ini file in the [Input] section using the `M` and `R` sufixes.
-   ie: `MMBR=ExtendTNEdge`. Also an extra `B` suffix can be added for
+   ini file in the [Input] section using the `M` and `R` suffixes.
+   ie: `MMBR=ExtendTNEdge`. Also, an extra `B` suffix can be added for
    alternate action (only available via ini). #217, #362.
 - Multiple *snap layouts* are now supported... #232
-- New `IScroll` blacklist in the `[Blacklist]` section of the ini file
+- New `IScroll` blocklist in the `[Blocklist]` section of the ini file
    That only applies to the Inactive scroll option. #351
 - Added the **Move/Extend to next edge** action, That will extend the next
    edge from a snapped window, also available as keyboard shortcuts. #368
 - Added the `--help` option, also available as `-help` or `-?` or `/?`.
    It will display a very short summary of available commands. #370
-- Fixed: Now a hotclick will not always be blocked, It will be forwarded
-   in case no action was done. If you want a hotclick to always be blocked
+- Fixed: Now a hot-click will not always be blocked, It will be forwarded
+   in case no action was done. If you want a hot-click to always be blocked
    set `AblockHotclick=1` in the `[Advanced]` section of the ini file.
 - Fixed: Next/Previous stacked window keyboard shortcut no longer depends
    on cursor position, unless you enabled **use pointed window**. #372
@@ -302,19 +301,19 @@ Note that this version has some more feature.
    folder and then set `Theme=ThemeName` in the [General] secion of the ini
    file. A theme is a folder containing three tray icons named: tray-off.ico,
    tray-on.ico, tray-sus.ico. Thanks to @erasmion for supplying a theme,
-   You can try it with Theme=erasmion. #31
+   You can try it with `Theme=erasmion`. #31
 - The maximum width in characters of an item in a window list menu can now
    be set from 0-255 by the user using the `MaxMenuWidth` option in the
    [Advanded] section of the ini file. Use 0 for unlimited, default is 80.
    Thanks to @mbartlett21 for the pull request #341.
-- Side fraction can now be set independently from center fraction for more
+- Side fraction can now be set independently of the center fraction for more
    flexible configuration. Have a look at the test window and play with those
    values, accessible through the Advanced tab of the config dialog. #318
-- Blacklist were improved to allow a mix of both exe names and title|class.
+- Blocklist were improved to allow a mix of both exe names and title|class.
    You can now specify `exename.exe:title|class`. If you omit the ':' and '|'
    the format is assumed to be an exe name only. If you only specify '|',
    the exe check will be omitted and the format will be assumed to be
-   title|class, like it was the case before. Example: You want to blacklist
+   title|class, like it was the case before. Example: You want to blocklist
    the `*|CabinetWClass` windows only if they are from explorer.exe, use:
    `explorer.exe:*|CabinetWClass`.
 - New **Open ini file** option was added to the tray menu for easy access.
@@ -322,39 +321,39 @@ Note that this version has some more feature.
    keys that can be pressed in order to activate AltSnap. This does not
    apply to the keys that are pressed after activation, use the KillKeys
    for this. Default value is 0 (unlimited). #324
-- Fixed hotclicks not behaving properly for left and right mouse buttons
-   Now you can setup AltSnap to Move/Resize window with right click while
-   still being able to left click without drag. #340
+- Fixed hot-clicks not behaving properly for left and right mouse buttons
+   Now you can configure AltSnap to Move/Resize window with right click while
+   still being able to left-click without drag. #340
 - Fix Tray icon not displaying properly in some cases #315.
 - Fix: No lines drawn in the test window when CenterFraction=0. #319
-- Fix lockup when using hotclick on blacklisted window. Part of #334
+- Fix lockup when using hot-click on blacklisted window. Part of #334
 - Styling options were fixed and AltSnap can now be build with `-std=c99`
    `-Wpedantic` flags.
 - `TCHAR` is now preferred over `wchar_t` so that code is more portable and
-   future proof
+   future-proof
 - Optimizations for ini file loading, this should reduce start time on
-   Slow media such as old HDD/CDRom/floppy.
+   Slow media such as old HDD/CD-ROM/floppy.
 - Updated German, French and Italian translations.
 
 ### AltSnap 1.57
 
-- New keyboard  actions to move the window in steps to each directions.
-   You have the choice between large steps and small steps. To setup the
+- New keyboard  actions to move the window in steps to each direction.
+   You have the choice between large steps and small steps. To configure the
    size of the steps in pixels, use the `KBMoveStep` and `KBMoveSStep`
    values in the [Advanced] section of the .ini file.
    Default is 100 for large steps and 10 for small steps. #304
 - Now the *Restore Window* action is available as a mouse action and will
    let you restore AltSnapped windows to their original size with a single
-   click. Setup as a titlebar action it can be used to better integrate
+   click. Setup as a title-bar action it can be used to better integrate
    in the native snapping experiment. #292
 - Now the right mouse button can be used inside a menu item of a  window
    list to minimize the corresponding window. The middle mouse button will
-   close the window. he menu will remain opened. #290
+   close the window. The menu will remain opened. #290
 - Now the `NumberMenuItems` option can be set to 1 in the `[Advanced]`
    section of the .ini file in order to number menu elements from 0-9
    instead of A-Z. This applies to all windows list menu.
 - New: Window list action that list all windows on your monitors. It can
-   be an alternative to Alt+Tab. #298
+   be an alternative to <kbd>Alt</kbd>+Tab. #298
 - New Laser stacked windows list action is now available as a mouse and
    keyboard action previously it was only available with the shift modifier
    on the Stacked windows list action.
@@ -372,7 +371,7 @@ Note that this version has some more feature.
    `AltSnap.exe -afACTION` to perform the ACTION on the Foreground window
    example: AltSnap.exe -afAlwaysOnTop will toggle the topmost flag on the
    foreground window. #285
-- Now title or class blacklist item can match start or end with a `*`
+- Now title or class blocklist item can match start or end with a `*`
    ie: `*ttl|class*` or `*ttl|*class` or `ttl*|*class` or `ttl*|class*`
    You cannot have a star at both ends of an item though. Previously
    matching was limited to the `*ttl|class*` form. #305
@@ -420,31 +419,31 @@ Note that this version has some more feature.
    the [Input] section of the .ini and the `PinRate` option in the
    [Performance] section of the .ini can be used to set the color of the
    indicator and the rate at which it gets refreshed.
-- New: You can now setup any keyboard shortcut for any action.
-   Note that this creates system level keyboard shortcuts and you will be
-   unable to setup a shortcut that already existed (this is a good thing).
+- New: You can now configure any keyboard shortcut for any action.
+   Note that this creates system level keyboard shortcuts, and you will be
+   unable to configure a shortcut that already existed (this is a good thing).
    Go to the Keyboard tab of the config dialog, select the option for which
-   you want to setup a shortcut, then edit it manually or click the
+   you want to configure a shortcut, then edit it manually or click the
    Pick keys button and press your shortcut, then hit the Save button.
    You can decide whether those keyboard-only actions should apply to the
    pointed or to the focused window. #264, #268
-   You will need to reconfigure Kill on Ctrl+Alt+F4 and such.
+   You will need to reconfigure Kill on Ctrl+<kbd>Alt</kbd>+F4 and such.
 - New keyboard-only actions to move/extend the window to the surrounding
    zones in the snap layout.
 - New: Now you can set up `MoveUpT` and `ResizeUpT` actions to be
-   performed when the click was performed inside the titlebar.
+   performed when the click was performed inside the title-bar.
    CHECK YOUR CONFIG, as those options did not exist before and
    will default to Nothing. The options were also added to the GUI.
 - New: Two Zoom window action that can be setup for a mouse wheel.
    The first one will resize only vertically/horizontally when the
    mouse points at the pure side sectors, and the second one will
-   always zoom proportionally instead. In addition you can adjust
+   always zoom proportionally instead. In addition, you can adjust
    the fraction by which the window is zoomed using the `ZoomFrac`
    and `ZoomFracShift` options. #239
 - New: To fix menu not getting canceled in some cases, you can add the
    `DragSendsAltCtrl` option in the [Advanced] section of the ini. #255
 - New now you can set the value of `BLUpperBorder` in the `[Advanced]`
-   section of the .ini file and it will select in the same fashion than
+   section of the `.ini` file, and it will select in the same fashion as
    `BLCapButtons` but this time only for the top resizing border. Default
    value is also 3 to prevent left and right button to trigger AltSnap in
    the top resizing borders. `BLCapButtons` now concerns only the caption
@@ -464,7 +463,7 @@ Note that this version has some more feature.
    resizing mode, leading to window running outside the screen when
    resizing it beyond their maximum size.
 - Fixed: Focus windows when dragging not working in some cases. #250
-- Fixed: The titlebar Action menu not disappearing on defocusing in some
+- Fixed: The title-bar Action menu not disappearing on defocusing in some
    cases. #263.
 - Fixed now if the owner window has an empty RECT it will no longer be
    used to hold the topmost indicator (ie: ForceToolkit main window).
@@ -487,9 +486,9 @@ Note that this version has some more feature.
    resizing border. Use `BLCapButtons=0` if you want all buttons to
    consider the extended caption and use -1 for none of them. The default
    value is 3 to avoid the extended caption for the left and right mouse
-   buttons so that AltSnap avoids interaction with the minimize, maximize
-   and close caption buttons ([_] [O] [X]). If you are unsure stick to
-   the default value if you want less titlebar detection use -1. #236
+   buttons so that AltSnap avoids interaction with minimize, maximize
+   and close caption buttons (`[_]`, `[O]`, `[X]`). If you are unsure stick to
+   the default value if you want less title-bar detection use -1. #236
 - Now a checkmark in the action menu will indicate the always on top state
    of the pointed window. Same for Maximized and Borderless flags (#184).
 - Changed: Now when auto Snapping is enabled at the maximum level, then
@@ -508,7 +507,7 @@ Note that this version has some more feature.
    to the snap layout (Zones).
 - Fixed: Modifying the config will no longer reset the `UseZones` value.
 - Fixed #226, #229: Now the `DWMWA_CAPTION_BUTTON_BOUNDS` rectangle is
-   used to ensure that we are inside a titlebar and not caption buttons.
+   used to ensure that we are inside a title-bar and not caption buttons.
    This fixes an annoying Windows 10 bug.
 - Fixed, now the common french e dans l'o `�` character is available in
    the default extended character menu (LATIN SMALL/CAPITAL LIGATURE OE).
@@ -532,9 +531,9 @@ Note that this version has some more feature.
    you can map an action to the corresponding mouse button, in the [input]
    section of the .ini file. I advise to also add those buttons to the
    `Hotclicks` key list. Finally keep in mind that any keys added to the
-   `XXButtons` list will be unusable outside of AltSnap.
+   `XXButtons` list will be unusable outside AltSnap.
    Check issue #175 for the feature development and more tricks.
-- New: the `Bottommost` list was added to the `[Blacklist]` section of the
+- New: the `Bottommost` list was added to the `[Blocklist]` section of the
    ini file. When AltSnap lowers a window, it will try to keep it above all
    those Bottommost windows. Default value is `*|RainmeterMeterWindow` for
    the Rainmaker skin windows (fixes #189).
@@ -565,10 +564,10 @@ Note that this version has some more feature.
 - Changed: some code refactoring and unification inducing size reduction.
 - Fixed: Lag when dragging and resizing some programs (issue #160)
 - Fixed: #172, drag was locked down when combining and action and hotclick.
-   Also, now if a hotclick is combined with the Move or Resize action then a
+   Also, now if a hot-click is combined with the Move or Resize action then a
    long click will be forwarded to the pointed program is no drag occurred.
    This long click will not even be necessary if you enabled the
-   **Avoid blocking Alt+Click** option in the General tab of the config.
+   **Avoid blocking <kbd>Alt</kbd>+<kbd>Click</kbd>** option in the General tab of the config.
 - Fixed: #124, A window will be restored to its original position when
    using the Move+Resize click combo without a drag.
 - Fixed: bugs in rolling and snapping code.
@@ -591,18 +590,18 @@ Note that this version has some more feature.
    the hotkey if you want. This replaces all special title bars options:
    `LowerWithMMB`, `RollWithTBScroll`, `NormRestore`, `TitlebarMove`,
    now removed. **CHECK YOUR CONFIG** when you install this update...
-- New: Now, if you perform a long Alt+Click, the click will be forwarded
-   to the pointed program, simulating a normal Alt+Click. You can also check
-   the **Avoid blocking Alt+Click** option (General tab) and the Click will
+- New: Now, if you perform a long <kbd>Alt</kbd>+<kbd>Click</kbd>, the click will be forwarded
+   to the pointed program, simulating a normal <kbd>Alt</kbd>+<kbd>Click</kbd>. You can also check
+   the **Avoid blocking <kbd>Alt</kbd>+<kbd>Click</kbd>** option (General tab) and the Click will
    always be redirected, this will also disable all double-click actions.
 - New: A specific action can be configured when the Move or Resize action
    is release without performing a drag, so for example you can set
    `MoveUp=Minimize` in the `[Input]` section of the ini file and then
-   Alt+Move+drag will just move the window as normal, but Alt+Move+Release
-   will minimize the window. By default it needs to be a long click but if
-   you check the avoid blocking Alt+Click option then any click will work.
+   <kbd>Alt</kbd>+Move+drag will just move the window as normal, but <kbd>Alt</kbd>+Move+Release
+   will minimize the window. By default, it needs to be a long click but if
+   you check the avoid blocking <kbd>Alt</kbd>+<kbd>Click</kbd> option then any click will work.
    Same for the resize action using `ResizeUp` option. You also have the
-   Alternate versions for each one with the B sufix. Also if you Hold Ctrl
+   Alternate versions for each one with the B sufix. Also, if you Hold Ctrl
    while releasing the click the action will not be performed.
 - New: Now the Resize+Move click combo will snap the window to the
    corresponding corner (similar to Move+Resize => Maximize).
@@ -611,12 +610,12 @@ Note that this version has some more feature.
    double-right-click aero-snapping.
 - New: The `RezTimer` option was added to the `[Performance]` section of
    the ini file and permits to move the cursor only at the default event
-   time resolution (every 16ms). It can be combined with FullWin=0 and is
-   very low on resources consumption. It is an advised mode if your monitor
+   time resolution (every 16ms). It can be combined with `FullWin=0` and is
+   very low on resource consumption. It is an advised mode if your monitor
    refresh rate is only 60Hz. If the option is used then all the other
    rates are ignored.
-- French, Italian, translations are up to date and thanks to @1kko for
-   Korean Translation and thanks to @Ichisich for German translation
+- French, Italian, translations are up-to-date. Thanks to @1kko for
+   Korean translation and @Ichisich for German translation.
 - Fixed: now the config dialog will show up in the corner your cursor is
    when you click on the tray icon.
 - Fixed: now the borderless action will save the old window style.
@@ -631,7 +630,7 @@ Note that this version has some more feature.
    and 2: Autodetect based on Windows setting.
    The color of the hollow rectangle can be set in hex RGB via the
    `FrameColor` option in the [Input] section, default is 80 00 80.
-- Fixed: Alt+Shift will be blocked, by sending Ctrl, if an action occurred.
+- Fixed: <kbd>Alt</kbd>+Shift will be blocked, by sending Ctrl, if an action occurred.
    This avoids unwanted keymap changes.
 - Fixed: Volume action now simply sends the multimedia key events.
    It should work on Win2k+, and will show a visual indicator on Win10.
@@ -656,14 +655,14 @@ Note that this version has some more feature.
 - GUI: `Smarter Aero Snap dimensions` and `Never restore AltSnapped windows`
    options were added to the GUI so they can be configured easily.
 - Fix: When using the Kill Action on a suspended window, AltSnap will send
-   the WM_CLOSE message and the terminate confirmation should appear. For now
+   the WM_CLOSE message and the terminate confirmation should appear. For now,
    it is impossible to really kill the process via AltSnap because its
    window is Ghosted as soon as windows detects the process is hung.
 - Fix: Never restore AltSnapped windows option can be combined with Smart
    aero snap dimensions, and perform properly (#133)
 - Fix: Now all keys from A-Z are in the Killkeys list to avoid interaction
    with system shortcuts that might put AltSnap in an inconsistent state
-   ie: Win+L, Win+V...
+   ie: <kbd>Win</kbd>+L, <kbd>Win</kbd>+V...
 - Fix: The Close Action now behaves correctly on Excel.
 - Fix: Maximum number of zones in the snap layout was raised to 2048.
 - Updated German and Chinese translations.
@@ -678,8 +677,8 @@ Note that this version has some more feature.
 - New: `SnapGap` value can be set into the `[Advanced]` section of the ini
   file and will set an additional gap between snapped windows/monitor sides.
   You can put a negative value if you want an overlap. Default is 0
-- New: `Shiftkeys` keys list was added in the [input section of the ini file,
-  to setup another key instead of the Shift key. The default is `A0 A1`,
+- New: `Shiftkeys` keys list was added in the `[input]` section of the `.ini` file,
+  to configure another key instead of the Shift key. The default is `A0 A1`,
   for left and right shift but this is now a customizable key list.
 - New: `ShiftSnaps` option was added in the `[Advanced]` section of the ini
   in order to enable/disable the border-border snapping activation with the
@@ -688,7 +687,7 @@ Note that this version has some more feature.
   windows functions are used to minimize flicker.
 - Fixed: Now when disabling window to window snapping with space while
   dragging, the smart window snapping will also be disabled.
-- Fixed AltSnap would block Alt+Space if no drag occurred, this was a problem
+- Fixed AltSnap would block <kbd>Alt</kbd>+Space if no drag occurred, this was a problem
   when using **Action without click**.
 - Fixed: smart aero-snapping only taking into account windows snapped on the
   other side of the monitor.
@@ -697,49 +696,51 @@ Note that this version has some more feature.
 - Fixed Maximize Vertically action that would erase the old restore state.
 - Fixed some crash when launching again AltSnap with a previous instance.
 - Fixed Tray icon handling under Win10.
-- Changed: Now when the space key is pressed for a movement the snap sate
+- Changed: Now when the space key is pressed for a movement the snap state
   will be toggled between no snapping and all border-borders snapping.
 
 ### AltSnap 1.47
 
 - Project was renamed from **AltDrag__ to __AltSnap** to avoid conflict with
-  Original AltDrag from Stefan Sundin. Old choco package will no longer be
+  Original AltDrag from **Stefan Sundin**. Old choco package will no longer be
   updated and will be given back as soon as Stefan asks for it.
   I advise to all users to uninstall AltDrag and install AltSnap.
-- New: Support of Snap Layouts, also called Zones. All associated settings
-  are in the `[Zones]` section of the .ini file **Read carefully:**
+- **New:** Support of Snap Layouts, also called Zones. All associated settings
+  are in the `[Zones]` section of the `.ini` file **read carefully**:
+
   1) Check the **Snap to layout** option (`UseZones=1` in the .ini).
   2) Configure your layout by opening several *Test Windows* from the tray.
-  3) Arrange those windows across all of your monitors as you you wish.
+  3) Arrange those windows across all of your monitors as you wish.
   4) Go again to the tray menu and hit **Save test windows as snap layout**
   5) A confirmation dialog will ask you if you want to save, hit yes.
-  Now you will be able using the Shift key to sanp the window you move to the
+
+  Now you will be able using the Shift key to snap the window you move to the
   pointed zone, Add the Ctrl key and drag the cursor to extend the windows
   across several zones. If the cursor is close from two or more zones then
   the window will also be extended to several zones. Use the `InterZone`
   value to adjust this threshold distance in pixels (default 32).
-- New: Added the **Restore FancyZones snapped windows** option in the
+- **New:** Added the **Restore FancyZones snapped windows** option in the
   Advanced tab and `FancyZone` option in the `[Zones]` section of the ini.
   set it to 1 if you want AltSnap to be able to restore windows that were
   snapped using PowerToys' FancyZones. This only applies to x86_64 builds
   of AltSnap. I highly recommend this to FancyZones users.
-- New added a `AResize` whitelist in the `[Blacklist]` section of the .ini
-  file in order to force altdrag to resize windows that do not have the
+- **New:** Added a `AResize` whitelist in the `[Blocklist]` section of the .ini
+  file in order to force AltDrag to resize windows that do not have the
   `WS_THICKFRAME` style, when the Resize all windows option is disabled.
-- New: Added the option to move windows via AltDrag without hotkey,
+- **New:** Added the option to move windows via AltDrag without hotkey,
   by clickling on the titlebar. It is similar to the **hooks windows**
   feature that was present in the original AltDrag and can be activated
   via the `TitlebarMove` option in the `[Advanced]` section of the .ini.
-- New: Now a **modifier key** can be set instead of the invert Move/resize
+- **New:** Now a **modifier key** can be set instead of the invert Move/resize
   key in order to use an alternate set of customizable actions for all
   buttons. They can be configured in the Mouse tab of the config dialog,
   or manually in the `.ini`, using a B suffix for buttons e.g., `LMBB=Resize`.
-- New: Maximize Vertically action, use Shift to maximize horizontally.
-- Changed default `RefreshRate` to 0 to favor smoothest movement instead
+- **New:** Maximize Vertically action, use Shift to maximize horizontally.
+- Changed default `RefreshRate` to 0 to favor the smoothest movement instead
   of performances also default is now `MoveRate=1` and `ResizeRate=2`.
-- Restore informations for snapped windows are now stored in Windows
-  properties. This simplifies the code, and allows altdrag to be restarted
-  without loosing restore info, also restore informations become shared
+- Restore information for snapped windows are now stored in Windows
+  properties. This simplifies the code, and allows AltDrag to be restarted
+  without loosing restore info, also restore information shared
   between different AltSnap instances.
 - Updated to tdm-gcc-10.3 for i386 and x86_64 builds with one compiler.
 - Updated Chinese translation by *Yatao Li* (`zh_CN.ini`).
@@ -757,7 +758,7 @@ Note that this version has some more feature.
 
 ### AltDrag 1.46
 
-- Fix -elevate command line parameter being ignored. this also fixes the
+- Fix `-elevate` command line parameter being ignored. this also fixes the
   **Elevate to administrator privilege** option for autostart.
 - Fix major bug: AltDrag would capture the wheel input when Alt Was pressed
   even if `Nothing` was selected as wheel action.
@@ -765,14 +766,14 @@ Note that this version has some more feature.
 
 ### AltDrag 1.45
 
-- New: Now the `ScrollLockState` option in the [Input] section of the ini
-  file can be set to 3 to enable AltDrag only when Scroll Lock is off.
+- New: Now the `ScrollLockState` option in the `[Input]` section of the ini
+  file can be set to 3 to enable AltDrag only when <kbd>Scroll Lock</kbd> is off.
 - Fixed: Now the `SWP_NOSIZE` and flag is used when simply moving a window.
-  This prevents rolled windows from partially unrolling. Also the
+  This prevents rolled windows from partially unrolling. Also, the
   `SWP_ASYNCWINDOWPOS` flag was added where applicable and this fixes
-  an ugly Win 10 bug that would changes the borders of some moved window.
+  an ugly Win 10 bug that would change the borders of some moved window.
 - Fixed: When using maximizing a window by snapping to the top,
-  it would sometime prevent further movement when FullWin=0.
+  it would sometime prevent further movement when `FullWin=0`.
 - Fixed a last minute bug introduced in 1.44 that would restore rolled
   windows as soon as you moved them.
 - Fixed: Now when AltDrag is suspended with the Scroll lock state option,
@@ -791,7 +792,7 @@ Note that this version has some more feature.
   any window snapped or touching to sides of the currently resized window
   will be resized to remain stuck to the current window when you press the
   Shift key. If you want to always resize the touching windows, then you
-  can manually set StickyResizing=2 in the [General] tab in AltDrag.ini.
+  can manually set `StickyResizing=2` in the [General] tab in AltDrag.ini.
   In this case, pressing shift will prevent the "sticky resizing".
   MDI windows are also supported.
 - New setting to enable/disable AltDrag based on **Scroll Lock** state.
@@ -802,9 +803,9 @@ Note that this version has some more feature.
   beginning of the title, in the form: `*end of title|class start*`
   Example: `*|Winamp*`. This may be useful to make better rules.
   Note that the processes blacklists are not concerned by this.
-- New: If the first element of a blacklist is *|*, then all windows that
-  are not listed will be considered as part of the blacklist. This turns
-  the blacklist into a whitelist ie: list of windows for which AltDrag
+- New: If the first element of a blocklist is `*|*`, then all windows that
+  are not listed will be considered as part of the blocklist. This turns
+  the blocklist into a whitelist ie: list of windows for which AltDrag
   will be enabled. It can be useful if you only want to use AltDrag on
   very few programs, then you just enable it on those programs.
   Both title|class and processes.exe styles are supported.
@@ -824,18 +825,18 @@ Note that this version has some more feature.
   snapped window.
 - Fixed: now the snapping region when using Mimic Aero snap option will no
   longer extend beyond aero-threshold distance in the corners.
-- Fixed: the **Lower windows with middle clicking on title bars** as well
-  as the **Roll/Unroll windows with Alt+Scroll on title bars** now work
+- Fixed: the **Lower windows with middle-clicking on title bars** as well
+  as the **Roll/Unroll windows with <kbd>Alt</kbd>+<kbd>Scroll</kbd> on title bars** now work
   better and lets user closes the tabs on Sumatra PDF with middle click.
   The options also apply properly to MDI windows now.
 - Fixed: now the center action will no longer apply to Maximized windows.
-- Fixed Process blacklist not working on Windows 8.1
+- Fixed Process blocklist not working on Windows 8.1
 - Fixed: the cursor at the End of a movement would force the repaint of
   a 256x256 pixels around it. This is no longer the case.
 - Fixed: Hotkeys list would not be read properly sometime.
 - Fixed: Now windows focusing will work properly inside MDI windows.
   Also advanced mouse actions now work properly inside MDI.
-- Fixed: now the `MMBLower` blacklist will only apply to the middle-click in
+- Fixed: now the `MMBLower` blocklist will only apply to the middle-click in
   the title bar and the normal restore option.
 - Maximized-rolled window will now be restored to the pre-maximized state.
   Rolled-maximized-rolled-unrolled windows, will be restored to the first
@@ -844,21 +845,21 @@ Note that this version has some more feature.
   This simplifies the code and is more desirable in my opinion. You now
   need to click OK or Apply in order to apply the settings. This also
   avoids useless confusion when compared to a normal property sheet.
-- Fixed: Now Ctrl+Alt+Click will focus windows without needing to move
+- Fixed: Now Ctrl+<kbd>Alt</kbd>+<kbd>Click</kbd> will focus windows without needing to move
   them or to press Ctrl after the click.
 - Fixed: Now the Max Aero Speed will also apply to top snapping.
-- Fixed: now the application icon will display properly when Alt+Tabbing.
+- Fixed: now the application icon will display properly when <kbd>Alt</kbd>+Tabbing.
 - Fixed: the Shift key was not working properly to enable snapping when
   all snapping was disabled.
 - Fixed: a Rolled then double-clicked-snapped window will now be restored
   to its pre-rolled state, as expected.
-- Fixed: The AltDrag icon is now properly displayed in Alt+Tab window.
+- Fixed: The AltDrag icon is now properly displayed in <kbd>Alt</kbd>+Tab window.
 - Better monitor handling on old windows.
 - Other minor fixes and code improvement, leading to smaller exe.
 
 ### AltDrag 1.43
 
-- New Wiki for altdrag usage: <https://github.com/RamonUnch/AltDrag/wiki>
+- New Wiki for AltDrag usage: <https://github.com/RamonUnch/AltDrag/wiki>
 - New: An option to make the window translucent while dragging was added.
   See MoveTrans in the [General] section of `AltDrag.ini`. You can change it
   via the Advanced tab, using the opacity while moving option, from 1 to 254.
@@ -869,7 +870,7 @@ Note that this version has some more feature.
   of AltDrag.ini (default 32ms). The max speed can now be specified in the
   Advanced tab of the config. Good values are around 10-100px/32ms. Use
   65535 or an empty value to disable (default). recommended: 64px/32ms.
-- New: `SSizeMove` blacklist was added in the [Blacklist] section of the ini.
+- New: `SSizeMove` blocklist was added in the [Blocklist] section of the ini.
   Any windows added in this list will NOT receive the `WM_ENTERSIZEMOVE` and
   `WM_EXITSIZEMOVE` messages when moved or resized. This is useful for some
   buggy applications such as iTunes (default value is *|iTunes).
@@ -878,12 +879,12 @@ Note that this version has some more feature.
 - Updated **Spanish** translation by **Carlos Sanchez**.
 - Now an AMD64 build of AltDrag, can be compiled. builds are not provided
   because there are no real benefits for now (use mk64.bat).
-- Removed dependency to `msvcrt.dll`. This avoids some mess and reduce the
-  suspiciousness of the AltDrag.exe file to antiviruses. This also reduces
+- Removed dependency to `msvcrt.dll`. This avoids some mess and reduces the
+  suspiciousness of the `AltDrag.exe` file to antiviruses. This also reduces
   the size of the exe.
 - Fixed: Windows borders will now properly snap to taskbar on the second
-  monitor. Instead of looking for the taskbars, I chose to look tor the
-  rcWork field of the monitor info that directly contains the area in which
+  monitor. Instead of looking for the taskbars, I chose to look for the
+  `rcWork` field of the monitor info that directly contains the area in which
   windows should be snapped. This also simplifies the code.
 - Fixed: a snapped, then maximized window will be restored to its original
   size when alt-dragging it out of maximized state. If a windows like this
@@ -899,21 +900,21 @@ Note that this version has some more feature.
 - Now all the memory should be unallocated when unloading hooks.dll. This
   avoids memory leaks of a couple of KB when disabling/enabling AltDrag.
 - Fixed some occasional problem with snapping in older windows versions.
-- Fixed: Now spaces can be added after a coma in a blacklist.
+- Fixed: Now spaces can be added after a coma in a blocklist.
 - Added StartMenuExperienceHost.exe,SearchApp.exe to the default process
-  blacklist, thanks *LittleboyHarry*.
-- Added *|classFoxitReader to the default MDI blacklist.
+  blocklist, thanks *@LittleboyHarry*.
+- Added *|classFoxitReader to the default MDI blocklist.
 - Minor code cleanup.
 
 ### AltDrag 1.42
 
-- Now Ctrl+Alt+Double-Left-Click will minimize the pointed window.
+- Now <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Double-Left-Click</kbd> will minimize the pointed window.
 - Avoid some more 'Stuck alt' bugs by better checking the key state.
-- WARNING: The Hotclick values have changed, check your configuration if you
+- WARNING: The hot-click values have changed, check your configuration if you
   use mouse button to activate AltDrag.
-- Now the Killkeys list also contains tle 'L' key (4C) by default, this will
-  fix AltDrag problem if you use Win as a hotkey and use Win+L
-- The MDIs blacklist was also updated with *|classFoxitReader.
+- Now the Killkeys list also contains tle 'L' key (`4C`) by default, this will
+  fix AltDrag problem if you use Win as a hotkey and use <kbd>Win</kbd>+L
+- The MDIs blocklist was also updated with *|classFoxitReader.
 - Improved the Roll/Unroll window action: now the file explorer windows will
   be really reduced to the title bar under Win10, until the user moves it.
 - Re-introduced left and right control option in the GUI keyboard tab.
@@ -921,7 +922,7 @@ Note that this version has some more feature.
 - Fixed: The LowLevelMouseProc@12 should never have been exported by
   `hooks.dll`because it is only internally used. It does not change anything
   for the user but fixes potential vulnerabilities.
-- Fixed: The scroll action is no more disabled on non full screen windows
+- Fixed: The scroll action is no more disabled on non-fullscreen windows
   when they have no system menu. It fixes problems with VS Code and Discord.
 - Fixed: The cursor will no longer be unconditionally unclipped when
   releasing Shift or Ctrl keys.
@@ -929,9 +930,9 @@ Note that this version has some more feature.
 ### AltDrag 1.41
 
 - Fixed compilation flags in the release build and Switched to NSIS 2.46
-  and TDMGCC. to avoid false positives with some antiviruses. This also
+  and `TDMGCC`. to avoid false positives with some antiviruses. This also
   results in even smaller exe and dll.
-- Minor dialog adjustement to help with russian language.
+- Minor dialog adjustment to help with russian language.
 - More translation corrections and improvements from *Alexandr Smolnikov*,
   *Yatao Li* and myself.
 
@@ -940,14 +941,14 @@ Note that this version has some more feature.
 - NEW: Action menu can now be selected as a mouse action and will pop up
   a menu that let you chose a list of others actions.
   Thanks to *Yatao Li* (yalti) for implementing this action.
-- New a kill action was added and can be activated with Ctrl+Alt+F4 or by
-  using the Action menu, after activating the option. The Pause blacklist
+- New a kill action was added and can be activated with Ctrl+<kbd>Alt</kbd>+F4 or by
+  using the Action menu, after activating the option. The Pause blocklist
   applies to this action.
 - New Test Window that shows the resizing regions was implemented and is
   available in the Advanced tab (suggested by *redactedscribe*).
 - Fixed: Some windows could not be created under older WinNT versions.
 - Fixed: Now the windows registered by `hooks.dll`will be unregistered when
-  unloading it (Under Win9x it was unnecessary but we are under NT...).
+  unloading it (Under Win9x it was unnecessary, but we are under NT...).
 - Fixed: Makefile mk.bat is now compatible with MingW's GCC 10.2
 - More fixes to French Translation by *TroudhuK*.
 - Russian translation improvement by *Alexandr Smolnikov* (bigcrush).
@@ -963,7 +964,7 @@ Note that this version has some more feature.
 - New/fix: A Killkeys list was added in the [Input] section of AltDragh.ini.
   It contains a list of key that will disable AltDrag when pressed down.
   Default value is 09 for the TAB key. This fixes a bug with DisplayFusion's
-  Alt+Tab feature (Thanks *Daniele-f*).
+  <kbd>Alt</kbd>+Tab feature (Thanks *Daniele-f*).
 - Fix: Made ESC key a bit more aggressive in disabling AltDrag.
 - Minor refactoring and code cleanup, towards a more generic key mapping.
 - Fixed French translation thanks *TroudhuK* and his very funny name...
@@ -977,38 +978,38 @@ Note that this version has some more feature.
   click action (Resize) that aerosnaps or extends windows borders to monitor
   depending on the state of the Shift key. See the advanced tab.
 - New: You can now set the Hotclicks variable in the [Input] section of the
-  ini file to add the mouse buttons as hotkeys (hence the Hotclick name).
+  ini file to add the mouse buttons as hotkeys (hence the hot-click name).
   In the case the mouse button is also mapped to an action, the action will
-  be performed on a single click. For example you can set MB4=Move,
+  be performed on a single click. For example, you can set MB4=Move,
   MB5=Resize and Hotclicks=80 81 and the mouse 4/5 button will respectively
   Move/Resize the window without needing to press any other button or key.
   In all cases this click will not be usable for anything else than AltDrag.
-  Action suggested by *displayerror*.
+  Action suggested by @displayerror.
 - New Hotkey combo is now available. Set KeyCombo=1 in the [Input] section
   of AltDrag.ini and you will need to press two of the hotkeys in order to
-  activate AltDrag. This was suggested by *MarqueIV*.
+  activate AltDrag. This was suggested by @MarqueIV.
 - New: The keyboard can now be used to activate AltDrag without clicking.
   For example set GrabWithAlt=Move in the [Input] section of AltDrag.ini.
-  Press Alt and the pointed window will directly be moved wen moving the
+  Press Alt and the pointed window will directly be moved when moving the
   mouse without requiring a click. You can set any other action. I advise
   to use a hotkey combo for this feature or to use a very useless key on
-  your keyboard. Action suggested by *pixelbase*.
+  your keyboard. Action suggested by @pixelbase.
 - New: A key can be set to toggle between move and resize action. it can be
   used in order to have a single click configuration that will turn into the
   other action when pressing this key. This later can be set with the
   ToggleRsMvKey in the [Input] section of AltDrag.ini. You can set it to A2
-  for example and have Ctrl+Alt+LClic => Resize instead of Move. Leave it
+  for example and have Ctrl+<kbd>Alt</kbd>+LClick => Resize instead of Move. Leave it
   empty if you do not want this feature. Only one key can be specified.
-  It can also be combined with a hotkey. You could for example use Alt+LClick
-  to move and Win+LClick to resize with a single instance of AltDrag.
+  It can also be combined with a hotkey. You could for example use <kbd>Alt</kbd>+LClick
+  to move and <kbd>Win</kbd>+LClick to resize with a single instance of AltDrag.
 - New: The Ctrl key can be presses and released when a hotkey is on in order
   to prevent AltDrag from grabbing a window.
-  Exemple: Alt+Clicl => Move window with AltDrag. Alt+Ctrl_down+Ctrl_up+Click
-  Will be like a Simple Alt+Click without AltDrag running.
+  Example: <kbd>Alt</kbd>+<kbd>Click</kbd> => Move window with AltDrag. <kbd>Alt</kbd>+Ctrl_down+Ctrl_up+<kbd>Click</kbd>
+  Will be like a Simple <kbd>Alt</kbd>+<kbd>Click</kbd> without AltDrag running.
 - Removed PearceDBClick option that was buggy and is now mostly unnecessary.
 - Fixed: Now the doubleclick actions will check that the same button/key
   was used for both clicks.
-- Fixed: Ctrl delay problem. Now Alt+Ctrl should not need to wait for the
+- Fixed: Ctrl delay problem. Now <kbd>Alt</kbd>+Ctrl should not need to wait for the
   keyboard auto-repeat delay. It was a stupid bug sorry for that...
 - Fixed potential bug in the hook chain.
 - Changed the cursor window no longer capture the input as it should not
@@ -1025,9 +1026,9 @@ Note that this version has some more feature.
   when changing monitor. This was not working properly in 1.36. Note that
   many full screen windows are really not moveable anyway.
   Under Windows 10 the file explorer will behave correctly, not Firefox.
-- Fixed: the Scroll list was added in the [Blacklist] section of AltDrag.ini
+- Fixed: the Scroll list was added in the [Blocklist] section of AltDrag.ini
   in order to disable the scroll action for any window. In addition the
-  Processes blacklist will apply to scroll action as well.
+  Processes blocklist will apply to scroll action as well.
 - Fixed bug when the origin monitor was a NULL pointer in some cases under
   older windows versions.
 - Fixed ini file: the proper name of the two settings about max aero speed
@@ -1037,12 +1038,12 @@ Note that this version has some more feature.
 - More code cleanup, some code was moved to functions and potential NULL
   pointer dereferencing were fixed.
 - GUI Fixed: Now the Snaplist has to be edited with the ini file and the
-  Scroll blacklist is visible instead (much more useful). Snapplist is
+  Scroll blocklist is visible instead (much more useful). Snaplist is
   a quite advanced detail anyway.
 
 ### AltDrag 1.36
 
-- Added MMMaximize option in the [General] section of altdrag.ini in order to
+- Added MMMaximize option in the [General] section of `AltDrag.ini` in order to
   restore old AltDrag behavior (thanks brian6932):
   Set to 1 to maximize/restore on left+right click (default).
   Set to 2 to restore on a single left click instead of a drag.
@@ -1063,16 +1064,16 @@ Note that this version has some more feature.
   when you want it to sap, if the window tends to restore when you do not
   want, increase the AeroMaxSpeed value.
 - Roll/Unroll action was added: It collapses the window in its title bar.
-  It can also be used with the move action (Alt+Shift+DoubleLeftClick).
+  It can also be used with the move action (<kbd>Alt</kbd>+<kbd>Shift</kbd>+DoubleLeftClick).
   You can also set RollWithTBScroll=1 in the [Input] section of your ini file
-  to enable Alt+Wheel to roll/unroll window when pointing to their title bar.
+  to enable <kbd>Alt</kbd>+Wheel to roll/unroll window when pointing to their title bar.
   If not pointing to the title bar the normal Scroll action will be performed.
   If Ctrl is pressed the normal Scroll action will always be performed
-- New: Now when using Alt+Shift+DoubleRightClick, the window will be extended
+- New: Now when using <kbd>Alt</kbd>+<kbd>Shift</kbd>+DoubleRightClick, the window will be extended
   to the corner/border of the monitor according to which area of the window
-  was double clicked. Alt+DoubleRightClick works as before and Aero-snaps
+  was double clicked. <kbd>Alt</kbd>+DoubleRightClick works as before and Aero-snaps
   the window to the monitor sides/corners. Finally to Maximize a window you
-  can use Alt+Ctrl+DBLeftClick on the center portion of the window (this is
+  can use <kbd>Alt</kbd>+Ctrl+DBLeftClick on the center portion of the window (this is
   useful if you use a single button config with resize center set to "move".
 
 - New: Now the AlphaDelta and AlphaDeltaShift value can be set into the
@@ -1090,7 +1091,7 @@ Note that this version has some more feature.
 - Fixed: Now if MinAlpha is set to 0, it will be clamped back to 1, because
   setting to zero the alpha of a window disables any interaction with it.
   Everyone should also add ",Program Manager|Progman" to their windows
-  blacklist (without the quotes).
+  blocklist (without the quotes).
 
 - New: Improved the AltDrag.txt file, read it for some basic documentation.
 - Fixed: cleaned up some code and corrected potential bugs, moved some more
@@ -1102,7 +1103,7 @@ Note that this version has some more feature.
 - Changed: to simplify the code and avoid bugs, the Ctrl is no longer
   suggested as a hotkey and if using it (using the ini file) other Ctrl
   functions will be unavailable (it was buggy in the first place anyway).
-- Fixed a typo in the Alt+Tab scroll actions that lead to some bugs.
+- Fixed a typo in the <kbd>Alt</kbd>+Tab scroll actions that lead to some bugs.
 - Fixed: Ctrl in some cases does not work properly to retain window
   in current monitor and would be stuck sometime (thanks redactedscribe).
   To avoid those problems that are specific to Ctrl, the Shift key can now
@@ -1143,7 +1144,7 @@ Note that this version has some more feature.
 ### AltDrag 1.32
 
 - Added the PearceDBClick option in [Advanced] section of Altdrag.ini.
-  Use 1 to disable the maximize on Alt+double-click. It only applies to
+  Use 1 to disable the maximize on <kbd>Alt</kbd>+double-click. It only applies to
   the Move action for now, maybe more will come if needed.
 - Added the UseCursor option in the [Advanced] section of AltDrag.ini
   Use 0 to disable any cursor handeling (not recommended).
@@ -1157,7 +1158,7 @@ Note that this version has some more feature.
   instead of being snapped to the top. This will be usefull when using
   the Move instead of resize-center option.
 - Lower with Middle mouse button option will no longer ignore the window
-  blacklist, this will avoid interactions with taskbar.
+  blocklist, this will avoid interactions with taskbar.
 - Fixed Scroll inactive windows, hopefully for real this time.
 - Avoid some more lookup in the case of very unresponsive windows by using
   PostMessage instead of SendMessage, when applicable.
@@ -1192,7 +1193,7 @@ Note that this version has some more feature.
 - Fixed the Scroll inactive windows option, that would prevent scrolling
   in all metro apps under Win 10. Note that I advise against using this
   option anyway because Win 10 does it already natively by default.
-- Now "Start|Windows.UI.Core.CoreWindow" is in the default blacklist.
+- Now "Start|Windows.UI.Core.CoreWindow" is in the default blocklist.
   This will avoid AltDrag interactions with Win10's Start menu.
 
 ### AltDrag 1.29
@@ -1249,7 +1250,7 @@ Note that this version has some more feature.
   without Ctrl key...
 - Removed dependency to Advapi32.dll from `hooks.dll`(it was unnecessary).
 - Fixed: An Aero-snapped window will now require mouse movement before
-  moving, instead of a simple Alt+Click.
+  moving, instead of a simple <kbd>Alt</kbd>+<kbd>Click</kbd>.
 - Fixed when a window is in full screen you will actually need to move the
   mouse in order to resize it.
 - Fixed a remaining Win 10 invisible borders bug that would shrink slightly
@@ -1266,10 +1267,10 @@ Note that this version has some more feature.
 ### AltDrag 1.27
 
 - Added Elevate option to the tray menu as suggested by Loxaan Oxyde.
-- Added Pause Process option, use Alt+Shift+Pause to pause the process
-  of the windows under your cursor, press Alt+Pause to Resume.
+- Added Pause Process option, use <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Pause</kbd> to pause the process
+  of the windows under your cursor, press <kbd>Alt</kbd>+<kbd>Pause</kbd> to Resume.
   The Option AgressivePause must be set to 1 in [Input] config.
-  Use the associated Pause blacklist. This function needs XP or later.
+  Use the associated Pause blocklist. This function needs XP or later.
   Note 1: This is a very aggressive option use with caution.
   Note 2: The windows of the paused process will no longer be drawn leading
   to screen tearing on the windows itself.
@@ -1303,10 +1304,10 @@ Note that this version has some more feature.
 - Fixed: Some windows such as mplayer's windows can now be resized again.
 - Fixed translations in French and Italian in particular.
 - Fixed Incorrect snapping of windows in an MDI under Windows 10.
-- Fixed: Now on a blacklist, an empty title will be considered as a really
+- Fixed: Now on a blocklist, an empty title will be considered as a really
   empty title instead of 'any' title. You should use '*|class' to include
   all windows from a given class instead of just |class. This gives a more
-  fine control over blacklist to the user.
+  fine control over blocklist to the user.
 - Fixed minor drawing problems when using FullWin=0
 
 ### AltDrag 1.23
@@ -1343,14 +1344,14 @@ Note that this version has some more feature.
 - Fixed: now full screen windows that have a system menu will not be
   automatically blacklisted.
 - Now a full screen window will not be restored unless the mouse is moved
-  instead of a simple Alt+click as before. It was an annoying behavior.
+  instead of a simple <kbd>Alt</kbd>+click as before. It was an annoying behavior.
 - Double click will maximize a normal window and restore a maximized window.
 
 ### AltDrag 1.20
 
 - Ability to drag only a square instead of the full windows (better perf.)
 - Added an option to replace center resizing mode by bottom-right mode.
-- Added MDIs blacklist: Windows for which MDI behavior will be disabled.
+- Added MDIs blocklist: Windows for which MDI behavior will be disabled.
 - No more HookWindows as (unstable and mixing 64 and 32 bit code)
 - No more FocusOnTyping (too buggy).
 - No more auto updates and internet connectivity.
@@ -1364,7 +1365,7 @@ Note that this version has some more feature.
 - Removed dependency to `WININET.DLL`
 - Dynamically import `PSAPI.DLL`in case it is missing (it is not much used)
 - Fixed: Cursor windows now captures the mouse input (prevents some bugs).
-- Fixed completely opaque blacklist reading procedure, it will be trivial to
+- Fixed completely opaque blocklist reading procedure, it will be trivial to
   add or remove blacklists from now.
 - Fixed some drawing problems (not all).
 - Fixed .manifest information for high dpi awareness.
