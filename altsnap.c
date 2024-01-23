@@ -50,9 +50,9 @@ static BYTE WinVer = 0;
 static void UpdateSettings();
 
 // Include stuff
-#include "languages.c"
-#include "tray.c"
-#include "config.c"
+#include "languages.cxx"
+#include "tray.cxx"
+#include "config.cxx"
 
 static HINSTANCE LoadHooksDLL()
 {
@@ -537,8 +537,8 @@ int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int
             LOG("Elevation requested");
             TCHAR path[MAX_PATH];
             GetModuleFileName(NULL, path, ARR_SZ(path));
-            HINSTANCE ret = ShellExecute(NULL, TEXT("runas"), path, (hide? TEXT("-h"): NULL), NULL, SW_SHOWNORMAL);
-            if ((DorQWORD)ret > 32) {
+            const HINSTANCE ret = ShellExecute(NULL, TEXT("runas"), path, (hide? TEXT("-h"): NULL), NULL, SW_SHOWNORMAL);
+            if ((size_t)ret > 32) {
                 LOG("Elevation Faild => Not cool NORMAL EXIT");
                 return 0;
             }

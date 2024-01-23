@@ -411,8 +411,8 @@ static xpure int IsPtDragOut(const POINT *pt, const POINT *ptt)
 }
 
 // Specific includes
-#include "snap.c"
-#include "zones.c"
+#include "snap.cxx"
+#include "zones.cxx"
 
 /////////////////////////////////////////////////////////////////////////////
 // Wether a window is present or not in a blacklist
@@ -6485,7 +6485,7 @@ __declspec(dllexport) HWND WINAPI Load(HWND mainhwnd)
     // Read all the BLACKLITSTS
     readallblacklists(inipath);
 
-    ResetDB(); // Zero database of restore info (snap.c)
+    ResetDB(); // Zero database of restore info (snap.cxx)
 
     GetPrivateProfileSection(TEXT("Zones"), inisection, inisectionlen, inipath);
     readalluchars(&conf.UseZones, inisection, Zones_uchars, ARR_SZ(Zones_uchars));

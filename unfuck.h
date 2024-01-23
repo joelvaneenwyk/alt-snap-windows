@@ -1307,7 +1307,7 @@ static BOOL SetWindowLevel(HWND hwnd, HWND hafter)
 }
 static int HitTestTimeoutL(HWND hwnd, LPARAM lParam)
 {
-    DorQWORD area=0;
+    DWORD_PTR area = 0;
 
 /*
     if(DwmDefWindowProcL(hwnd, WM_NCHITTEST, 0, lParam, (LRESULT*)&area))

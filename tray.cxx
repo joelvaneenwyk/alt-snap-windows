@@ -6,6 +6,8 @@
  * Modified By Raymond Gillibert in 2020                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include "hooks.h"
+
 #ifndef NIF_INFO
 #define NIF_INFO 0x00000010
 #endif
