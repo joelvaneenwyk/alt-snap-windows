@@ -6,6 +6,8 @@
  * Modified By Raymond Gillibert in 2020                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include "hooks.h"
+
 #include <commctrl.h>
 #include "resource.h"
 
@@ -420,14 +422,19 @@ struct optlst {
 };
 static void ReadDialogOptions(HWND hwnd,const struct optlst *ol, unsigned size)
 {
-    unsigned i;
-    for (i=0; i < size; i++) {
+    for (unsigned i=0; i < size; i++) {
         if (ol[i].type == T_BOL)
-            ReadOptionIntW(hwnd, ol[i].idc, ol[i].section, ol[i].name, (int)(DorQWORD)ol[i].def, -1);
+            ReadOptionIntW(
+                hwnd, ol[i].idc, ol[i].section, ol[i].name,
+                (int)(size_t)(ol[i].def),
+            -1);
         else if (ol[i].type == T_BMK)
-            ReadOptionIntW(hwnd, ol[i].idc, ol[i].section, ol[i].name, (int)(DorQWORD)ol[i].def, 1<<ol[i].bitN);
+            ReadOptionIntW(
+                hwnd, ol[i].idc, ol[i].section, ol[i].name,
+                (int)(size_t)(ol[i].def),
+            1<<ol[i].bitN);
         else
-            ReadOptionStrW(hwnd, ol[i].idc, ol[i].section, ol[i].name, (TCHAR*)ol[i].def);
+            ReadOptionStrW(hwnd, ol[i].idc, ol[i].section, ol[i].name, (TCHAR*)(ol[i].def));
     }
 }
 static void WriteDialogOptions(HWND hwnd,const struct optlst *ol, unsigned size)
@@ -1417,7 +1424,9 @@ INT_PTR CALLBACK KeyboardPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPAR
 /////////////////////////////////////////////////////////////////////////////
 INT_PTR CALLBACK BlacklistPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+#ifdef __GNUC__
     #pragma GCC diagnostic ignored "-Wint-conversion"
+#endif
     static const struct optlst optlst[] = {
         { IDC_PROCESSBLACKLIST, T_STR, 0, TEXT("Blacklist"), "Processes", TEXT("") },
         { IDC_BLACKLIST,        T_STR, 0, TEXT("Blacklist"), "Windows", TEXT("") },
@@ -1425,18 +1434,20 @@ INT_PTR CALLBACK BlacklistPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPA
         { IDC_MDIS,             T_STR, 0, TEXT("Blacklist"), "MDIs", TEXT("") },
         { IDC_PAUSEBL,          T_STR, 0, TEXT("Blacklist"), "Pause", TEXT("") },
     };
+#ifdef __GNUC__
     #pragma GCC diagnostic pop
+#endif
 
     static int have_to_apply = 0;
 
     if (msg == WM_INITDIALOG) {
         ReadDialogOptions(hwnd, optlst, ARR_SZ(optlst));
-        BOOL haveProcessBL = HaveProc("PSAPI.DLL", "GetModuleFileNameExW");
+        const BOOL haveProcessBL = HaveProc("PSAPI.DLL", "GetModuleFileNameExW");
         EnableDlgItem(hwnd, IDC_PROCESSBLACKLIST, haveProcessBL);
         EnableDlgItem(hwnd, IDC_PAUSEBL, haveProcessBL);
     } else if (msg == WM_COMMAND) {
-        int id = LOWORD(wParam);
-        int event = HIWORD(wParam);
+        const int id = LOWORD(wParam);
+        const int event = HIWORD(wParam);
         if (event == EN_UPDATE
         && id != IDC_NEWRULE && id != IDC_NEWPROGNAME
         && id != IDC_DWMCAPBUTTON && id != IDC_GWLEXSTYLE
@@ -1471,7 +1482,7 @@ INT_PTR CALLBACK BlacklistPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPA
         }
 
     } else if (msg == WM_NOTIFY) {
-        LPNMHDR pnmh = (LPNMHDR) lParam;
+        const LPNMHDR pnmh = (LPNMHDR) lParam;
         if (pnmh->code == PSN_SETACTIVE) {
             // Update text
             static const struct dialogstring strlst[] = {

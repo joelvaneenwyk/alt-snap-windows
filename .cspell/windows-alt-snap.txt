@@ -11,6 +11,7 @@ btac
 BUILDID
 cbtc
 cmds
+ctest
 CXMAXTRACK
 CXMINTRACK
 CYMAXTRACK
@@ -111,6 +112,7 @@ moveup
 mrzone
 MSAA
 MSAAMENUINFO
+msvc
 MTNB
 mtnbedge
 MTNL

@@ -12,6 +12,7 @@ AltSnap.exe
 cmake-*/
 CMakeLists.txt~
 
+out/
 .vs/
 *.o
 *.obj
