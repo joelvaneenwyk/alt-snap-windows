@@ -1,5 +1,10 @@
 {
     "recommendations": [
-        "willasm.rc-script"
+        "willasm.rc-script",
+        "josetr.cmake-language-support-vscode",
+        "fredericbonnet.cmake-test-adapter",
+        "jackboosy.vcpkg-cmake-tools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake"
     ]
 }
