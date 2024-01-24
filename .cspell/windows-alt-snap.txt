@@ -3,13 +3,16 @@ Acti
 aerodbclickshift
 aerovoffset
 asonoff
+atempts
 autoremaximize
 Avoi
 bcak
 blmaximized
 btac
 BUILDID
+BYPOSITION
 cbtc
+classn
 cmds
 ctest
 CXMAXTRACK
@@ -35,6 +38,7 @@ focusr
 focust
 functiont
 GCLP
+GETLAYOUTREZ
 GGRR
 grabwithaltb
 GWLP
@@ -46,8 +50,10 @@ HFONT
 HIBYTE
 HICON
 HICONSM
+hinst
 HKEY
 hlast
+HMENU
 hmod
 hmon
 hmonitor
@@ -72,6 +78,7 @@ itow
 Keybaord
 KEYEVENTF
 klass
+laynum
 Layo
 lerr
 lerrorstr
@@ -101,6 +108,7 @@ Makefiledb
 MAKELPARAM
 maximizehv
 mdis
+mfflags
 mlzone
 MMBHC
 MMRESULT
@@ -122,6 +130,7 @@ mtnredge
 MTNT
 mtntedge
 mtzone
+NAMEA
 NCCREATE
 NCHITTEST
 NCPAINT
@@ -146,6 +155,7 @@ odpi
 oname
 Oredred
 OWDMCP
+PNOTIFYICONDATA
 PRBDLESS
 PROPFL
 PSAPI
@@ -231,3 +241,4 @@ xtnredge
 XTNT
 xtntedge
 xtzone
+Zidx
