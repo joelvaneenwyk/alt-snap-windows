@@ -3,42 +3,53 @@
 
 #include <windows.h>
 
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && !defined(__WATCOMC__)
-	// C99+ mode but not buggy watcom C99
-	#define AT_LEAST static
+#if defined(__GNUC__) || defined(__llvm__)
+    #define IS_MSVC             0
 #else
-	#define AT_LEAST
+    #define IS_MSVC             1
+#endif  // _MSVC
+
+#define DEFINE_NANO_LIBC    1
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && !defined(__WATCOMC__)
+    // C99+ mode but not buggy watcom C99
+    #define AT_LEAST static
+#else
+    #define AT_LEAST
 #endif
 
 #ifdef __GNUC__
-#define flatten __attribute__((flatten))
-#define xpure __attribute__((const))
-#define pure __attribute__((pure))
-#define noreturn __attribute__((noreturn))
-#define fastcall __attribute__((fastcall))
-#define ainline __attribute__((always_inline))
-#define mallocattrib __attribute__((malloc, freeL))
-#define allnonnull __attribute__((nonnull))
-#define nonnull1(x) __attribute__((nonnull (x)))
-#define nonnull2(x, y) __attribute__((nonnull (x, y)))
-#define ASSUME(x) do { if (!(x)) __builtin_unreachable(); } while (0)
-#define UNREACHABLE() __builtin_unreachable()
+    #define flatten __attribute__((flatten))
+    #define xpure __attribute__((const))
+    #define pure __attribute__((pure))
+    #define noreturn __attribute__((noreturn))
+    #define fastcall __attribute__((fastcall))
+    #define ainline __attribute__((always_inline))
+    #define mallocattrib __attribute__((malloc, freeL))
+    #define allnonnull __attribute__((nonnull))
+    #define nonnull1(x) __attribute__((nonnull (x)))
+    #define nonnull2(x, y) __attribute__((nonnull (x, y)))
+    #define ASSUME(x) do { if (!(x)) __builtin_unreachable(); } while (0)
+    #define UNREACHABLE() __builtin_unreachable()
 #else
-#define flatten
-#define xpure
-#define pure
-#define noreturn
-#define fastcall
-#define ainline
-#define mallocattrib
-#define allnonnull
-#define nonnull1(x)
-#define nonnull2(x, y)
-#define __restrict__
-#define inline
-#define ASSUME(x)
-#define UNREACHABLE()
+    #define flatten
+    #define xpure
+    #define pure
+    #define noreturn
+    #define fastcall
+    #define ainline
+    #define mallocattrib
+    #define allnonnull
+    #define nonnull1(x)
+    #define nonnull2(x, y)
+    #define __restrict__
+    #define inline
+    #define ASSUME(x)
+    #define UNREACHABLE()
+    #define __cdecl
 #endif
+
+#if DEFINE_NANO_LIBC
 /* return +/-1 if x is +/- and 0 if x == 0 */
 static xpure int sign(int x)
 {
@@ -65,6 +76,7 @@ static xpure int sign(int x)
 //#endif // x86
 
 #define abs(x) ((x)>0? (x): -(x))
+
 /* Function to set the kth bit of n */
 static int setBit(int n, int k)
 {
@@ -135,12 +147,10 @@ void * __cdecl memcpy(void *dst, const void * __restrict__ src, size_t n)
     size_t i;
     char *d = (char *)dst;
     const char *s = (char *)src;
-
     for (i=0; i<n; i++)
         *d++ = *s++;
     return dst;
 }
-#endif
 
 static allnonnull wchar_t *wcsuprL(wchar_t *s)
 {
@@ -323,6 +333,7 @@ static nonnull1(2) char *itoaL(unsigned num, char *str, int base)
     return str;
 }
 #define _itoa itoaL
+#endif  // DEFINE_NANO_LIBC
 
 #define INT_DIGITS 11
 #define UINT_DIGITS 10
@@ -403,6 +414,7 @@ static const TCHAR *LPTR2Hex(TCHAR str[AT_LEAST LPTR_HDIGITS+1], UINT_PTR n)
 }
 
 
+#if DEFINE_NANO_LIBC
 static allnonnull pure size_t wcslenL(const wchar_t *__restrict__ const str)
 {
     const wchar_t *ptr;
@@ -651,6 +663,7 @@ static allnonnull const wchar_t *lstrstrW(const wchar_t *haystack, const wchar_t
 #define lstrcmpiW wcsicmp
 #define lstrchrA strchrL
 #define lstrchrW wcschrL
+
 #ifdef UNICODE
 #define lstrstr lstrstrW
 #define lstrchr lstrchrW
@@ -667,7 +680,7 @@ static allnonnull const wchar_t *lstrstrW(const wchar_t *haystack, const wchar_t
 #define lstrcat_s lstrcat_sA
 #define _itot itoaL
 #define Uint2lStr Uint2lStrA
-#endif
+#endif  // UNICODE
 
 static inline unsigned h2u(const TCHAR c)
 {
@@ -681,6 +694,7 @@ static pure int IsSeparator(TCHAR c)
 {
     return c <= '0';
 }
+
 /* stops at the end of the string or at a any char before '0' */
 static allnonnull pure unsigned lstrhex2u(const TCHAR *s)
 {
@@ -719,4 +733,6 @@ static BOOL freeL(void *mem)
 }
 #define free freeL
 
-#endif
+#endif  // DEFINE_NANO_LIBC
+
+#endif  // NANOLIBC_H
