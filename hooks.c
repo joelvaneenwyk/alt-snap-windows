@@ -495,7 +495,7 @@ static int IsFullscreenF(HWND hwnd, const RECT *wnd, const RECT *fmon)
 
     // No caption and fullscreen window
     return ((style&WS_CAPTION) != WS_CAPTION)
-        && EqualRect(wnd, fmon);
+        && EqualRect(wnd, fmon) == TRUE;
 }
 static int IsFullScreenBL(HWND hwnd)
 {
@@ -517,7 +517,7 @@ static void SendSizeMove(DWORD msg)
 // x and y are in screen coordinate.
 static int HitTestTimeoutbl(HWND hwnd, POINT pt)
 {
-    DorQWORD area=0;
+    DWORD_PTR area=0;
 
     // Try first with the ancestor window for some buggy AppX?
     HWND ancestor = GetAncestor(hwnd, GA_ROOT);
