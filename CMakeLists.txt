@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-set(TARGET_NAME altsnap)
+set(TARGET_NAME alt_snap)
 set(PROJECT_NAME AltSnap)
 project(${PROJECT_NAME})
 
@@ -10,7 +10,7 @@ set(CMAKE_SYSTEM_NAME Windows)
 add_executable(${TARGET_NAME})
 target_sources(${TARGET_NAME} PRIVATE 
         altsnap.c
-        hooks.h languages.h unfuck.h nanolibc.h resource.h
+        hooks.h languages.h unfuck.h "nanolibc.h" "resource.h"
 
         # This resource also includes 'window.rc' and 'AltSnap.exe.manifest'
         altsnap.rc 
@@ -30,6 +30,28 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         elseif(CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "GNU")
                 # using clang with regular front end
         endif()
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        # using Visual Studio C++
+        message("Building 'AltSnap' with Visual Studio")
+
+        # warning level 4
+        target_compile_options(${TARGET_NAME}
+                PRIVATE "/Wall"
+                PRIVATE "/GF" # String pooling
+                PRIVATE "/Gy" # Function-level linking
+                PRIVATE "/GR-" # Disable run-time type information
+                PRIVATE "/permissive-"
+                PRIVATE "/Oy" "/Oi" "/GS-"
+                PRIVATE $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:/TSAWARE>
+                PRIVATE "/wd4996" # Disable warnings for unsecure CRT functions from VC8+
+        )
+        target_link_options(${TARGET_NAME}
+                PRIVATE "/opt:ref" # Eliminate unreferenced functions and data
+                PRIVATE "/opt:icf" # Perform identical COMDAT folding
+                PRIVATE "/nodefaultlib:msvcrt"
+                PRIVATE $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:/TSAWARE>
+                PRIVATE "/LARGEADDRESSAWARE"
+        )
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         # using GCC
         message("Building 'AltSnap' with GCC")
@@ -105,31 +127,5 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
                 PRIVATE -mwindows -e_unfuckWinMain@0
         )
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-# using Intel C++
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-        # using Visual Studio C++
-        message("Building 'AltSnap' with Visual Studio")
-
-        # warning level 4
-        target_compile_options(${TARGET_NAME}
-                PRIVATE "/W4"
-                PRIVATE "/GF" # String pooling
-                PRIVATE "/Gy" # Function-level linking
-                PRIVATE "/GR-" # Disable run-time type information
-                PRIVATE "/permissive-"
-                PRIVATE "/Oy" "/Oi" "/GS-"
-                PRIVATE "/TSAWARE"
-                PRIVATE "/wd4996" # Disable warnings for unsecure CRT functions from VC8+
-        )
-        target_link_options(${TARGET_NAME}
-                PRIVATE "/opt:ref" # Eliminate unreferenced functions and data
-                PRIVATE "/opt:icf" # Perform identical COMDAT folding
-                PRIVATE "/nodefaultlib:msvcrt"
-                PRIVATE $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:/TSAWARE>
-                PRIVATE "/LARGEADDRESSAWARE"
-        )
-endif()
-
-if(MSVC)
-else()
+        # using Intel C++
 endif()
