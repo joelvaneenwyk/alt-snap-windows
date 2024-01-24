@@ -1,23 +1,27 @@
 cmake_minimum_required(VERSION 3.22)
-project(alt_snap)
+set(TARGET_NAME altsnap)
+set(PROJECT_NAME AltSnap)
+project(${PROJECT_NAME})
 
-enable_language(C CXX)
-set(CMAKE_C_STANDARD 99)
 
-add_executable(alt_snap)
-target_sources(alt_snap PRIVATE
+enable_language(C)
+set(CMAKE_SYSTEM_NAME Windows)
+
+add_executable(${TARGET_NAME})
+target_sources(${TARGET_NAME} PRIVATE 
         altsnap.c
-        altsnap.rc window.rc
         hooks.h languages.h unfuck.h nanolibc.h resource.h
-        AltSnap.exe.manifest
 
+        # This resource also includes 'window.rc' and 'AltSnap.exe.manifest'
+        altsnap.rc 
+        
         # media/find.ico media/find.cur
         # media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
 )
-target_link_libraries(alt_snap
+target_link_libraries(${TARGET_NAME}
         PRIVATE comctl32 advapi32 shell32 msvcrt kernel32 gdi32
 )
-find_library(WINSOCK2 ws2_32)
+target_compile_features(${TARGET_NAME} PRIVATE c_std_99)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         # using Clang
@@ -31,7 +35,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         message("Building 'AltSnap' with GCC")
 
         # additional warnings
-        target_compile_options(alt_snap
+        target_compile_options(${TARGET_NAME}
                 PRIVATE -Wall
                 PRIVATE -Wformat-security
                 PRIVATE -Wstrict-overflow
@@ -83,7 +87,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
                 # PRIVATE -m32 -march=i386 -mtune=i686
                 # PRIVATE -mpreferred-stack-boundary=2
         )
-        target_link_options(alt_snap
+        target_link_options(${TARGET_NAME}
                 PRIVATE -nostdlib
                 PRIVATE -lmsvcrt
                 PRIVATE -lkernel32
@@ -107,7 +111,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         message("Building 'AltSnap' with Visual Studio")
 
         # warning level 4
-        target_compile_options(alt_snap
+        target_compile_options(${TARGET_NAME}
                 PRIVATE "/W4"
                 PRIVATE "/GF" # String pooling
                 PRIVATE "/Gy" # Function-level linking
@@ -117,7 +121,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
                 PRIVATE "/TSAWARE"
                 PRIVATE "/wd4996" # Disable warnings for unsecure CRT functions from VC8+
         )
-        target_link_options(alt_snap
+        target_link_options(${TARGET_NAME}
                 PRIVATE "/opt:ref" # Eliminate unreferenced functions and data
                 PRIVATE "/opt:icf" # Perform identical COMDAT folding
                 PRIVATE "/nodefaultlib:msvcrt"
