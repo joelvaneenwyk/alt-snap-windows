@@ -9,6 +9,7 @@ SHA256.TXT
 AltSnap_bin.zip
 AltSnap.exe
 
+out/
 cmake-*/
 CMakeLists.txt~
 
@@ -18,3 +19,5 @@ out/
 *.o
 *.obj
 *.bin
+*.res
+*.aps
