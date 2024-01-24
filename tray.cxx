@@ -203,7 +203,7 @@ BOOL CALLBACK SaveTestWindow(HWND hwnd, LPARAM lParam)
     TCHAR classn[256];
     RECT rc;
     if (IsWindowVisible(hwnd)
-    && GetClassName(hwnd, classn, sizeof(classn))
+    && GetClassName(hwnd, classn, sizeof(classn) / sizeof(TCHAR))
     && !lstrcmp(classn, TEXT(APP_NAMEA) TEXT("-Test"))
     && GetWindowRectL(hwnd, &rc)) {
         SaveZone(&rc, NZones++);
