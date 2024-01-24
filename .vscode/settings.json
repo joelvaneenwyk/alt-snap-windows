@@ -1,36 +1,36 @@
 {
+    "[makefile]": {
+        "editor.defaultFoldingRangeProvider": "ms-vscode.makefile-tools",
+        "editor.defaultFormatter": "ms-vscode.makefile-tools"
+    },
+    "explorer.fileNesting.patterns": {
+        "Makefile": "Makefile*",
+        "README.md": "README*",
+        "setup.bat": "env.bat,mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat"
+    },
     "files.associations": {
-        "Makefile*": "makefile",
-        "*.ejs": "html"
+        "*.ejs": "html",
+        "Makefile*": "makefile"
     },
     "makefile.alwaysPreConfigure": true,
     "makefile.loggingLevel": "Verbose",
     "makefile.makefilePath": "MakefileX64",
-    "[makefile]": {
-        "editor.defaultFormatter": "ms-vscode.makefile-tools",
-        "editor.defaultFoldingRangeProvider": "ms-vscode.makefile-tools"
-    },
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.profiles.windows": {
-        "PowerShell": {
-            "source": "PowerShell",
-            "icon": "terminal-powershell"
-        },
         "Command Prompt": {
+            "args": [],
+            "icon": "terminal-cmd",
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-            ],
-            "args": [],
-            "icon": "terminal-cmd"
+            ]
         },
         "Git Bash": {
             "source": "Git Bash"
+        },
+        "PowerShell": {
+            "icon": "terminal-powershell",
+            "source": "PowerShell"
         }
-    },
-    "explorer.fileNesting.patterns": {
-        "Makefile": "Makefile*",
-        "setup.bat": "env.bat,mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat",
-        "README.md": "README*"
     }
 }
