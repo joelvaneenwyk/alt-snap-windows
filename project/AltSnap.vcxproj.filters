@@ -19,20 +19,8 @@
     <Filter Include="Content">
       <UniqueIdentifier>{e08c9ac8-ee49-43c6-a9e6-91ecebd71984}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Content\Scripts">
-      <UniqueIdentifier>{94bc5355-84e2-44bb-bae8-d937385ff2ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Content\CMake">
-      <UniqueIdentifier>{1e7597e6-d9ad-4ee7-a53d-0da973183050}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Content\Make">
-      <UniqueIdentifier>{d3f592e4-5711-41ee-aed4-b5b07f098e10}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Content\CSpell">
       <UniqueIdentifier>{0211f7b5-a407-4d43-9202-f8e505c56ce0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Content\Task">
-      <UniqueIdentifier>{4aec9b32-1de6-496a-8849-fd45060e6e26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Content\Docs">
       <UniqueIdentifier>{42c49572-2fc6-4532-9ca2-997cda7b8ba4}</UniqueIdentifier>
@@ -42,9 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\hooks.c">
       <Filter>Source</Filter>
     </ClInclude>
@@ -55,9 +40,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\nanolibc.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\resource.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\unfuck.h">
@@ -78,6 +60,9 @@
     <ClInclude Include="..\targetver.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\altsnap.c">
@@ -88,65 +73,8 @@
     <None Include="..\.gitignore">
       <Filter>Source</Filter>
     </None>
-    <None Include="..\Makefile">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileClang">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileClangdb">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileDebug">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileTCC">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileX64">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\MakefileX64db">
-      <Filter>Content\Make</Filter>
-    </None>
-    <None Include="..\makerelease.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\mk.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\mk64.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\mkvcc6.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\nsi.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\sch_Off.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\sch_On.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\setup.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\ziprelease.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\zzip.bat">
-      <Filter>Content\Scripts</Filter>
-    </None>
-    <None Include="..\CMakeSettings.json">
-      <Filter>Content\CMake</Filter>
-    </None>
     <None Include="..\cspell.config.yaml">
       <Filter>Content\CSpell</Filter>
-    </None>
-    <None Include="..\env.bat">
-      <Filter>Content\Scripts</Filter>
     </None>
     <None Include="..\README.md">
       <Filter>Content\Docs</Filter>
@@ -159,9 +87,6 @@
     </None>
     <None Include="..\LICENSE">
       <Filter>Content\Docs</Filter>
-    </None>
-    <None Include="..\taskfile.yaml">
-      <Filter>Content\Task</Filter>
     </None>
     <None Include="..\altsnap.nsi">
       <Filter>Content\Config</Filter>
@@ -179,18 +104,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\CMakeLists.txt">
-      <Filter>Content\CMake</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <Xml Include="..\AltSnap.xml">
       <Filter>Content\Config</Filter>
     </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="..\AltSnap.exe.manifest">
-      <Filter>Resources</Filter>
-    </Manifest>
   </ItemGroup>
 </Project>

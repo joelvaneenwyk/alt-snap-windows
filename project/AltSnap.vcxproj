@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,10 +107,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <LinkStatus>true</LinkStatus>
+      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
+      <AdditionalDependencies>comctl32.lib;advapi32.lib;shell32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>unfuckWinMain</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -125,26 +137,17 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EntryPointSymbol>unfuckWinMain</EntryPointSymbol>
+      <AdditionalDependencies>Comctl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\framework.h" />
-    <ClInclude Include="..\hooks.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\languages.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\nanolibc.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\resource.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\hooks.h" />
+    <ClInclude Include="..\languages.h" />
+    <ClInclude Include="..\nanolibc.h" />
+    <ClInclude Include="..\resource.h" />
     <ClInclude Include="..\targetver.h" />
-    <ClInclude Include="..\unfuck.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\unfuck.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\altsnap.c" />
@@ -167,40 +170,14 @@
     <None Include="..\AltSnap.ini" />
     <None Include="..\AltSnap.md" />
     <None Include="..\altsnap.nsi" />
-    <None Include="..\CMakeSettings.json" />
     <None Include="..\cspell.config.yaml" />
-    <None Include="..\env.bat" />
     <None Include="..\LICENSE" />
-    <None Include="..\Makefile" />
-    <None Include="..\MakefileClang" />
-    <None Include="..\MakefileClangdb" />
-    <None Include="..\MakefileDebug" />
-    <None Include="..\MakefileTCC" />
-    <None Include="..\MakefileX64" />
-    <None Include="..\MakefileX64db" />
-    <None Include="..\makerelease.bat" />
-    <None Include="..\mk.bat" />
-    <None Include="..\mk64.bat" />
-    <None Include="..\mkvcc6.bat" />
-    <None Include="..\nsi.bat" />
     <None Include="..\README.md" />
     <None Include="..\README_ko-KR.md" />
     <None Include="..\README_zh-CN.md" />
-    <None Include="..\sch_Off.bat" />
-    <None Include="..\sch_On.bat" />
-    <None Include="..\setup.bat" />
-    <None Include="..\taskfile.yaml" />
-    <None Include="..\ziprelease.bat" />
-    <None Include="..\zzip.bat" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\altsnap.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="..\AltSnap.exe.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\AltSnap.xml" />
