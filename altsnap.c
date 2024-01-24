@@ -470,8 +470,9 @@ int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int
     int rlini   = !!lstrstr(params, TEXT("-r"));
 
     // Check if elevated if in >= WinVer
-    WinVer = LOBYTE(LOWORD(GetVersion()));
-    LOG("Running with Windows version %lX", GetVersion());
+    const DWORD version = GetVersion();
+    WinVer = LOBYTE(LOWORD(version));
+    LOG("Running with Windows version %lX", version);
     #ifndef NO_VISTA
     if (WinVer >= 6) { // Vista +
         HANDLE token;
