@@ -137,7 +137,7 @@ void * __cdecl memcpy(void *dst, const void * __restrict__ src, size_t n)
     const char *s = (char *)src;
 
     for (i=0; i<n; i++)
-        d++ = s++;
+        *d++ = *s++;
     return dst;
 }
 #endif
