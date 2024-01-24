@@ -101,8 +101,10 @@ static void mem00(void *dst, size_t count)
         *a++ = 0;
 }
 
-#ifdef CLANG
+void* __cdecl memset(void*, int, size_t);
+#pragma intrinsic(memset)
 
+#pragma function(memset)
 void * __cdecl memset(void *dst, int s, size_t count)
 {
     register char * a = dst;
@@ -111,13 +113,23 @@ void * __cdecl memset(void *dst, int s, size_t count)
         *a++ = s;
     return dst;
 }
+
 /* in case */
+__cdecl size_t strlen(const char*);
+#pragma intrinsic(strlen)
+
+#pragma function(strlen)
 __cdecl size_t strlen(const char *str)
 {
     const char *ptr;
     for (ptr=str; *ptr != '\0'; ptr++);
     return ptr-str;
 }
+
+void* __cdecl memcpy(void*, const void*, size_t);
+#pragma intrinsic(memcpy)
+
+#pragma function(memcpy)
 void * __cdecl memcpy(void *dst, const void * __restrict__ src, size_t n)
 {
     size_t i;
