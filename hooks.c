@@ -8,6 +8,11 @@
 
 #include "hooks.h"
 
+#if !(defined(__GNUC__) || defined(__llvm__))
+#   pragma warning(push)
+#   pragma warning(disable: 4996) // GetVersion is deprecated
+#endif  // !(defined(__GNUC__) || defined(__llvm__))
+
 static void MoveWindowAsync(HWND hwnd, int x, int y, int w, int h);
 static BOOL CALLBACK EnumMonitorsProc(HMONITOR, HDC, LPRECT , LPARAM );
 static LRESULT CALLBACK MenuWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -2541,14 +2546,19 @@ static void KillAltSnapMenu()
     }
     state.unikeymenu = NULL;
 }
+
 static void TogglesAlwaysOnTop(HWND hwnd);
 static HWND MDIorNOT(HWND hwnd, HWND *mdiclient_);
+
 ///////////////////////////////////////////////////////////////////////////
 // Keep this one minimalist, it is always on.
 #ifdef __cplusplus
 extern "C"
 #endif
-__declspec(dllexport) LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
+#if !defined(__llvm__)
+__declspec(dllexport) 
+#endif
+LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 #if defined(_MSC_VER) && _MSC_VER > 1300
 #pragma comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
@@ -2786,14 +2796,14 @@ static int ScrollPointedWindow(POINT pt, int delta, WPARAM wParam)
     }
 
     // Get wheel info
-    WPARAM wp = delta << 16;
+    WPARAM wp = (WPARAM)delta << 16;
     LPARAM lp = MAKELPARAM(pt.x, pt.y);
 
     // Change WM_MOUSEWHEEL to WM_MOUSEHWHEEL if shift is being depressed
     // Introduced in Vista and far from all programs have implemented it.
     if (wParam == WM_MOUSEWHEEL && IsAKeyDown(conf.HScrollKey)) {
         wParam = WM_MOUSEHWHEEL;
-        wp = -wp ; // Up is left, down is right
+        wp = (WPARAM)(0 - (int)wp); // Up is left, down is right
     }
 
     // Add button information since we don't get it with the hook
@@ -6533,3 +6543,7 @@ BOOL APIENTRY DllMain(HINSTANCE hInst, DWORD reason, LPVOID reserved)
     }
     return TRUE;
 }
+
+#if !(defined(__GNUC__) || defined(__llvm__))
+#   pragma warning(pop)
+#endif  // !(defined(__GNUC__) || defined(__llvm__))
