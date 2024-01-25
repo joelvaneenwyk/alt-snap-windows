@@ -7,8 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AltSnap", "AltSnap.vcxproj"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Root", ".Root", "{BB44DE27-4102-4594-921B-699D847005A4}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
 		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{D7A7589B-C7F6-4C07-A79D-45C0D7C15B55}"
@@ -60,6 +60,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5F6EBFFB-1
 		..\README_zh-CN.md = ..\README_zh-CN.md
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AltSnapHooks", "AltSnapHooks.vcxproj", "{07FCE656-F13C-453B-A57C-1768E1397E0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x64.Build.0 = Release|x64
 		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x86.ActiveCfg = Release|Win32
 		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x86.Build.0 = Release|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x64.ActiveCfg = Debug|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x64.Build.0 = Debug|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x86.ActiveCfg = Debug|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x86.Build.0 = Debug|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x64.ActiveCfg = Release|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x64.Build.0 = Release|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x86.ActiveCfg = Release|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
