@@ -15,10 +15,17 @@ CMakeLists.txt~
 
 build/
 out/
+.output/
 .vs/
 **/x64/Debug/
 **/x64/Release/
+project/Debug/
+project/Release/
+project/AltSnapHooks/
+project/x64/
+.sarif/
 
+*.lib
 *.o
 *.obj
 *.bin
