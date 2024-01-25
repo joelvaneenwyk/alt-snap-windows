@@ -30,9 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\hooks.c">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\hooks.h">
       <Filter>Headers</Filter>
     </ClInclude>

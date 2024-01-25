@@ -177,10 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\altsnap.c" />
-    <ClInclude Include="..\hooks.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <FileType>CppCode</FileType>
-    </ClInclude>
     <ClInclude Include="..\snap.cxx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
