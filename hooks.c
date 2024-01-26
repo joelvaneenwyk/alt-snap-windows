@@ -3171,7 +3171,7 @@ static int ActionTransparency(HWND hwnd, short delta)
 
     BYTE old_alpha;
     if (GetLayeredWindowAttributes(hwnd, NULL, &old_alpha, NULL)) {
-         alpha = old_alpha; // If possible start from the current aplha.
+         alpha = old_alpha; // If possible start from the current alpha.
     }
 
     alpha = CLAMP(conf.MinAlpha, alpha+alpha_delta, 255); // Limit alpha

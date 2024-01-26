@@ -1920,7 +1920,7 @@ LRESULT CALLBACK TestWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
         return 0;
     } break;
     case WM_DESTROY : {
-        // Free the allocatde memory for the key list.
+        // Free the allocate memory for the key list.
         void *lastkeyss = (void *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
         free(lastkeyss);
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)NULL); // In case
