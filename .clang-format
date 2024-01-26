@@ -2,18 +2,31 @@
 Language: Cpp
 BasedOnStyle: Google
 AccessModifierOffset: -4
+SpacesBeforeTrailingComments: 2
+SpacesInLineCommentPrefix:
+  Minimum: 1
+AllowShortBlocksOnASingleLine: Always
 AlignConsecutiveAssignments:
   Enabled: true
-  AcrossEmptyLines: true
-  AcrossComments: false
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignOperands: Align
 AlignConsecutiveDeclarations:
   Enabled: true
-  AcrossEmptyLines: true
-  AcrossComments: false
-AlignOperands: false
-AlignTrailingComments: false
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
 AlignArrayOfStructures: Left
+FixNamespaceComments: true
 AlwaysBreakTemplateDeclarations: Yes
+AllowAllArgumentsOnNextLine: true
+AllowShortIfStatementsOnASingleLine: false
+PPIndentWidth: -1
+IncludeBlocks: Regroup
+MaxEmptyLinesToKeep: 1
+ReflowComments: true
 BraceWrapping:
   AfterCaseLabel: false
   AfterClass: false
@@ -32,7 +45,10 @@ BraceWrapping:
   SplitEmptyRecord: false
   SplitEmptyNamespace: false
 BreakBeforeBraces: Custom
+BreakBeforeBinaryOperators: NonAssignment
 BreakConstructorInitializers: AfterColon
+KeepEmptyLinesAtEOF: false
+KeepEmptyLinesAtTheStartOfBlocks: false
 ColumnLimit: 120
 IncludeCategories:
   - Regex: "^<.*"
@@ -44,6 +60,8 @@ IncludeCategories:
 IncludeIsMainRegex: "([-_](test|unittest))?$"
 IndentCaseBlocks: true
 IndentWidth: 4
+InsertBraces: true
+IndentPPDirectives: AfterHash
 InsertNewlineAtEOF: true
 MacroBlockBegin: ""
 MacroBlockEnd: ""
