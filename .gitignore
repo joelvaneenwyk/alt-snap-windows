@@ -24,6 +24,7 @@ project/AltSnapHooks/
 project/x64/
 .sarif/
 
+/RC*
 *.lib
 *.o
 *.obj

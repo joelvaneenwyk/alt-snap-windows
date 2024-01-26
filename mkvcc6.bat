@@ -1,8 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
-    cd /d "%~dp0"
     call "%~dp0env.bat"
-    call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" -startdir=none -arch=x64 -host_arch=x64
 
     set "DEFINES=/D "DWORD_PTR=DWORD""
     set "DEFINES=!DEFINES! /D "LONG_PTR=INT_PTR""
