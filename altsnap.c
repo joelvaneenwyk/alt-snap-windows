@@ -47,11 +47,10 @@ static BYTE WinVer = 0;
 
 #define ENABLED() (!!keyhook)
 #define GetWindowRectL(hwnd, rect) GetWindowRectLL(hwnd, rect, SnapGap)
+
 static void UpdateSettings();
 
 // Include stuff
-#include "languages.cxx"
-#include "tray.cxx"
 #include "config.cxx"
 
 static HINSTANCE LoadHooksDLL()

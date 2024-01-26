@@ -6,10 +6,13 @@
  * Modified By Raymond Gillibert in 2020                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "hooks.h"
-
 #include <commctrl.h>
+
+#include "hooks.h"
 #include "resource.h"
+
+#include "languages.cxx"
+#include "tray.cxx"
 
 #ifndef TTM_SETMAXTIPWIDTH
 #define TTM_SETMAXTIPWIDTH (WM_USER+24)
