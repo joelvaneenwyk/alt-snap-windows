@@ -44,15 +44,17 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
             PRIVATE "/Gy" # Function-level linking
             PRIVATE "/GR-" # Disable run-time type information
             PRIVATE "/permissive-"
-            PRIVATE "/Oy" "/Oi" "/GS-"
-            PRIVATE $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:/TSAWARE>
+            PRIVATE "/Oy"
+            PRIVATE "/Oi"
+            PRIVATE "/GS-"
             PRIVATE "/wd4996" # Disable warnings for unsecure CRT functions from VC8+
     )
     target_link_options(${TARGET_NAME}
             PRIVATE "/opt:ref" # Eliminate unreferenced functions and data
             PRIVATE "/opt:icf" # Perform identical COMDAT folding
-            PRIVATE "/nodefaultlib:msvcrt"
+            PRIVATE "/nodefaultlib"
             PRIVATE $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:/TSAWARE>
+            PRIVATE "/INCREMENTAL:NO" # Eliminate unreferenced functions and data
             PRIVATE "/LARGEADDRESSAWARE"
     )
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -132,3 +134,5 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
     # using Intel C++
 endif ()
+
+STRING (REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
