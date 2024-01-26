@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         makefile: [Makefile, MakefileX64, MakefileClang]
         os: [windows-latest]
