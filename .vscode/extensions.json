@@ -5,6 +5,7 @@
         "fredericbonnet.cmake-test-adapter",
         "jackboosy.vcpkg-cmake-tools",
         "ms-vscode.cmake-tools",
-        "twxs.cmake"
+        "twxs.cmake",
+        "idleberg.nsis"
     ]
 }
