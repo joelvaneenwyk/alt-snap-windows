@@ -9,7 +9,11 @@
 // Generated from the TEXTINCLUDE resource.
 //
 #ifndef APSTUDIO_INVOKED
-#include "targetver.h"
+// Including SDKDDKVer.h defines the highest available Windows platform.
+// ---------------------------------------------------------------------------
+// If you wish to build your application for a previous Windows platform, include WinSDKVer.h and
+// set the _WIN32_WINNT macro to the platform you wish to support before including SDKDDKVer.h.
+#    include <SDKDDKVer.h>
 #endif
 #define APSTUDIO_HIDDEN_SYMBOLS
 #include "windows.h"
@@ -27,9 +31,6 @@ LANGUAGE 9, 1
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-
-//IDI_ALTSNAP       ICON            "AltSnap.ico"
-//IDI_SMALL         ICON            "small.ico"
 
 APP_ICON            ICON            "media/icon.ico"
 TRAY_OFF            ICON            "media/tray-disabled.ico"
@@ -150,7 +151,7 @@ END
 2 TEXTINCLUDE
 BEGIN
     "#ifndef APSTUDIO_INVOKED\r\n"
-    "#include ""targetver.h""\r\n"
+    "#include <SDKDDKVer.h>\r\n"
     "#endif\r\n"
     "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
     "#include ""windows.h""\r\n"

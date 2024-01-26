@@ -51,12 +51,6 @@
     <ClInclude Include="..\zones.inl">
       <Filter>Source\Inlined</Filter>
     </ClInclude>
-    <ClInclude Include="..\framework.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\targetver.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\resource.h">
       <Filter>Resources</Filter>
     </ClInclude>

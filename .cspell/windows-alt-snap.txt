@@ -725,6 +725,7 @@ scrolllist
 SCROLLLIST
 scrolllockstate
 SCROLLLOCKSTATE
+SDKDDKVer
 SELCHANGE
 selhwnd
 sence
