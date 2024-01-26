@@ -7,38 +7,45 @@ vars:
 
 tasks:
   default:
-    deps:
-      - make
-      - db
-      - X64
-      - X64db
-    silent: true
-
-  build:
     cmds:
       - cmake -G "MinGW Makefiles" -B .output/task/mingw -S .
       - make --directory .output/task/mingw
 
-  make:
+  build-make:
+    deps:
+      - build-win32-debug
+      - build-win32-release
+      - build-x64-debug
+      - build-x64-release
+    silent: false
+
+  build-win32-release:
     cmds:
       - make -fMakefile
 
-  db:
+  build-win32-debug:
     cmds:
       - make -fMakefileDebug
 
-  X64:
+  build-x64-release:
     cmds:
       - make -fMakefileX64
 
-  X64db:
+  build-x64-debug:
     cmds:
-      - make -fMakefileX64db
+      - make -fMakefileX64Debug
 
-  Clang:
+  # Build using Clang
+  build-clang-release:
     cmds:
       - make -fMakefileClang
 
-  TCC:
+  # Build using Clang [debug]
+  build-clang-debug:
+    cmds:
+      - make -fMakefileClangDebug
+
+  # Build using Tiny C Compiler
+  build-tcc:
     cmds:
       - make -fMakefileTCC

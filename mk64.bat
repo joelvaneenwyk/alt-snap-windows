@@ -17,7 +17,7 @@ GOTO:FINISH
 
 :DEBUG
 echo x86_64b Debug build
-call make -fMakefileX64db
+call make -fMakefileX64Debug
 if exist "%~dp0AltSnap.exe" gdb.exe "%~dp0AltSnap.exe"
 
 :FINISH

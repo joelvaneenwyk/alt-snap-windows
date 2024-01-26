@@ -71,7 +71,7 @@ make -fMakefileX64
 For `x86_64` GCC debug build.
 
 ```bash
-make -fMakefileX64db
+make -fMakefileX64Debug
 ```
 
 ### Make `i386` Clang

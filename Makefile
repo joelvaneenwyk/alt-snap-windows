@@ -1,7 +1,12 @@
+#
+# AltSnap Makefile - Windows x86
+#
+
 CC=gcc
 WR=windres
 
-WARNINGS=-Wall  \
+WARNINGS=\
+	-Wall \
 	-Wformat-security \
 	-Wstrict-overflow \
 	-Wsign-compare \
@@ -29,15 +34,9 @@ WARNINGS=-Wall  \
 	-Wduplicated-branches \
 	-Wnull-dereference \
 
-# -Wunused-parameter
-# -Wtraditional-conversion
-# -fira-region=one/mixed
-# -Wstack-usage=2048
-# -finput-charset=UTF-8
-# -Wc++-compat
-# -fmerge-all-constants
-
-CFLAGS=-Os -std=c99 \
+CFLAGS=\
+	-Os \
+	-std=c99 \
 	-finput-charset=UTF-8 \
 	-fshort-wchar \
 	-m32 -march=i386 -mtune=i686 \
@@ -73,7 +72,7 @@ LDFLAGS=-nostdlib \
 	-Wl,--relax \
 	-Wl,--disable-runtime-pseudo-reloc \
 	-Wl,--enable-auto-import \
-	-Wl,--disable-stdcall-fixup \
+	-Wl,--disable-stdcall-fixup
 
 EXELD = $(LDFLAGS) \
 	-Wl,--tsaware \

@@ -28,7 +28,8 @@
         "*.rc": "cpp",
         "Makefile*": "makefile"
     },
-    "makefile.alwaysPreConfigure": true,
+    "makefile.buildBeforeLaunch": true,
+    "makefile.alwaysPreConfigure": false,
     "makefile.loggingLevel": "Verbose",
     "makefile.makefilePath": "MakefileX64",
     "terminal.integrated.defaultProfile.windows": "Command Prompt",

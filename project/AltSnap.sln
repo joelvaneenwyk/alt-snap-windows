@@ -25,11 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Make", "Make", "{23E28406-3
 	ProjectSection(SolutionItems) = preProject
 		..\Makefile = ..\Makefile
 		..\MakefileClang = ..\MakefileClang
-		..\MakefileClangdb = ..\MakefileClangdb
+		..\MakefileClangDebug = ..\MakefileClangDebug
 		..\MakefileDebug = ..\MakefileDebug
 		..\MakefileTCC = ..\MakefileTCC
 		..\MakefileX64 = ..\MakefileX64
-		..\MakefileX64db = ..\MakefileX64db
+		..\MakefileX64Debug = ..\MakefileX64Debug
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1D683A89-7DB6-4A8A-9ECD-DB26188C1ED4}"

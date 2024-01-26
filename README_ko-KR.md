@@ -49,7 +49,7 @@ AltSnap은 gcc로 빌드할 수 있습니다. 제 경우엔 i686용을 빌드할
 
 `> make -fMakefileX64` x86_64 GCC 빌드.
 
-`> make -fMakefileX64db` x86_64 GCC 디버그 빌드.
+`> make -fMakefileX64Debug` x86_64 GCC 디버그 빌드.
 
 `> make -fMakefileClang` LLVM Clang을 이용한 i386 빌드.
 
