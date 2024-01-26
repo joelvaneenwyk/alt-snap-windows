@@ -12,6 +12,8 @@
         "*.ejs": "html",
         "Makefile*": "makefile"
     },
+    "cmake.automaticReconfigure": true,
+    "cmake.buildDirectory": "${workspaceFolder}/.output/vscode/${buildType}",
     "makefile.alwaysPreConfigure": true,
     "makefile.loggingLevel": "Verbose",
     "makefile.makefilePath": "MakefileX64",
