@@ -19,5 +19,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build
+    - name: Build '${{matrix.makefile}}'
       run: make -f ${{matrix.makefile}}
