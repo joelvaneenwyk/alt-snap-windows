@@ -1,16 +1,19 @@
 CC=gcc
 
-WARNINGS=-Wall -Wformat-security -Wstrict-overflow -Wsign-compare -Wclobbered \
-    -Wempty-body -Wignored-qualifiers -Wuninitialized -Wtype-limits -Woverride-init \
-    -Wlogical-op -Wno-multichar -Wno-attributes -Wduplicated-cond -Wduplicated-branches \
-    -Wnull-dereference -Wno-unused-function -Wshadow -Wstack-usage=4096
+WARNINGS=\
+	-Wall -Wformat-security -Wstrict-overflow -Wsign-compare -Wclobbered \
+	-Wempty-body -Wignored-qualifiers -Wuninitialized -Wtype-limits -Woverride-init \
+	-Wlogical-op -Wno-multichar -Wno-attributes -Wduplicated-cond -Wduplicated-branches \
+	-Wnull-dereference -Wno-unused-function -Wshadow -Wstack-usage=4096
 
 ## DEBUG FLAGS
-CFLAGS= -nostdlib -Os -g -DLOG_STUFF=1 -m64 -march=x86-64 -mtune=generic \
-    -lmsvcrt -lkernel32 -luser32 -lgdi32 -fgcse-sm -fgcse-las -fno-plt \
-    -Wl,-dynamicbase,-nxcompat,--no-seh,--relax,--disable-runtime-pseudo-reloc,--enable-auto-import,--disable-stdcall-fixup \
-	-D__USE_MINGW_ANSI_STDIO=0 -fshort-enums\
-    $(INCLUDE) $(WARNINGS) -fno-exceptions -fno-dwarf2-cfi-asm -fno-asynchronous-unwind-tables
+CFLAGS=\
+	-nostdlib -Os -g -DLOG_STUFF=1 -m64 -march=x86-64 -mtune=generic \
+	-lmsvcrt -lkernel32 -luser32 -lgdi32 -fgcse-sm -fgcse-las -fno-plt \
+	-Wl,-dynamicbase,-nxcompat,--no-seh,--relax,--disable-runtime-pseudo-reloc,--enable-auto-import,--disable-stdcall-fixup \
+	-D__USE_MINGW_ANSI_STDIO=0 -fshort-enums \
+	$(INCLUDE) $(WARNINGS) \
+	-fno-exceptions -fno-dwarf2-cfi-asm -fno-asynchronous-unwind-tables
 
 default: AltSnap.exe hooks.dll
 
