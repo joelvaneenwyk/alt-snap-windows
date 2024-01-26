@@ -17,10 +17,10 @@ CFLAGS=-Os -fno-stack-check -fno-stack-protector -fno-ident -fomit-frame-pointer
 
 default: AltSnap.exe hooks.dll
 
-hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.cxx snap.cxx
+hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.inl snap.inl
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) -mdll -eDllMain -Wl,--kill-at
 
-AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.cxx config.cxx languages.h languages.cxx unfuck.h nanolibc.h
+AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.inl config.inl languages.h languages.inl unfuck.h nanolibc.h
 	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) -Wl,--tsaware -mwindows -lcomctl32 -ladvapi32 -lshell32 -eunfuckWinMain
 
 altsnapr.o : altsnap.rc window.rc resource.h AltSnap.exe.manifest media/find.cur media/find.ico media/icon.ico media/tray-disabled.ico media/tray-enabled.ico

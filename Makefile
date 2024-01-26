@@ -84,10 +84,10 @@ all: AltSnap.exe hooks.dll
 
 default: AltSnap.exe hooks.dll
 
-hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.cxx snap.cxx
+hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.inl snap.inl
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) $(LDFLAGS) -mdll -e_DllMain@12 -Wl,--kill-at
 
-AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.cxx config.cxx languages.h languages.cxx unfuck.h nanolibc.h
+AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.inl config.inl languages.h languages.inl unfuck.h nanolibc.h
 	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) $(EXELD) -mwindows -e_unfuckWinMain@0
 
 altsnapr.o : altsnap.rc window.rc resource.h AltSnap.exe.manifest media/find.cur media/find.ico media/icon.ico media/tray-disabled.ico media/tray-enabled.ico

@@ -11,8 +11,8 @@
 #include "hooks.h"
 #include "resource.h"
 
-#include "languages.cxx"
-#include "tray.cxx"
+#include "languages.inl"
+#include "tray.inl"
 
 #ifndef TTM_SETMAXTIPWIDTH
 #define TTM_SETMAXTIPWIDTH (WM_USER+24)

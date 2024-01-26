@@ -194,13 +194,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\altsnap.c" />
-    <ClInclude Include="..\snap.cxx">
+    <ClInclude Include="..\snap.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\tray.cxx">
+    <ClInclude Include="..\tray.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\zones.cxx">
+    <ClInclude Include="..\zones.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
   </ItemGroup>

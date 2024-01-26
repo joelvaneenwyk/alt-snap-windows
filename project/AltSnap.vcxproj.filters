@@ -42,13 +42,13 @@
     <ClInclude Include="..\unfuck.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\snap.cxx">
+    <ClInclude Include="..\snap.inl">
       <Filter>Source\Inlined</Filter>
     </ClInclude>
-    <ClInclude Include="..\tray.cxx">
+    <ClInclude Include="..\tray.inl">
       <Filter>Source\Inlined</Filter>
     </ClInclude>
-    <ClInclude Include="..\zones.cxx">
+    <ClInclude Include="..\zones.inl">
       <Filter>Source\Inlined</Filter>
     </ClInclude>
     <ClInclude Include="..\framework.h">
