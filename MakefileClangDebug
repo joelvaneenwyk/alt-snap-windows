@@ -1,12 +1,14 @@
 CC=clang
 WR=llvm-rc
 
-# We need to include GCC headers files (for i386 here)
-#MINGW=-ID:\Straw\tdm64\x86_64-w64-mingw32\include \
+# We need to include GCC headers files
+MINGW=
+#MINGW=\
+#	-ID:\Straw\tdm64\x86_64-w64-mingw32\include \
 #	-LD:\Straw\tdm64\x86_64-w64-mingw32\lib32
-MINGW=-ID:\Straw\llvm-mingw\include \
-	-LD:\Straw\llvm-mingw\i686-w64-mingw32\lib
-
+#MINGW=\
+#    -ID:\Straw\llvm-mingw\include \
+#	-LD:\Straw\llvm-mingw\i686-w64-mingw32\lib
 
 WARNINGS=-Wall \
 	-Wformat-security \
