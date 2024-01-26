@@ -759,6 +759,7 @@ static const struct strings en_US = {
                           TEXT("1) Open several of those Test Windows\n")
                           TEXT("2) Dispose them as you please\n")
                           TEXT("3) Hit the *&Save test windows as snap layout* option in the tray menu"),
+                          // spell-checker:disable
  /* Extended character list  for each virtual key */
  /* A */ TEXT("àáâäæãåª%āăąǎǟǡǣǻǽȁȃȧ|Ȧḁ%ⱥ|Ⱥɐ|Ɐɑ|Ɑɒ|Ɒⲁ|Ⲁⓐ"), \
  /* B */ TEXT("%ƀɓƃƅɃ%ɓḃḅḇⓑ"), \
@@ -786,6 +787,7 @@ static const struct strings en_US = {
  /* X */ TEXT("±×÷¬%ẋẍⓧ"), \
  /* Y */ TEXT("ýÿ¥%ŷẏȳ|Ȳƴɏ|Ɏⓨ"), \
  /* Z */ TEXT("ž%źẑżẓẕ%ƶʒƹƺǯȥ|Ȥɀ|Ɀⱬ|Ⱬⓩ"), \
+                        // spell-checker:disable
 };
 
 #endif
