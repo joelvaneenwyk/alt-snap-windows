@@ -1,0 +1,22 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        makefile: [Makefile, MakefileX64, MakefileClang]
+        os: [windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build ${{matrix.makefile//Makefile/}}
+      run: make -f ${{matrix.makefile}}
