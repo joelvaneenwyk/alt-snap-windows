@@ -71,7 +71,7 @@ static void LoadTranslation(const TCHAR *__restrict__ ini)
     } else if( INVALID_FILE_ATTRIBUTES == GetFileAttributes(ini) ) {
         return;
     }
-    // if english is not seleced then we have to allocate l10_ini strings struct
+    // if english is not selected then we have to allocate l10_ini strings struct
     // and we have to read the ini file...
     DWORD ret;
     DWORD tsectionlen=16383;
@@ -131,7 +131,7 @@ void ListAllTranslations()
 
     GetModuleFileName(NULL, szDir, ARR_SZ(szDir));
     PathRemoveFileSpecL(szDir);
-    lstrcat_s(szDir, ARR_SZ(szDir), TEXT("\\Lang\\*.ini"));
+    lstrcat_s(szDir, ARR_SZ(szDir), TEXT("\\languages\\*.ini"));
     lstrcpy_s(fpath, ARR_SZ(fpath), szDir);
     TCHAR *end = fpath; // not the star!
     end += lstrlen(fpath)-5;
@@ -141,7 +141,7 @@ void ListAllTranslations()
         int n=1;
         do {
             nlanguages++;
-            lstrcpy(end, ffd.cFileName); // add filenale at the end of the path
+            lstrcpy(end, ffd.cFileName); // add filename at the end of the path
             struct langinfoitem *tmp = (struct langinfoitem *)realloc(langinfo, sizeof(*tmp) * nlanguages);
             if (!tmp) break;
             langinfo = tmp;
@@ -188,7 +188,7 @@ void ListAllTranslations()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Helper function to get 
+// Helper function to get
 static int GetCUserLanguage_xx_XX(wchar_t txt[AT_LEAST 16])
 {
     txt[0] = L'\0';

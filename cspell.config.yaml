@@ -1,0 +1,11 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions:
+  - name: windows-alt-snap-dictionary
+    path: ./.cspell/windows-alt-snap.txt
+    addWords: true
+dictionaries:
+  - windows-alt-snap-dictionary
+words: []
+ignoreWords: []
+import: []

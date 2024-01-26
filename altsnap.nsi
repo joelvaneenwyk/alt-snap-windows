@@ -43,33 +43,33 @@ Section
     File AltSnap.txt
     File AltSnap.xml
     File hooks.dll
-    File License.txt
+    File LICENSE
     File sch_On.bat
     File sch_Off.bat
-    SetOutPath $INSTDIR\Lang
-    File "Lang\_en_US baseline.txt"
-    File Lang\ca_ES.ini
-    File Lang\de_DE.ini
-    File Lang\es_ES.ini
-    File Lang\fi_FI.ini
-    File Lang\fr_FR.ini
-    File Lang\gl_ES.ini
-    File Lang\it_IT.ini
-    File Lang\ja_JP.ini
-    File Lang\ko_KR.ini
-    File Lang\nb_NO.ini
-    File Lang\nl_NL.ini
-    File Lang\pl_PL.ini
-    File Lang\pt_PR.ini
-    File Lang\ru_RU.ini
-    File Lang\sz_SK.ini
-    File Lang\zh_CN.ini
-    File Lang\zh_TW.ini
+    SetOutPath $INSTDIR\languages
+    File "languages\_en_US baseline.txt"
+    File languages\ca_ES.ini
+    File languages\de_DE.ini
+    File languages\es_ES.ini
+    File languages\fi_FI.ini
+    File languages\fr_FR.ini
+    File languages\gl_ES.ini
+    File languages\it_IT.ini
+    File languages\ja_JP.ini
+    File languages\ko_KR.ini
+    File languages\nb_NO.ini
+    File languages\nl_NL.ini
+    File languages\pl_PL.ini
+    File languages\pt_PR.ini
+    File languages\ru_RU.ini
+    File languages\sz_SK.ini
+    File languages\zh_CN.ini
+    File languages\zh_TW.ini
 
-    SetOutPath $INSTDIR\Themes\erasmion
-    File Themes\erasmion\TRAY_OFF.ico
-    File Themes\erasmion\TRAY_ON.ico
-    File Themes\erasmion\TRAY_SUS.ico
+    SetOutPath $INSTDIR\media\themes\erasmion
+    File media\themes\erasmion\tray-off.ico
+    File media\themes\erasmion\tray-on.ico
+    File media\themes\erasmion\tray-sus.ico
 
     SetOutPath $INSTDIR
     CreateShortcut "$SMPROGRAMS\AltSnap.lnk" "$INSTDIR\AltSnap.exe"
@@ -143,30 +143,30 @@ Section "Uninstall"
     Delete "$INSTDIR\AltSnap.ini"
     Delete "$INSTDIR\AltSnap-old.ini"
     Delete "$INSTDIR\hooks.dll"
-    Delete "$INSTDIR\License.txt"
-    Delete "Lang\_en_US baseline.txt"
-    Delete Lang\ca_ES.ini
-    Delete Lang\de_DE.ini
-    Delete Lang\es_ES.ini
-    Delete Lang\fr_FR.ini
-    Delete Lang\gl_ES.ini
-    Delete Lang\it_IT.ini
-    Delete Lang\ja_JP.ini
-    Delete Lang\ko_KR.ini
-    Delete Lang\nb_NO.ini
-    Delete Lang\nl_NL.ini
-    Delete Lang\pl_PL.ini
-    Delete Lang\pt_PR.ini
-    Delete Lang\ru_RU.ini
-    Delete Lang\sz_SK.ini
-    Delete Lang\zh_CN.ini
-    Delete Lang\zh_TW.ini
-    RMDir "$INSTDIR\Lang"
+    Delete "$INSTDIR\LICENSE"
+    Delete "languages\_en_US baseline.txt"
+    Delete languages\ca_ES.ini
+    Delete languages\de_DE.ini
+    Delete languages\es_ES.ini
+    Delete languages\fr_FR.ini
+    Delete languages\gl_ES.ini
+    Delete languages\it_IT.ini
+    Delete languages\ja_JP.ini
+    Delete languages\ko_KR.ini
+    Delete languages\nb_NO.ini
+    Delete languages\nl_NL.ini
+    Delete languages\pl_PL.ini
+    Delete languages\pt_PR.ini
+    Delete languages\ru_RU.ini
+    Delete languages\sz_SK.ini
+    Delete languages\zh_CN.ini
+    Delete languages\zh_TW.ini
+    RMDir "$INSTDIR\languages"
 
-    Delete Themes\erasmion\TRAY_OFF.ico
-    Delete Themes\erasmion\TRAY_ON.ico
-    Delete Themes\erasmion\TRAY_SUS.ico
-    RMDir "$INSTDIR\Themes\erasmion"
+    Delete media\themes\erasmion\tray-off.ico
+    Delete media\themes\erasmion\tray-on.ico
+    Delete media\themes\erasmion\tray-sus.ico
+    RMDir "$INSTDIR\media\themes\erasmion"
     RMDir "$INSTDIR\Themes"
 
     SetOutPath $APPDATA

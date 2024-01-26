@@ -695,7 +695,7 @@ static UINT ReallyGetDpiForWindow(const HWND hwnd)
 /* https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enablenonclientdpiscaling
  * Available since Windows 10.0.14342 (~1607) https://stackoverflow.com/questions/36864894
  * Useless since Windows 10.0.15063 (1703)
- * So it is only useful in builds frim 1607 to 1703
+ * So it is only useful in builds from 1607 to 1703
  * To be called in the WM_NCCREATE message handler.
  */
 static BOOL EnableNonClientDpiScalingL(HWND hwnd)
@@ -852,7 +852,7 @@ static HRESULT DwmGetWindowAttributeL(HWND hwnd, DWORD a, PVOID b, DWORD c)
     if (funk) { /* We know we have the function */
         return funk(hwnd, a, b, c);
     }
-    /* DwmGetWindowAttribute return 0 on sucess ! */
+    /* DwmGetWindowAttribute return 0 on success ! */
     return 666; /* Here we FAIL with 666 error    */
 }
 
@@ -867,7 +867,7 @@ static HRESULT DwmSetWindowAttributeL(HWND hwnd, DWORD a, PVOID b, DWORD c)
     if (funk) { /* We know we have the function */
         return funk(hwnd, a, b, c);
     }
-    /* myDwmSetWindowAttribute return 0 on sucess ! */
+    /* myDwmSetWindowAttribute return 0 on success ! */
     return 666; /* Here we FAIL with 666 error    */
 }
 
@@ -882,7 +882,7 @@ static HRESULT DwmGetColorizationColorL(DWORD *a, BOOL *b)
     if (funk) { /* We know we have the function */
         return funk(a, b);
     }
-    /* return 0 on sucess ! */
+    /* return 0 on success ! */
     return 666; /* Here we FAIL with 666 error    */
 }
 
@@ -891,7 +891,7 @@ static COLORREF GetSysColorizationColor()
     DWORD color=0;
     BOOL b=FALSE;
     if(S_OK == DwmGetColorizationColorL(&color, &b)) {
-        /* Re orde- bytes because
+        /* Re order- bytes because
          * COLORREF:  0x00BBGGRR and not 0xAARRGGBB */
         return  (color&0x000000FF) << 16  /* blue */
               | (color&0x0000FF00)        /* green */
@@ -980,7 +980,7 @@ static BOOL GetWindowRectLL(HWND hwnd, RECT *rect, const int SnapGap)
     return ret;
 }
 /* Under Win8 and later a window can be cloaked
- * This falg can be obtained with this function
+ * This flag can be obtained with this function
  * 1 The window was cloaked by its owner application.
  * 2 The window was cloaked by the Shell.
  * 4 The cloak value was inherited from its owner window.
@@ -1307,7 +1307,7 @@ static BOOL SetWindowLevel(HWND hwnd, HWND hafter)
 }
 static int HitTestTimeoutL(HWND hwnd, LPARAM lParam)
 {
-    DorQWORD area=0;
+    DWORD_PTR area = 0;
 
 /*
     if(DwmDefWindowProcL(hwnd, WM_NCHITTEST, 0, lParam, (LRESULT*)&area))

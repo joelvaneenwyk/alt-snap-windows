@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AltSnap", "AltSnap.vcxproj", "{C222FF7E-CC20-44BB-83B8-09D6416D0680}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Root", ".Root", "{BB44DE27-4102-4594-921B-699D847005A4}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{D7A7589B-C7F6-4C07-A79D-45C0D7C15B55}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\AltSnap.exe.manifest = ..\AltSnap.exe.manifest
+		..\AltSnap.ini = ..\AltSnap.ini
+		..\AltSnap.xml = ..\AltSnap.xml
+		..\cspell.config.yaml = ..\cspell.config.yaml
+		..\taskfile.yaml = ..\taskfile.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Make", "Make", "{23E28406-3384-4790-B07C-0D62C41787E1}"
+	ProjectSection(SolutionItems) = preProject
+		..\Makefile = ..\Makefile
+		..\MakefileClang = ..\MakefileClang
+		..\MakefileClangDebug = ..\MakefileClangDebug
+		..\MakefileDebug = ..\MakefileDebug
+		..\MakefileTCC = ..\MakefileTCC
+		..\MakefileX64 = ..\MakefileX64
+		..\MakefileX64Debug = ..\MakefileX64Debug
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1D683A89-7DB6-4A8A-9ECD-DB26188C1ED4}"
+	ProjectSection(SolutionItems) = preProject
+		..\env.bat = ..\env.bat
+		..\makerelease.bat = ..\makerelease.bat
+		..\mk.bat = ..\mk.bat
+		..\mk64.bat = ..\mk64.bat
+		..\mkvcc6.bat = ..\mkvcc6.bat
+		..\nsi.bat = ..\nsi.bat
+		..\sch_Off.bat = ..\sch_Off.bat
+		..\sch_On.bat = ..\sch_On.bat
+		..\setup.bat = ..\setup.bat
+		..\ziprelease.bat = ..\ziprelease.bat
+		..\zzip.bat = ..\zzip.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMake", "CMake", "{CCD602E1-55C5-4493-84F4-9EFB467B22AF}"
+	ProjectSection(SolutionItems) = preProject
+		..\CMakeLists.txt = ..\CMakeLists.txt
+		..\CMakeSettings.json = ..\CMakeSettings.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5F6EBFFB-1E11-408F-ADA6-3397B0919041}"
+	ProjectSection(SolutionItems) = preProject
+		..\AltSnap.md = ..\AltSnap.md
+		..\README_ko-KR.md = ..\README_ko-KR.md
+		..\README_zh-CN.md = ..\README_zh-CN.md
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AltSnapHooks", "AltSnapHooks.vcxproj", "{07FCE656-F13C-453B-A57C-1768E1397E0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Debug|x64.ActiveCfg = Debug|x64
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Debug|x64.Build.0 = Debug|x64
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Debug|x86.ActiveCfg = Debug|Win32
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Debug|x86.Build.0 = Debug|Win32
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x64.ActiveCfg = Release|x64
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x64.Build.0 = Release|x64
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x86.ActiveCfg = Release|Win32
+		{C222FF7E-CC20-44BB-83B8-09D6416D0680}.Release|x86.Build.0 = Release|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x64.ActiveCfg = Debug|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x64.Build.0 = Debug|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x86.ActiveCfg = Debug|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Debug|x86.Build.0 = Debug|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x64.ActiveCfg = Release|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x64.Build.0 = Release|x64
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x86.ActiveCfg = Release|Win32
+		{07FCE656-F13C-453B-A57C-1768E1397E0F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7A7589B-C7F6-4C07-A79D-45C0D7C15B55} = {BB44DE27-4102-4594-921B-699D847005A4}
+		{23E28406-3384-4790-B07C-0D62C41787E1} = {BB44DE27-4102-4594-921B-699D847005A4}
+		{1D683A89-7DB6-4A8A-9ECD-DB26188C1ED4} = {BB44DE27-4102-4594-921B-699D847005A4}
+		{CCD602E1-55C5-4493-84F4-9EFB467B22AF} = {BB44DE27-4102-4594-921B-699D847005A4}
+		{5F6EBFFB-1E11-408F-ADA6-3397B0919041} = {BB44DE27-4102-4594-921B-699D847005A4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93F5DC44-8BF4-44FC-9FC5-473EB781A952}
+	EndGlobalSection
+EndGlobal

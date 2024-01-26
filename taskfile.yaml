@@ -1,0 +1,56 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - cmake -G "MinGW Makefiles" -B .output/task/mingw -S .
+      - make --directory .output/task/mingw
+
+  upgrade:
+    cmds:
+      - call scoop update *
+      - npm install -g makensis
+
+  build-make:
+    deps:
+      - build-win32-debug
+      - build-win32-release
+      - build-x64-debug
+      - build-x64-release
+    silent: false
+
+  build-win32-release:
+    cmds:
+      - make -fMakefile
+
+  build-win32-debug:
+    cmds:
+      - make -fMakefileDebug
+
+  build-x64-release:
+    cmds:
+      - make -fMakefileX64
+
+  build-x64-debug:
+    cmds:
+      - make -fMakefileX64Debug
+
+  # Build using Clang
+  build-clang-release:
+    cmds:
+      - make -fMakefileClang
+
+  # Build using Clang [debug]
+  build-clang-debug:
+    cmds:
+      - make -fMakefileClangDebug
+
+  # Build using Tiny C Compiler
+  build-tcc:
+    cmds:
+      - make -fMakefileTCC

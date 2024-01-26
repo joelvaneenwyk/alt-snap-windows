@@ -1,0 +1,75 @@
+---
+Language: Cpp
+BasedOnStyle: Google
+AccessModifierOffset: -4
+SpacesBeforeTrailingComments: 2
+SpacesInLineCommentPrefix:
+  Minimum: 1
+AllowShortBlocksOnASingleLine: Always
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignOperands: Align
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+AlignArrayOfStructures: Left
+FixNamespaceComments: true
+AlwaysBreakTemplateDeclarations: Yes
+AllowAllArgumentsOnNextLine: true
+AllowShortIfStatementsOnASingleLine: false
+PPIndentWidth: -1
+IncludeBlocks: Regroup
+MaxEmptyLinesToKeep: 1
+ReflowComments: true
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+BreakBeforeBraces: Custom
+BreakBeforeBinaryOperators: NonAssignment
+BreakConstructorInitializers: AfterColon
+KeepEmptyLinesAtEOF: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+ColumnLimit: 120
+IncludeCategories:
+  - Regex: "^<.*"
+    Priority: 1
+  - Regex: '^".*'
+    Priority: 2
+  - Regex: ".*"
+    Priority: 3
+IncludeIsMainRegex: "([-_](test|unittest))?$"
+IndentCaseBlocks: true
+IndentWidth: 4
+InsertBraces: true
+IndentPPDirectives: AfterHash
+InsertNewlineAtEOF: true
+MacroBlockBegin: ""
+MacroBlockEnd: ""
+AlignEscapedNewlines: Left
+NamespaceIndentation: All
+SpacesInAngles: false
+TabWidth: 4
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false

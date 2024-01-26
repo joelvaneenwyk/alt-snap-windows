@@ -1,0 +1,53 @@
+{
+    "[cmake]": {
+        "editor.defaultFormatter": "ms-vscode.cmake-tools"
+    },
+    "[makefile]": {
+        "editor.defaultFoldingRangeProvider": "ms-vscode.makefile-tools",
+        "editor.defaultFormatter": "ms-vscode.makefile-tools"
+    },
+    "cmake.automaticReconfigure": true,
+    "cmake.buildDirectory": "${workspaceFolder}/.output/vscode/${buildType}",
+    "cSpell.allowCompoundWords": true,
+    "cSpell.autoFormatConfigFile": true,
+    "cSpell.caseSensitive": false,
+    "cSpell.checkLimit": 5000,
+    "cSpell.diagnosticLevel": "Error",
+    "cSpell.enabled": true,
+    "cSpell.experimental.enableSettingsViewerV2": true,
+    "cSpell.showAutocompleteSuggestions": true,
+    "cSpell.showStatus": true,
+    "cSpell.useGitignore": true,
+    "explorer.fileNesting.patterns": {
+        "Makefile": "Makefile*",
+        "README.md": "README*",
+        "setup.bat": "env.bat,mk*,sch*,makerelease*,zzip.bat,ziprelease.bat,nsi.bat"
+    },
+    "files.associations": {
+        "*.ejs": "html",
+        "*.rc": "cpp",
+        "Makefile*": "makefile"
+    },
+    "makefile.buildBeforeLaunch": true,
+    "makefile.alwaysPreConfigure": false,
+    "makefile.loggingLevel": "Verbose",
+    "makefile.makefilePath": "MakefileX64",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.profiles.windows": {
+        "Command Prompt": {
+            "args": [],
+            "icon": "terminal-cmd",
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ]
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "PowerShell": {
+            "icon": "terminal-powershell",
+            "source": "PowerShell"
+        }
+    }
+}

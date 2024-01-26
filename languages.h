@@ -12,6 +12,7 @@
 
 #include <stddef.h>
 #include <windows.h>
+
 #include "resource.h"
 
 // Resolve index from entry name.
@@ -665,7 +666,7 @@ static const struct strings en_US = {
  /* alwaysontop        */ TEXT("Toggle always on &top"),
  /* borderless         */ TEXT("Toggle &borderless"),
  /* center             */ TEXT("C&enter window on screen"),
- /* oriclick           */ TEXT("Send ori&ginal click"),
+ /* oriclick           */ TEXT("Send ori&ginal click"),  // cspell:disable-line
  /* nothing            */ TEXT("Nothing"),
  /* alttab             */ TEXT("Alt+Tab"),
  /* volume             */ TEXT("Volume"),
@@ -675,7 +676,7 @@ static const struct strings en_US = {
  /* sidesnap           */ TEXT("&Snap to monitor side/corner"),
  /* extendsnap         */ TEXT("Extend to monitor side/corner"),
  /* extendtnedge       */ TEXT("Extend to next edge"),
- /* movedtnedge        */ TEXT("Move to next edge"),
+ /* movedtnedge        */ TEXT("Move to next edge"),  // cspell:disable-line
  /* minallother        */ TEXT("Minimize &other windows"),
  /* transparency       */ TEXT("Transparency"),
  /* zoom               */ TEXT("Zoom window"),
@@ -699,7 +700,7 @@ static const struct strings en_US = {
  /* leftalt            */ TEXT("L&eft Alt"),
  /* rightalt           */ TEXT("&Right Alt"),
  /* leftwinkey         */ TEXT("Left &Winkey"),
- /* rightwinkey        */ TEXT("Right W&inkey"),
+ /* rightwinkey        */ TEXT("Right W&inkey"),  // cspell:disable-line
  /* leftctrl           */ TEXT("&Left Ctrl"),
  /* rightctrl          */ TEXT("Ri&ght Ctrl"),
  /* leftshift          */ TEXT("Left Shift"),
@@ -725,7 +726,7 @@ static const struct strings en_US = {
  /* snapgap          */   TEXT("Snapping &gap (pixels):"),
  /* aerospeed        */   TEXT("Ma&x snapping speed (pixels):"),
  /* testwindow       */   TEXT("Test &Window"),
- /* movetrans        */   TEXT("Opacit&y when moving:"),
+ /* movetrans        */   TEXT("Opacit&y when moving:"),  // cspell:disable-line
 
  /* behavior_box     */   TEXT("Behavior"),
  /* multipleinstances*/   TEXT("Allow multiple &instances of AltSnap"),
@@ -737,8 +738,8 @@ static const struct strings en_US = {
  /* fullscreen       */   TEXT("Enable on &full screen windows"),
  /* blmaximized      */   TEXT("&Disable AltSnap on Maximized windows"),
  /* fancyzone        */   TEXT("Restore Fancy&Zones snapped windows"),
- /* norestore        */   TEXT("Never restore AltSna&pped windows"),
- /* topmostindicator */   TEXT("Show an i&ndicator on always on top windows"),
+ /* norestore        */   TEXT("Never restore AltSna&pped windows"),  // cspell:disable-line
+ /* topmostindicator */   TEXT("Show an i&ndicator on always on top windows"),  // cspell:disable-line
 
  /* about tab */
  /* box                */ TEXT("About ") APP_NAME ,
@@ -759,6 +760,7 @@ static const struct strings en_US = {
                           TEXT("1) Open several of those Test Windows\n")
                           TEXT("2) Dispose them as you please\n")
                           TEXT("3) Hit the *&Save test windows as snap layout* option in the tray menu"),
+                          // spell-checker:disable
  /* Extended character list  for each virtual key */
  /* A */ TEXT("àáâäæãåª%āăąǎǟǡǣǻǽȁȃȧ|Ȧḁ%ⱥ|Ⱥɐ|Ɐɑ|Ɑɒ|Ɒⲁ|Ⲁⓐ"), \
  /* B */ TEXT("%ƀɓƃƅɃ%ɓḃḅḇⓑ"), \
@@ -786,6 +788,9 @@ static const struct strings en_US = {
  /* X */ TEXT("±×÷¬%ẋẍⓧ"), \
  /* Y */ TEXT("ýÿ¥%ŷẏȳ|Ȳƴɏ|Ɏⓨ"), \
  /* Z */ TEXT("ž%źẑżẓẕ%ƶʒƹƺǯȥ|Ȥɀ|Ɀⱬ|Ⱬⓩ"), \
+                        // spell-checker:disable
 };
 
-#endif
+#include "languages.inl"
+
+#endif  // ALTSNAP_STRINGS_H

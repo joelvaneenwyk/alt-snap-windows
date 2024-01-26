@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Inlined">
+      <UniqueIdentifier>{713c628c-deb2-48d8-affc-2a4db44c262f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>{e08c9ac8-ee49-43c6-a9e6-91ecebd71984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\CSpell">
+      <UniqueIdentifier>{0211f7b5-a407-4d43-9202-f8e505c56ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Docs">
+      <UniqueIdentifier>{42c49572-2fc6-4532-9ca2-997cda7b8ba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Config">
+      <UniqueIdentifier>{3a29a146-7367-4747-8ea4-967b55c22eff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\hooks.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\languages.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nanolibc.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\unfuck.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\snap.inl">
+      <Filter>Source\Inlined</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tray.inl">
+      <Filter>Source\Inlined</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zones.inl">
+      <Filter>Source\Inlined</Filter>
+    </ClInclude>
+    <ClInclude Include="..\resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\altsnap.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\cspell.config.yaml">
+      <Filter>Content\CSpell</Filter>
+    </None>
+    <None Include="..\README.md">
+      <Filter>Content\Docs</Filter>
+    </None>
+    <None Include="..\README_ko-KR.md">
+      <Filter>Content\Docs</Filter>
+    </None>
+    <None Include="..\README_zh-CN.md">
+      <Filter>Content\Docs</Filter>
+    </None>
+    <None Include="..\LICENSE">
+      <Filter>Content\Docs</Filter>
+    </None>
+    <None Include="..\altsnap.nsi">
+      <Filter>Content\Config</Filter>
+    </None>
+    <None Include="..\AltSnap.md">
+      <Filter>Content\Docs</Filter>
+    </None>
+    <None Include="..\AltSnap.ini">
+      <Filter>Content\Config</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\altsnap.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\AltSnap.xml">
+      <Filter>Content\Config</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
