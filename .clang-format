@@ -65,7 +65,7 @@ IndentPPDirectives: AfterHash
 InsertNewlineAtEOF: true
 MacroBlockBegin: ""
 MacroBlockEnd: ""
-MaxEmptyLinesToKeep: 2
+AlignEscapedNewlines: Left
 NamespaceIndentation: All
 SpacesInAngles: false
 TabWidth: 4
