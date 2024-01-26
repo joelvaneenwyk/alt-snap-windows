@@ -28,7 +28,7 @@ INT_PTR CALLBACK AdvancedPageDialogProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK FindWindowProc(HWND, UINT, WPARAM, LPARAM);
 
 HWND g_cfgwnd = NULL;
-
+const int AS_SHOW_CONFIG = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // No error reporting since we don't want the user to be interrupted
@@ -581,6 +581,7 @@ INT_PTR CALLBACK GeneralPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
             }
         } else if (id == IDC_ELEVATE) {
             return ElevateNow(1);
+            return ElevateNow(AS_SHOW_CONFIG);
         }
     } else if (msg == WM_NOTIFY) {
         LPNMHDR pnmh = (LPNMHDR) lParam;
