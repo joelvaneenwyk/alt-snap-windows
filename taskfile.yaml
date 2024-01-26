@@ -14,6 +14,11 @@ tasks:
       - X64db
     silent: true
 
+  build:
+    cmds:
+      - cmake -G "MinGW Makefiles" -B .output/task/mingw -S .
+      - make --directory .output/task/mingw
+
   make:
     cmds:
       - make -fMakefile
