@@ -10,8 +10,8 @@
 
 #include "hooks.h"
 #include "resource.h"
+#include "languages.h"
 
-#include "languages.inl"
 #include "tray.inl"
 
 #ifndef TTM_SETMAXTIPWIDTH

@@ -12,6 +12,7 @@
 
 #include <stddef.h>
 #include <windows.h>
+
 #include "resource.h"
 
 // Resolve index from entry name.
@@ -790,4 +791,6 @@ static const struct strings en_US = {
                         // spell-checker:disable
 };
 
-#endif
+#include "languages.inl"
+
+#endif  // ALTSNAP_STRINGS_H
