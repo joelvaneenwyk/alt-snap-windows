@@ -1,19 +1,21 @@
 cmake_minimum_required(VERSION 3.22)
-set(TARGET_NAME alt_snap)
 set(PROJECT_NAME AltSnap)
 project(${PROJECT_NAME})
 
-
 enable_language(C)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED TRUE)
 set(CMAKE_SYSTEM_NAME Windows)
 
+set(TARGET_NAME alt_snap)
 add_executable(${TARGET_NAME})
 target_sources(${TARGET_NAME} PRIVATE 
         altsnap.c
-        hooks.h languages.h unfuck.h "nanolibc.h" "resource.h"
+        hooks.h languages.h unfuck.h nanolibc.h
 
         # This resource also includes 'window.rc' and 'AltSnap.exe.manifest'
-        altsnap.rc 
+        altsnap.rc
+        resource.h
         
         # media/find.ico media/find.cur
         # media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
@@ -21,7 +23,8 @@ target_sources(${TARGET_NAME} PRIVATE
 target_link_libraries(${TARGET_NAME}
         PRIVATE comctl32 advapi32 shell32 msvcrt kernel32 gdi32
 )
-target_compile_features(${TARGET_NAME} PRIVATE c_std_99)
+target_compile_features(${TARGET_NAME} PUBLIC c_std_99)
+set_property(TARGET ${TARGET_NAME} PROPERTY C_STANDARD_REQUIRED ON)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         # using Clang

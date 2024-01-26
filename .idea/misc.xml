@@ -4,9 +4,12 @@
   <component name="CidrRootsConfiguration">
     <excludeRoots>
       <file path="$PROJECT_DIR$/.gdn" />
+      <file path="$PROJECT_DIR$/.output" />
       <file path="$PROJECT_DIR$/.vs" />
       <file path="$PROJECT_DIR$/build" />
       <file path="$PROJECT_DIR$/c" />
+      <file path="$PROJECT_DIR$/cmake-build-debug-visual-studio" />
+      <file path="$PROJECT_DIR$/cmake-build-release-visual-studio" />
       <file path="$PROJECT_DIR$/out" />
     </excludeRoots>
   </component>
