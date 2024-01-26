@@ -31,7 +31,7 @@ static LRESULT CALLBACK MenuWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 #define RESET_OFFSET 22
 #define DRAG_WAIT 77
 // Number of actions per button!
-//  2 for Alt+Clikc
+//  2 for Alt+Click
 // +2 for Titlebar action
 // +2 for Action while moving
 // +2 for action while resizing
@@ -707,7 +707,7 @@ BOOL CALLBACK EnumSnappedWindows(HWND hwnd, LPARAM lParam)
             // The window was AltSnapped...
             snwnds[numsnwnds].flag = restore;
         } else {
-            // thiw window is not snapped.
+            // this window is not snapped.
             return TRUE; // next hwnd
         }
         // Add the window to the list
@@ -2550,17 +2550,23 @@ static void KillAltSnapMenu()
 static void TogglesAlwaysOnTop(HWND hwnd);
 static HWND MDIorNOT(HWND hwnd, HWND *mdiclient_);
 
+#ifdef __cplusplus
+#define AS_EXTERN extern "C"
+#else
+#define AS_EXTERN
+#endif
+
+#if defined(__llvm__)
+#define AS_EXPORT AS_EXTERN
+#else
+#define AS_EXPORT AS_EXTERN __declspec(dllexport)
+#endif
+
 ///////////////////////////////////////////////////////////////////////////
 // Keep this one minimalist, it is always on.
-#ifdef __cplusplus
-extern "C"
-#endif
-#if !defined(__llvm__)
-__declspec(dllexport) 
-#endif
-LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
+AS_EXPORT LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-#if defined(_MSC_VER) && _MSC_VER > 1300
+#if !defined(__llvm__) && defined(_MSC_VER) && _MSC_VER > 1300
 #pragma comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
 #endif
 
@@ -6005,12 +6011,9 @@ static void freeblacklists()
 /////////////////////////////////////////////////////////////////////////////
 // To be called before Free Library. Ideally it should free everything
 static void freeallinputSequences(void);
-#ifdef __cplusplus
-extern "C"
-#endif
-__declspec(dllexport) void WINAPI Unload()
+AS_EXPORT void WINAPI Unload()
 {
-#if defined(_MSC_VER) && _MSC_VER > 1300
+#if !defined(__llvm__) && defined(_MSC_VER) && _MSC_VER > 1300
 #pragma comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
 #endif
     conf.keepMousehook = 0;
@@ -6362,12 +6365,9 @@ static void freeallinputSequences(void)
 
 ///////////////////////////////////////////////////////////////////////////
 // Has to be called at startup, it mainly reads the config.
-#ifdef __cplusplus
-extern "C"
-#endif
-__declspec(dllexport) HWND WINAPI Load(HWND mainhwnd)
+AS_EXPORT HWND WINAPI Load(HWND mainhwnd)
 {
-#if defined(_MSC_VER) && _MSC_VER > 1300
+#if !defined(__llvm__) && defined(_MSC_VER) && _MSC_VER > 1300
 #pragma comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
 #endif
     // Load settings
