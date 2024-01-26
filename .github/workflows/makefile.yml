@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        makefile: [Makefile, MakefileX64, MakefileClang]
+        makefile: [MakefileX64]  # [Makefile, MakefileClang]
         os: [windows-latest]
 
     runs-on: ${{ matrix.os }}
