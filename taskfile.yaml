@@ -11,6 +11,11 @@ tasks:
       - cmake -G "MinGW Makefiles" -B .output/task/mingw -S .
       - make --directory .output/task/mingw
 
+  upgrade:
+    cmds:
+      - call scoop update *
+      - npm install -g makensis
+
   build-make:
     deps:
       - build-win32-debug
