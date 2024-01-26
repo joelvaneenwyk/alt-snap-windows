@@ -80,9 +80,7 @@ EXELD = $(LDFLAGS) \
 	-ladvapi32 \
 	-lshell32
 
-all: AltSnap.exe hooks.dll
-
-default: AltSnap.exe hooks.dll
+.PHONY: clean all
 
 hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.inl snap.inl
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) $(LDFLAGS) -mdll -e_DllMain@12 -Wl,--kill-at
@@ -98,3 +96,5 @@ hooksr.o: hooks.rc
 
 clean :
 	rm altsnapr.o AltSnap.exe hooksr.o hooks.dll
+
+all: AltSnap.exe hooks.dll
