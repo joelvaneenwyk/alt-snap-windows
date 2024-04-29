@@ -1,8 +1,11 @@
-#ifndef ALTDRAG_RPC_H
-#define ALTDRAG_RPC_H
+#ifndef ALT_SNAP_HOOKS_RPC_H
+#define ALT_SNAP_HOOKS_RPC_H
 
+#if !defined(UNICODE)
 #define UNICODE
 #define _UNICODE
+#endif
+
 #define _WIN32_WINNT 0x0600
 #define WINVER 0x0600
 #include <windows.h>
@@ -246,4 +249,4 @@ static enum action MapActionW(const TCHAR *txt)
     return AC_NONE;
 }
 
-#endif /* ALTDRAG_RPC_H */
+#endif /* ALT_SNAP_HOOKS_RPC_H */

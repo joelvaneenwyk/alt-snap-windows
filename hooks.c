@@ -18,11 +18,11 @@ static BOOL CALLBACK    EnumMonitorsProc(HMONITOR, HDC, LPRECT, LPARAM);
 static LRESULT CALLBACK MenuWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // Timer messages
-#define REHOOK_TIMER WM_APP + 1
-#define SPEED_TIMER  WM_APP + 2
-#define GRAB_TIMER   WM_APP + 3
-// #define ALTUP_TIMER     WM_APP+4
-#define POOL_TIMER WM_APP + 5
+#define REHOOK_TIMER 	(WM_APP + 1)
+#define SPEED_TIMER  	(WM_APP + 2)
+#define GRAB_TIMER   	(WM_APP + 3)
+#define ALTUP_TIMER  	(WM_APP + 4)
+#define POOL_TIMER      (WM_APP + 5)
 
 // #define NO_HOOK_LL
 
@@ -30,6 +30,7 @@ static LRESULT CALLBACK MenuWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 #define NOT_MOVED    33
 #define RESET_OFFSET 22
 #define DRAG_WAIT    77
+
 // Number of actions per button!
 //  2 for Alt+Click
 // +2 for Titlebar action
@@ -44,9 +45,9 @@ static HWND g_timerhwnd;     // For various timers
 static HWND g_mchwnd;        // For the Action menu messages
 static HWND g_hkhwnd;        // For the hotkeys message window.
 
-static void UnhookMouse();
-static void HookMouse();
-static void UnhookMouseOnly();
+static void UnhookMouse(void);
+static void HookMouse(void);
+static void UnhookMouseOnly(void);
 static HWND KreateMsgWin(WNDPROC proc, const TCHAR *name, LONG_PTR userdata);
 
 // Enumerators
