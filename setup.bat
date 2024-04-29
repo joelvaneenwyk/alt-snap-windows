@@ -9,7 +9,7 @@ exit /b %ERRORLEVEL%
 :$Main
 setlocal EnableExtensions
     call pwsh -NoProfile -Command "iwr -useb get.scoop.sh | iex"
-    call npm install -g makensis
+    call sudo npm install -g makensis
 
     :: https://www.mingw-w64.org/downloads/#mingw-builds
     call :Scoop bucket add "main"
