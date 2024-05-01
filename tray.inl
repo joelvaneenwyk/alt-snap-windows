@@ -51,7 +51,7 @@ static void LoadAllIcons()
             PathRemoveFileSpecL(path);
             lstrcat_s(path, ARR_SZ(path), TEXT("\\Themes\\")); // Themes subfolder
             lstrcat_s(path, ARR_SZ(path), theme); // Theme name
-            int len = lstrlen(path);
+            size_t len = lstrlen(path);
             TCHAR *p = path+len;
             *p++ = TEXT('\\');
             if (len < MAX_PATH-13) { // strlen("TRAY_OFF.ICO")==12

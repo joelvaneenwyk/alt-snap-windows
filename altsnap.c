@@ -35,7 +35,7 @@ static HWND g_dllmsgHKhwnd = NULL;
 // Cool stuff
 HINSTANCE    hinstDLL        = NULL;
 HHOOK        keyhook         = NULL;
-static DWORD ACMenuItems     = -1;
+static DWORD ACMenuItems     = (DWORD)-1;
 static char  elevated        = 0;
 static char  ScrollLockState = 0;
 static char  SnapGap         = 0;
@@ -87,7 +87,7 @@ int HookSystem()
             return 1;
         }
     }
-    HWND(WINAPI * Load)(HWND) = (HWND(WINAPI *)(HWND))GetProcAddress(hinstDLL, LOAD_PROC);
+    HWND(FAR WINAPI * Load)(HWND) = (HWND(FAR WINAPI *)(HWND))(void*)GetProcAddress(hinstDLL, LOAD_PROC);
     if (Load) {
         g_dllmsgHKhwnd = Load(g_hwnd);
     }
@@ -133,7 +133,7 @@ int UnhookSystem()
     keyhook = NULL;
 
     // Tell dll file that we are unloading
-    void(WINAPI * Unload)() = (void(WINAPI *)())GetProcAddress(hinstDLL, UNLOAD_PROC);
+    void(FAR WINAPI * Unload)() = (void(FAR WINAPI *)())(void*)GetProcAddress(hinstDLL, UNLOAD_PROC);
     if (Unload) {
         Unload();
         // Zero out the message hwnd from DLL.
@@ -184,7 +184,7 @@ void ShowSClickMenu(HWND hwnd, LPARAM param)
     HMENU menu          = CreatePopupMenu();
     UCHAR show_oriclick = (param & LP_NOALTACTION) ? AC_ORICLICK : 0xFF;
 
-#define CHK(LP_FLAG) MF_STRING | ((param & LP_FLAG) ? MF_CHECKED : MF_UNCHECKED)
+#define CHK(LP_FLAG) MF_STRING | ((param & (LP_FLAG)) ? MF_CHECKED : MF_UNCHECKED)
 
     const struct {
         UCHAR  action;
@@ -400,7 +400,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WriteCurrentLayoutNumber();
         } else if (wmId == SWM_EDITLAYOUT) {
             if (g_dllmsgHKhwnd) {
-                unsigned len = SendMessage(g_dllmsgHKhwnd, WM_GETZONESLEN, LayoutNumber, 0);
+                LRESULT len = SendMessage(g_dllmsgHKhwnd, WM_GETZONESLEN, LayoutNumber, 0);
                 if (!len) {
                     // Empty layout, Let's open a new Test Window
                     return !NewTestWindow();
@@ -447,6 +447,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 /////////////////////////////////////////////////////////////////////////////
 int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int iCmdShow)
 {
+    (void)hPrevInstance;
+    (void)iCmdShow;
+    
     g_hinst = hInst;
 
     // Get ini path
@@ -488,7 +491,7 @@ int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int
         DWORD           len;
         if (OpenProcessToken(GetCurrentProcess(), TOKEN_READ, &token)
             && GetTokenInformation(token, TokenElevation, &elevation, sizeof(elevation), &len)) {
-            elevated = elevation.TokenIsElevated;
+            elevated = (char)elevation.TokenIsElevated;
             CloseHandle(token);
         }
         LOG("Process started %s elevated", elevated ? "already" : "non");
@@ -557,7 +560,7 @@ int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int
             LOG("Elevation requested");
             TCHAR path[MAX_PATH];
             GetModuleFileName(NULL, path, ARR_SZ(path));
-            const HINSTANCE ret =
+            HINSTANCE ret =
                 ShellExecute(NULL, TEXT("runas"), path, (hide ? TEXT("-h") : NULL), NULL, SW_SHOWNORMAL);
             if ((size_t)ret > 32) {
                 LOG("Elevation Faild => Not cool NORMAL EXIT");
@@ -621,7 +624,7 @@ int WINAPI tWinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, TCHAR *params, int
     FreeHooksDLL();
     DestroyWindow(g_hwnd);
     LOG("GOOD NORMAL EXIT");
-    return msg.wParam;
+    return (int)msg.wParam;
 }
 static pure const TCHAR *ParamsFromCmdline(const TCHAR *cmdl)
 {

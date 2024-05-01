@@ -50,7 +50,7 @@ static void CheckAutostart(int *_on, int *_hidden, int *_elevated)
     TCHAR compare[MAX_PATH+20];
     GetModuleFileName(NULL, &compare[1], MAX_PATH);
     compare[0] = '\"';
-    unsigned ll = lstrlen(compare);
+    size_t ll = lstrlen(compare);
     compare[ll] = '\"'; compare[++ll]='\0';
 
     if (lstrstr(value, compare) != value) {
@@ -116,7 +116,7 @@ static BOOL ElevateNow(int showconfig)
 }
 /////////////////////////////////////////////////////////////////////////////
 // Entry point
-static void OpenConfig(int startpage)
+static void OpenConfig(UINT_PTR startpage)
 {
     ListAllTranslations(); // In case
     if (IsWindow(g_cfgwnd)) {
@@ -295,7 +295,7 @@ static DWORD IsUACEnabled()
 }
 /////////////////////////////////////////////////////////////////////////////
 // Helper functions and Macro
-#define IsChecked(idc) IsDlgButtonChecked(hwnd, idc)
+#define IsChecked(idc) (BYTE)(IsDlgButtonChecked(hwnd, (idc)))
 //#define IsCheckedW(idc) itostr(IsChecked(idc), txt, 10)
 
 #define CB_ResetContent(hwnd) SendMessage(hwnd, CB_RESETCONTENT, 0, 0)
@@ -583,7 +583,6 @@ INT_PTR CALLBACK GeneralPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
                 MessageBox(NULL, l10n->general_autostart_elevate_tip, TEXT(APP_NAMEA), MB_ICONINFORMATION | MB_OK);
             }
         } else if (id == IDC_ELEVATE) {
-            return ElevateNow(1);
             return ElevateNow(AS_SHOW_CONFIG);
         }
     } else if (msg == WM_NOTIFY) {
@@ -1249,7 +1248,7 @@ INT_PTR CALLBACK KeyboardPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPAR
         } else if (event == EN_UPDATE && id == IDC_SHORTCUTS_VK) {
             TCHAR txt[4];
             GetDlgItemText(hwnd, IDC_SHORTCUTS_VK, txt, 3);
-            BYTE vKey = lstrhex2u(txt);
+            size_t vKey = lstrhex2u(txt);
             TCHAR keyname[32]; keyname[0] = L'\0';
             GetKeyNameText(MapVirtualKey(vKey, 0)<<16, keyname, ARR_SZ(keyname)-8);
             SetDlgItemText(hwnd, IDC_SHORTCUTS, keyname);
@@ -1268,7 +1267,7 @@ INT_PTR CALLBACK KeyboardPageDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPAR
             // Update the shortcut with the current one.
             int i = CB_GetCurSelId(IDC_SHORTCUTS_AC);
             edit_shortcut_idx = i;
-            WORD shortcut= GetPrivateProfileInt(TEXT("KBShortcuts"), kbshortcut_actions[i].action, 0, inipath);
+            DWORD shortcut= GetPrivateProfileInt(TEXT("KBShortcuts"), kbshortcut_actions[i].action, 0, inipath);
             BYTE vKey = LOBYTE(shortcut);
             BYTE mod = HIBYTE(shortcut);
             TCHAR txt[LPTR_HDIGITS+1];
@@ -1724,7 +1723,7 @@ LRESULT CALLBACK TestWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
             lstrcat_s(lastkey[idx], MAXLL, TEXT(", LP=") );
             lstrcat_s(lastkey[idx], MAXLL, LPTR2Hex(txt, lParam));
             txt[0] = L','; txt[1] = L' '; txt[2] = L'\0';
-            if (GetKeyNameText(lParam, txt+2, ARR_SZ(txt)-2))
+            if (GetKeyNameText((LONG)lParam, txt+2, ARR_SZ(txt)-2))
                 lstrcat_s(lastkey[idx], MAXLL, txt);
         } else {
             short x = LOWORD(lParam);
@@ -1897,7 +1896,7 @@ LRESULT CALLBACK TestWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
         TCHAR *str = l10n->zone_testwinhelp;
         if (UseZones&1) {
             RECT trc2 = { lineheight/2, lineheight/2, crc.right, splitheight };
-            DrawText(hdc, str, lstrlen(str), &trc2, DT_NOCLIP|DT_TABSTOP);
+            DrawText(hdc, str, (int)lstrlen(str), &trc2, DT_NOCLIP|DT_TABSTOP);
         }
         SelectObject(hdc, oripen);
         DeleteObject(SelectObject(hdc, oldfont));
@@ -1916,9 +1915,9 @@ LRESULT CALLBACK TestWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
 //        return 1;
 
     case WM_UPDCFRACTION: {
-        centerfrac = GetPrivateProfileInt(TEXT("General"), TEXT("CenterFraction"), 24, inipath);
-        centermode = GetPrivateProfileInt(TEXT("General"), TEXT("ResizeCenter"), 1, inipath);
-        sidefrac   = GetPrivateProfileInt(TEXT("General"), TEXT("SidesFraction"), 255, inipath);
+        centerfrac = (UCHAR)GetPrivateProfileInt(TEXT("General"), TEXT("CenterFraction"), 24, inipath);
+        centermode = (UCHAR)GetPrivateProfileInt(TEXT("General"), TEXT("ResizeCenter"), 1, inipath);
+        sidefrac   = (UCHAR)GetPrivateProfileInt(TEXT("General"), TEXT("SidesFraction"), 255, inipath);
         if (sidefrac == 255) sidefrac = centerfrac;
         return 0;
     } break;
