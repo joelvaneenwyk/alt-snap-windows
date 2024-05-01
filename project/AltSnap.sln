@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AltSnap", "AltSnap.vcxproj", "{C222FF7E-CC20-44BB-83B8-09D6416D0680}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07FCE656-F13C-453B-A57C-1768E1397E0F} = {07FCE656-F13C-453B-A57C-1768E1397E0F}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "{root}", "{root}", "{BB44DE27-4102-4594-921B-699D847005A4}"
 	ProjectSection(SolutionItems) = preProject
