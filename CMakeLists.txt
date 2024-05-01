@@ -8,17 +8,22 @@ set(CMAKE_C_STANDARD_REQUIRED TRUE)
 set(CMAKE_SYSTEM_NAME Windows)
 
 set(TARGET_NAME alt_snap)
-add_executable(${TARGET_NAME})
+add_executable(${TARGET_NAME}
+        Makefile zones.inl)
 target_sources(${TARGET_NAME} PRIVATE
         altsnap.c
-        hooks.h languages.h unfuck.h nanolibc.h
+
+        hooks.h languages.h nanolibc.h unfuck.h
 
         # This resource also includes 'window.rc' and 'AltSnap.exe.manifest'
         altsnap.rc
         resource.h
+        AltSnap.exe.manifest
 
-        # media/find.ico media/find.cur
-        # media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
+        README.md docs/todo.md docs/cmake.md
+        
+        media/find.ico media/find.cur
+        media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
 )
 target_link_libraries(${TARGET_NAME}
         PRIVATE comctl32 advapi32 shell32 msvcrt kernel32 gdi32
@@ -48,6 +53,10 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
             PRIVATE "/Oi"
             PRIVATE "/GS-"
             PRIVATE "/wd4996" # Disable warnings for unsecure CRT functions from VC8+
+            PRIVATE "/wd4711" # Selected for inline expansion
+            PRIVATE "/wd5045" # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+            PRIVATE "/wd4706" # assignment within conditional expression
+            PRIVATE "/wd4255" # no function prototype given: converting '()' to '(void)'
     )
     target_link_options(${TARGET_NAME}
             PRIVATE "/opt:ref" # Eliminate unreferenced functions and data
