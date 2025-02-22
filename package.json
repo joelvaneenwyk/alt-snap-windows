@@ -1,0 +1,17 @@
+{
+  "name": "alt-snap-windows",
+  "version": "1.0.0",
+  "description": "English | [中文](./README_zh-CN.md) | [한국어](./README_ko-KR.md)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "makensis": "^2.0.8"
+  }
+}
