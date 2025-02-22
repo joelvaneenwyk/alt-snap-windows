@@ -4,6 +4,14 @@
 version: "3"
 
 vars:
+  DEFAULT_CONFIG: Release
+  DEFAULT_PLATFORM: x64
+  DEFAULT_SOLUTION: project/AltSnap.sln
+  PLATFORMS: [Win32, x64]
+  CONFIGURATIONS:
+    - Debug
+    - Release
+
   BUILD_TOOLCHAIN:
   BUILD_ARCH: x86_64
   BUILD_CC: clang
@@ -34,7 +42,7 @@ vars:
 tasks:
   default:
     cmds:
-      - task: build
+      - task: msbuild
 
   cmake:
     cmds:
@@ -124,6 +132,33 @@ tasks:
   build-tcc:
     cmds:
       - make -fMakefileTCC
+
+  msbuild:
+    silent: true
+    vars:
+      MSBUILD:
+        sh: | # shell
+          strings=("Preview" "Enterprise" "Professional" "Community")
+          for str in "${strings[@]}"
+          do
+            result="C:/Program Files/Microsoft Visual Studio/2022/${str}/MSBuild/Current/Bin/amd64/MSBuild.exe"
+            if [ -e "$result" ]; then
+              echo "$result"
+              break
+            fi
+          done
+      MSBUILD_CONFIG: '{{ .CONFIG | default .DEFAULT_CONFIG }}'
+      MSBUILD_SOLUTION: '{{ joinPath .TASKFILE_DIR (.SOLUTION | default .DEFAULT_SOLUTION) }}'
+      MSBUILD_PLATFORM: '{{ .PLATFORM | default .DEFAULT_PLATFORM }}'
+    cmds:
+      - cmd: echo "Building '{{ .MSBUILD_SOLUTION }}' with '{{ .MSBUILD_CONFIG }}' configuration."
+      - cmd: >-
+          "{{fromSlash .MSBUILD}}"
+          /m
+          /t:Build
+          /p:Configuration="{{.MSBUILD_CONFIG}}"
+          /p:Platform="{{.MSBUILD_PLATFORM}}"
+          "{{fromSlash .MSBUILD_SOLUTION}}"
 
   install-dependencies:
     deps: [install-packages-scoop-pkg-config]
