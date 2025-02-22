@@ -134,3 +134,5 @@
 *.exe   binary
 *.out   binary
 *.app   binary
+
+*.dni text linguist-language=ini working-tree-encoding=utf-16le-bom eol=crlf

@@ -6,12 +6,18 @@
 
 #include "hooks.h"
 static void MouseMove(POINT pt);
+static void ShowSnapLayoutPreview(unsigned char yep);
 
-#define MAX_ZONES 2048
-#define MAX_LAYOUTS 10
+enum { MAX_ZONES=2048, MAX_LAYOUTS=10 };
+#define INVALID_ZONE_IDX 0xffffffffU
+
 RECT *Zones[MAX_LAYOUTS];
 unsigned nzones[MAX_LAYOUTS];
 DWORD Grids[MAX_LAYOUTS];
+
+enum { ZONES_PREV_HIDE=0, ZONES_PREV_SHOW=1 };
+
+
 static void freezones()
 {
     unsigned i;
@@ -138,13 +144,19 @@ static void RecalculateZonesFromGrids()
     }
 }
 
-static xpure unsigned long ClacPtRectDist(const POINT pt, const RECT *zone)
+static xpure unsigned long PtDist2(POINT pt, POINT Zpt)
 {
-    POINT Zpt = { (zone->left+zone->right)/2, (zone->top+zone->bottom)/2 };
     long dx = (pt.x - Zpt.x)>>1;
     long dy = (pt.y - Zpt.y)>>1;
 
     return dx*dx + dy*dy;
+}
+
+
+static xpure unsigned long ClacPtRectDist(const POINT pt, const RECT *zone)
+{
+    POINT Zpt = { (zone->left+zone->right)/2, (zone->top+zone->bottom)/2 };
+    return PtDist2(pt, Zpt);
 }
 
 static unsigned GetNearestZoneDist(POINT pt, unsigned long *dist_)
@@ -221,12 +233,12 @@ static unsigned GetZoneContainingPoint(POINT pt, RECT *urc, int extend)
 }
 static unsigned GetZoneFromPoint(POINT pt, RECT *urc, int extend)
 {
-	switch (conf.ZSnapMode) {
-	case 0: return GetZoneContainingPoint(pt, urc, extend);
-	case 1: return GetZoneNearestFromPoint(pt, urc, extend);
-	}
-	// Invalid Snap mode!
-	return 0;
+    switch (conf.ZSnapMode) {
+    case 0: return GetZoneContainingPoint(pt, urc, extend);
+    case 1: return GetZoneNearestFromPoint(pt, urc, extend);
+    }
+    // Invalid Snap mode!
+    return 0;
 }
 static int pure IsResizable(HWND hwnd);
 
@@ -251,8 +263,12 @@ static void MoveSnapToZone(POINT pt, int *posx, int *posy, int *width, int *heig
     if (conf.UseZones&8 && state.snap != conf.AutoSnap) // Zones toggled by other click
         return;
 
-    if (!state.usezones)
+    if (!state.usezones) {
+        ShowSnapLayoutPreview(ZONES_PREV_HIDE);
         return;
+    }
+
+    ShowSnapLayoutPreview(ZONES_PREV_SHOW);
     RECT rc, bd;
     unsigned ret = GetZoneFromPoint(pt, &rc, conf.UseZones&4);
     if (!ret) return; // Outside of a rect
@@ -268,6 +284,64 @@ static void MoveSnapToZone(POINT pt, int *posx, int *posy, int *width, int *heig
     *height = rc.bottom - rc.top;
 }
 
+static xpure int IsPtInCone(POINT pt, POINT op, UCHAR direction)
+{
+    const long dx = pt.x - op.x, dy = pt.y - op.y;
+    switch (direction) {
+    case 0: // LEFT
+        return dx <= 0 && (dy <= -dx && dy > dx);
+
+    case 1: // TOP
+        return dy <= 0 && (dx <= -dy && dx > dy);
+
+    case 2: // RIGHT
+        return dx > 0 && (dy <= dx && dy > -dx);
+
+    case 3: // BOTTOM
+        return dy > 0 && (dx <= dy && dx > -dy);
+    }
+    return 0;
+}
+static unsigned GetNearestZoneFromPointInDirection(const RECT *rc, RECT *out, UCHAR direction)
+{
+    unsigned idx = INVALID_ZONE_IDX;
+    RECT * const lZones = Zones[conf.LayoutNumber];
+    unsigned nZones = nzones[conf.LayoutNumber];
+    if(!lZones) return 0;
+
+    POINT opt = { (rc->left+rc->right)/2, (rc->top+rc->bottom)/2 };
+
+    unsigned long dist = 0xffffffff;
+    for(unsigned i=0; i < nZones; i++) {
+        const RECT *zrc = &lZones[i];
+        const POINT pt = { (zrc->left+zrc->right)/2, (zrc->top+zrc->bottom)/2 };
+        unsigned long dst = PtDist2(pt, opt);
+        if (!EqualRect(rc, zrc) && dst < dist && IsPtInCone(pt, opt, direction)) {
+            dist = dst;
+            idx = i;
+        }
+    }
+
+    if (idx != INVALID_ZONE_IDX) {
+        CopyRect(out, &lZones[idx]);
+        return 1;
+    }
+
+    return 0;
+}
+
+//
+//static void SnapToRect(HWND hwnd, RECT *fr)
+//{
+//    RECT bd;
+//    LastWin.end = 0;
+//    FixDWMRect(hwnd, &bd);
+//    InflateRectBorder(fr, &bd);
+//
+//    SetRestoreData(hwnd, state.origin.width, state.origin.height, SNAPPED|SNZONE);
+//    MoveWindowAsync(hwnd, fr->left, fr->top, CLAMPW(fr->right-fr->left), CLAMPH(fr->bottom-fr->top));
+//}
+
 static void SetOriginFromRestoreData(HWND hnwd, enum action action);
 static HMONITOR GetMonitorInfoFromWin(HWND hwnd, MONITORINFO *mi);
 static void MoveWindowToTouchingZone(HWND hwnd, UCHAR direction, UCHAR extend)
@@ -280,6 +354,7 @@ static void MoveWindowToTouchingZone(HWND hwnd, UCHAR direction, UCHAR extend)
     RECT rc;
     GetWindowRectL(hwnd, &rc);
     POINT pt;
+
     int offset = abs(conf.InterZone)+16;
 
     if        (direction == 0) { // LEFT
@@ -303,7 +378,11 @@ static void MoveWindowToTouchingZone(HWND hwnd, UCHAR direction, UCHAR extend)
     ClampPointInRect(&mi.rcWork, &pt);
 
     RECT zrc;
-    unsigned ret = GetZoneContainingPoint(pt, &zrc, 0);
+    unsigned ret=0;
+    switch (conf.ZSnapMode) {
+        case 0: ret = GetZoneContainingPoint(pt, &zrc, 0); break;
+        case 1: ret = GetNearestZoneFromPointInDirection(&rc, &zrc, direction); break;
+    }
     if (!ret) return; // Outside of a rect
 
     RECT fr; // final rect...
@@ -407,4 +486,164 @@ static int GetBestLayoutFromMonitors()
     }
     // No perfect match found!
     return -1;
+}
+
+static HWND g_zphwnd = NULL;
+COLORREF g_ZPrevBDCol=RGB(0,0,0);
+LRESULT CALLBACK SnapLayoutWinProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
+{
+    static HPEN pen = NULL;
+
+    switch (msg) {
+    case WM_CREATE: {
+        pen = (HPEN)CreatePen(PS_INSIDEFRAME, 4, g_ZPrevBDCol);
+    } break;
+
+    case WM_PAINT: {
+        // Create Font
+//        struct NEWNONCLIENTMETRICSAW ncm;
+//        int dpi = GetDpiForWindow(hwnd);
+//        GetNonClientMetricsDpi(&ncm, dpi);
+//        ncm.lfCaptionFont.lfHeight = 64;
+//        HFONT font = CreateFontIndirect(&ncm.lfCaptionFont);
+
+        PAINTSTRUCT ps;
+        POINT opt = { 0, 0 };
+        ScreenToClient(hwnd, &opt);
+        BeginPaint(hwnd, &ps);
+        HPEN oldpen = (HPEN)SelectObject(ps.hdc, pen);
+//        HFONT oldfont = (HFONT)SelectObject(ps.hdc, font);
+        // PaintDesktop(ps.hdc);
+        HBRUSH oldBrush = (HBRUSH)SelectObject(ps.hdc, GetStockObject(HOLLOW_BRUSH));
+        for (size_t i=0; i < nzones[conf.LayoutNumber]; i++) {
+            RECT *rc = &Zones[conf.LayoutNumber][i];
+            if (!AreRectsTouchingT(rc, &ps.rcPaint, 0)) {
+//                TCHAR buf[16]; SIZE sz;
+//                const TCHAR *num = Int2lStr(buf, i);
+//                int txtlen = lstrlen(num);
+//                GetTextExtentPoint32(ps.hdc, num, txtlen, &sz);
+//                int txtX = (rc->left + rc->right - sz.cx) / 2 + opt.x;
+//                int txtY = (rc->top + rc->bottom - sz.cy) / 2 + opt.y;
+//                TextOut(ps.hdc, txtX, txtY, num, txtlen);
+                Rectangle(ps.hdc, rc->left+opt.x, rc->top+opt.y, rc->right+opt.x, rc->bottom+opt.y);
+            }
+        }
+//        SelectObject(ps.hdc, oldfont);  // Restore old font
+        SelectObject(ps.hdc, oldBrush); // Restore old pen
+        SelectObject(ps.hdc, oldpen);   // Restore old brush
+
+        EndPaint(hwnd, &ps);
+
+//        DeleteObject(font);
+    } return 0;
+
+    case WM_RBUTTONUP:
+    case WM_MBUTTONUP:
+    case WM_LBUTTONUP:
+        ShowWindow(hwnd, SW_HIDE);
+        break;
+
+    case WM_DESTROY: {
+        DeleteObject(pen);
+    } break;
+    }
+    return DefWindowProc(hwnd, msg, wp, lp);
+}
+
+
+static void ShowSnapLayoutPreview(unsigned char yep)
+{
+    if (g_zphwnd) { // Window was created
+        if (!yep) {
+            ShowWindow(g_zphwnd, SW_HIDE);
+        } else if (!IsWindowVisible(g_zphwnd)) {
+            ShowWindow(g_zphwnd, SW_SHOW);
+            SetWindowLevel(g_zphwnd, state.hwnd); // Behind currently moving hwn
+        }
+    }
+}
+
+static void ZonesPrevResetRegion()
+{
+    if (conf.ZonesPrevwOpacity != 0)
+        return;
+    POINT opt = { 0, 0 };
+    RECT wrc;
+    GetWindowRect(g_zphwnd, &wrc);
+    ScreenToClient(g_zphwnd, &opt);
+    HRGN hregion = CreateRectRgn(0,0,0,0);
+    if (Zones[conf.LayoutNumber]) {
+        for (unsigned i=0; i < nzones[conf.LayoutNumber]; i++) {
+            RECT rc;
+            CopyRect(&rc, &Zones[conf.LayoutNumber][i]);
+            OffsetRect(&rc, opt.x, opt.y);
+            HRGN tmpr = CreateRectRgn(rc.left, rc.top, rc.right, rc.top+4); // top  ^^^^
+            CombineRgn(hregion, hregion, tmpr, RGN_OR);
+            DeleteObject(tmpr);
+            tmpr = CreateRectRgn(rc.left, rc.bottom-4, rc.right, rc.bottom); //     ____ bottom
+            CombineRgn(hregion, hregion, tmpr, RGN_OR);
+            DeleteObject(tmpr);
+            tmpr = CreateRectRgn(rc.left, rc.top, rc.left+4, rc.bottom); //   left  |...
+            CombineRgn(hregion, hregion, tmpr, RGN_OR);
+            DeleteObject(tmpr);
+            tmpr = CreateRectRgn(rc.right-4, rc.top, rc.right, rc.bottom); //       ...| right
+            CombineRgn(hregion, hregion, tmpr, RGN_OR);
+            DeleteObject(tmpr);
+        }
+    }
+    SetWindowRgn(g_zphwnd, hregion, FALSE);
+}
+
+static unsigned readhotkeys(const TCHAR *inisection, const char *name, const TCHAR *def, UCHAR *keys, unsigned MaxKeys);
+static void SnapLayoutPreviewCreateDestroy(const TCHAR *inisection)
+{
+    if(!conf.ShowZonesPrevw)
+        return;
+    if (inisection) {
+        int bgcol[2], bdcol[2];
+        readhotkeys(inisection, "ZonesPrevwBGCol",  TEXT("FF FF FF"), (UCHAR *)&bgcol[0], 3);
+        readhotkeys(inisection, "ZonesPrevwBDCol",  TEXT("00 00 00"), (UCHAR *)&bdcol[0], 3);
+        g_ZPrevBDCol = bdcol[0];
+        const UCHAR opacity = conf.ZonesPrevwOpacity;
+        const UCHAR usetrans = opacity!=0 && opacity!=255;
+        const WNDPROC wproc  = opacity==0? DefWindowProc: SnapLayoutWinProc;
+        const HBRUSH wbrush  = opacity==0? CreateSolidBrush(bdcol[0]): CreateSolidBrush(bgcol[0]);
+        const WNDCLASSEX wnd = {
+            sizeof(WNDCLASSEX), 0
+          , wproc
+          , 0, 0, hinstDLL
+          , NULL, NULL, wbrush
+          , NULL, APP_NAME"-ZonesPreview", NULL };
+        RegisterClassEx(&wnd);
+
+        int left=0, top=0, width, height;
+        if(GetSystemMetrics(SM_CMONITORS) >= 1) {
+            left   = GetSystemMetrics(SM_XVIRTUALSCREEN);
+            top    = GetSystemMetrics(SM_YVIRTUALSCREEN);
+            width  = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+            height = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+         } else { // NT4...
+             width = GetSystemMetrics(SM_CXFULLSCREEN)+256;
+             height= GetSystemMetrics(SM_CYFULLSCREEN)+256;
+         }
+         g_zphwnd = CreateWindowEx(usetrans? WS_EX_TOOLWINDOW|WS_EX_LAYERED: WS_EX_TOOLWINDOW
+                             , wnd.lpszClassName, NULL, WS_POPUP
+                             , left, top, width, height, g_mainhwnd, NULL, hinstDLL, NULL);
+        SetWindowLevel(g_zphwnd, state.hwnd); // Behind
+        if (usetrans)
+            SetLayeredWindowAttributesL(g_zphwnd, 0, opacity, LWA_ALPHA);
+
+         // Set Window Region to only show outlines if needed...
+         ZonesPrevResetRegion();
+
+    } else {
+        if (g_zphwnd) DestroyWindow(g_zphwnd);
+        UnregisterClass(APP_NAME"-ZonesPreview", hinstDLL);
+    }
+}
+
+static void SetLayoutNumber(WPARAM number)
+{
+    conf.LayoutNumber=CLAMP(0, number, 9);
+    ZonesPrevResetRegion(); // re-calculate
 }

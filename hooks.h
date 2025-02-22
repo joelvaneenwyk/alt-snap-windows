@@ -1,17 +1,11 @@
-#ifndef ALT_SNAP_HOOKS_RPC_H
-#define ALT_SNAP_HOOKS_RPC_H
+#ifndef ALTDRAG_RPC_H
+#define ALTDRAG_RPC_H
 
-#if !defined(UNICODE)
 #define UNICODE
 #define _UNICODE
-#endif
-
 #define _WIN32_WINNT 0x0600
 #define WINVER 0x0600
-#pragma warning(push)
-#pragma warning(disable : 4668)  // not defined
 #include <windows.h>
-#pragma warning(pop)
 #include "unfuck.h"
 
 #ifndef LOW_LEVEL_KB_PROC
@@ -21,7 +15,7 @@
 		#define UNLOAD_PROC "Unload"
 	#else
 		#define LOW_LEVEL_KB_PROC "_LowLevelKeyboardProc@12"
-		#define LOAD_PROC "_Load@4"
+		#define LOAD_PROC "_Load@8"
 		#define UNLOAD_PROC "_Unload@0"
 	#endif
 #endif
@@ -211,7 +205,7 @@ static TCHAR *ZidxToZonestr(int laynum, int idx, TCHAR zname[AT_LEAST 32])
 {
     if (laynum > 9 ) return NULL;
     TCHAR txt[UINT_DIGITS+1];
-    zname[0] = !laynum?TEXT('\0'): TEXT('A')+(char)laynum-1 ;
+    zname[0] = !laynum?TEXT('\0'): TEXT('A')+laynum-1 ;
     zname[1] = '\0';
     lstrcat_s(zname, 32, TEXT("Zone"));
     lstrcat_s(zname, 32, Uint2lStr(txt, idx)); // Zone Name from zone number
@@ -222,7 +216,7 @@ static char *ZidxToZonestrA(int laynum, int idx, char zname[AT_LEAST 32])
 {
     if (laynum > 9 ) return NULL;
     char txt[16];
-    zname[0] = !laynum?'\0': 'A'+(char)laynum-1 ;
+    zname[0] = !laynum?'\0': 'A'+laynum-1 ;
     zname[1] = '\0';
     lstrcat_sA(zname, 32, "Zone");
     lstrcat_sA(zname, 32, Uint2lStrA(txt, idx)); // Zone Name from zone number
@@ -245,11 +239,11 @@ static enum action MapActionW(const TCHAR *txt)
     if (txt[0] == 'S' && txt[1] == 'h' && txt[2] == 'r' && txt[3] == 't'
     && '0' <= txt[4] && txt[4] <= 'Z' && txt[5] == '\0' ) {
         TCHAR c = txt[4];
-        UCHAR num = c<='9' ? (UCHAR)(c - '0') : (UCHAR)(c-'A'+10);
+        UCHAR num = c<='9' ? c - '0' : c-'A'+10;
         num = min(num, AC_SHRTF-AC_SHRT0-1);
         return (enum action)(AC_SHRT0 + num);
     }
     return AC_NONE;
 }
 
-#endif /* ALT_SNAP_HOOKS_RPC_H */
+#endif /* ALTDRAG_RPC_H */
