@@ -42,7 +42,15 @@ vars:
 tasks:
   default:
     cmds:
-      - task: msbuild
+      - task: msbuild-all
+
+  msbuild-all:
+    cmds:
+      - for: 
+          matrix:
+            CONFIG: ["Debug", "Release"]
+            PLATFORM: ["x86", "x64"]
+        task: msbuild
 
   cmake:
     cmds:
