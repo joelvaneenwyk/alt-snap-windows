@@ -418,8 +418,8 @@ static xpure int IsPtDragOut(const POINT *pt, const POINT *ptt)
 }
 
 // Specific includes
-#include "snap.c"
-#include "zones.c"
+#include "snap.inl"
+#include "zones.inl"
 
 /////////////////////////////////////////////////////////////////////////////
 // Wether a window is present or not in a blacklist

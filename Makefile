@@ -1,7 +1,12 @@
+#
+# AltSnap Makefile - Windows x86
+#
+
 CC=gcc
 WR=windres
 
-WARNINGS=-Wall  \
+WARNINGS=\
+	-Wall \
 	-Wformat-security \
 	-Wstrict-overflow \
 	-Wsign-compare \
@@ -29,15 +34,9 @@ WARNINGS=-Wall  \
 	-Wduplicated-branches \
 	-Wnull-dereference \
 
-# -Wunused-parameter
-# -Wtraditional-conversion
-# -fira-region=one/mixed
-# -Wstack-usage=2048
-# -finput-charset=UTF-8
-# -Wc++-compat
-# -fmerge-all-constants
-
-CFLAGS=-Os -std=c99 \
+CFLAGS=\
+	-Os \
+	-std=c99 \
 	-finput-charset=UTF-8 \
 	-fshort-wchar \
 	-m32 -march=i386 -mtune=i686 \
@@ -73,21 +72,20 @@ LDFLAGS=-nostdlib \
 	-Wl,--relax \
 	-Wl,--disable-runtime-pseudo-reloc \
 	-Wl,--enable-auto-import \
-	-Wl,--disable-stdcall-fixup \
+	-Wl,--disable-stdcall-fixup
 
 EXELD = $(LDFLAGS) \
 	-Wl,--tsaware \
 	-lcomctl32 \
 	-ladvapi32 \
-	-lshell32 \
-	-Wl,--disable-reloc-section
+	-lshell32
 
-default: AltSnap.exe hooks.dll
+.PHONY: clean all
 
-hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.c snap.c
+hooks.dll : hooks.c hooks.h hooksr.o unfuck.h nanolibc.h zones.inl snap.inl
 	$(CC) -o hooks.dll hooks.c hooksr.o $(CFLAGS) $(LDFLAGS) -mdll -e_DllMain@12 -Wl,--kill-at
 
-AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.c config.c languages.h languages.c unfuck.h nanolibc.h
+AltSnap.exe : altsnapr.o altsnap.c hooks.h tray.inl config.inl languages.h languages.inl unfuck.h nanolibc.h
 	$(CC) -o AltSnap.exe altsnap.c altsnapr.o $(CFLAGS) $(EXELD) -mwindows -e_unfuckWinMain@0
 
 altsnapr.o : altsnap.rc window.rc resource.h AltSnap.exe.manifest media/find.cur media/find.ico media/icon.ico media/tray-disabled.ico media/tray-enabled.ico
@@ -98,3 +96,5 @@ hooksr.o: hooks.rc
 
 clean :
 	rm altsnapr.o AltSnap.exe hooksr.o hooks.dll
+
+all: AltSnap.exe hooks.dll

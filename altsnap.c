@@ -51,9 +51,9 @@ static BYTE WinVer = 0;
 static void UpdateSettings();
 
 // Include stuff
-#include "languages.c"
-#include "tray.c"
-#include "config.c"
+#include "languages.inl"
+#include "tray.inl"
+#include "config.inl"
 
 static HINSTANCE LoadHooksDLL()
 {
