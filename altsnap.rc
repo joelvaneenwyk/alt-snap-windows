@@ -172,11 +172,11 @@ END
 // String Table
 //
 
-STRINGTABLE
-BEGIN
-   IDC_ALTSNAP          "ALTSNAP"
-   IDS_APP_TITLE        "AltSnap"
-END
+//STRINGTABLE
+//BEGIN
+//   IDC_ALTSNAP          "ALTSNAP"
+//   IDS_APP_TITLE        "AltSnap"
+//END
 
 #endif  // !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 /////////////////////////////////////////////////////////////////////////////
