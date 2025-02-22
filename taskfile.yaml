@@ -1,4 +1,5 @@
-# https://taskfile.dev
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# cspell:ignore taskfile,vcpkg,msbuild,makefiles,deinit
 
 version: "3"
 
@@ -17,14 +18,19 @@ tasks:
 
   upgrade:
     cmds:
-      - call scoop update *
-      - npm install -g makensis
+      - cmd: scoop update *
 
-  setup:
+  scoop:
+    status:
+      - scoop --version
     cmds:
       - cmd: |
           pwsh -NoProfile -Command "iwr -useb get.scoop.sh | iex"
-          sudo npm install -g makensis
+
+  setup:
+    deps: [scoop]
+    silent: true
+    cmds:
       # https://www.mingw-w64.org/downloads/#mingw-builds
       - cmd: |
           scoop bucket add "main"
@@ -35,6 +41,7 @@ tasks:
           scoop install --no-update-scoop "main/tcc"
           scoop install --no-update-scoop "main/ninja"
           scoop install --no-update-scoop "main/msys2"
+        platforms: [windows]
       - cmd: |
           scoop bucket add "versions"
           scoop install --no-update-scoop "versions/mingw-winlibs-ucrt"
@@ -42,7 +49,7 @@ tasks:
           scoop install --no-update-scoop "versions/mingw-winlibs-llvm"
           scoop install --no-update-scoop "versions/mingw-winlibs-llvm-ucrt"
           scoop install --no-update-scoop "versions/mingw-winlibs-llvm-ucrt-mcf"
-          scoop update *
+        platforms: [windows]
 
   build-make:
     deps:
