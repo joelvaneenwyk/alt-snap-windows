@@ -44,3 +44,4 @@ unsuccesfulbuild
 *.log
 *.exe.recipe
 *.vcxproj.user
+*.dll
