@@ -62,50 +62,10 @@ tasks:
       - cmake -G "MinGW Makefiles" -B .output/task/mingw -S .
       - make --directory .output/task/mingw
 
-  upgrade:
-    cmds:
-      - cmd: scoop update *
-
-  scoop:
-    status:
-      - scoop --version
-    cmds:
-      - cmd: |
-          pwsh -NoProfile -Command "iwr -useb get.scoop.sh | iex"
-
   build:
     deps: [install-dependencies]
     cmds:
       - task: build-x64-release
-
-  setup:
-    deps: [scoop]
-    silent: true
-    vars:
-      SCOOP: scoop install --no-update-scoop
-    cmds:
-      - cmd: |
-          scoop bucket add "main"
-        platforms: [windows]
-      - cmd: |
-          {{.SCOOP}} main/mingw
-          {{.SCOOP}} main/mingw-winlibs
-          {{.SCOOP}} main/rhash
-          {{.SCOOP}} main/7zip
-          {{.SCOOP}} main/tcc
-          {{.SCOOP}} main/ninja
-          {{.SCOOP}} main/msys2
-        platforms: [windows]
-      - cmd: |
-          scoop bucket add "versions"
-        platforms: [windows]
-      - cmd: |
-          {{.SCOOP}} versions/mingw-winlibs-ucrt
-          {{.SCOOP}} versions/mingw-winlibs-ucrt-mcf
-          {{.SCOOP}} versions/mingw-winlibs-llvm
-          {{.SCOOP}} versions/mingw-winlibs-llvm-ucrt
-          {{.SCOOP}} versions/mingw-winlibs-llvm-ucrt-mcf
-        platforms: [windows]
 
   build-make:
     deps:
@@ -264,3 +224,39 @@ tasks:
       - "pacman -Qk {{.PACKAGE}}"
     cmds:
       - cmd: 'pacman -S --needed --noconfirm "{{.PACKAGE}}"'
+
+  scoop:
+    status:
+      - scoop --version
+    cmds:
+      - cmd: |
+          pwsh -NoProfile -Command "iwr -useb get.scoop.sh | iex"
+
+  setup:
+    deps: [scoop]
+    silent: true
+    vars:
+      SCOOP: scoop install --no-update-scoop
+    cmds:
+      - cmd: |
+          scoop bucket add "main"
+        platforms: [windows]
+      - cmd: |
+          {{.SCOOP}} main/mingw
+          {{.SCOOP}} main/mingw-winlibs
+          {{.SCOOP}} main/rhash
+          {{.SCOOP}} main/7zip
+          {{.SCOOP}} main/tcc
+          {{.SCOOP}} main/ninja
+          {{.SCOOP}} main/msys2
+        platforms: [windows]
+      - cmd: |
+          scoop bucket add "versions"
+        platforms: [windows]
+      - cmd: |
+          {{.SCOOP}} versions/mingw-winlibs-ucrt
+          {{.SCOOP}} versions/mingw-winlibs-ucrt-mcf
+          {{.SCOOP}} versions/mingw-winlibs-llvm
+          {{.SCOOP}} versions/mingw-winlibs-llvm-ucrt
+          {{.SCOOP}} versions/mingw-winlibs-llvm-ucrt-mcf
+        platforms: [windows]
