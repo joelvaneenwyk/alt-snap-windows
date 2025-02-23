@@ -47,7 +47,7 @@ tasks:
   run:
     deps: [build-x64-release]
     cmds:
-      - ./AltSnap{{exeExt}}
+      - cmd: sudo ./AltSnap{{exeExt}}
       
   msbuild-all:
     cmds:
