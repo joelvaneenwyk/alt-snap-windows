@@ -1,0 +1,11 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions:
+  - name: windows-alt-snap
+    path: ./.github/config/windows-alt-snap.dict
+    addWords: true
+dictionaries:
+  - windows-alt-snap
+words: []
+ignoreWords: []
+import: []
