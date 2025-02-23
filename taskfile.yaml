@@ -48,10 +48,10 @@ tasks:
     deps: [build-x64-release]
     cmds:
       - cmd: sudo ./AltSnap{{exeExt}}
-      
+
   msbuild-all:
     cmds:
-      - for: 
+      - for:
           matrix:
             CONFIG: ["Debug", "Release"]
             PLATFORM: ["x86", "x64"]
@@ -67,13 +67,29 @@ tasks:
     cmds:
       - task: build-x64-release
 
-  build-make:
-    deps:
-      - build-win32-debug
-      - build-win32-release
-      - build-x64-debug
-      - build-x64-release
+  make-all:
+    aliases: [all]
+    cmds:
+      - for: [Makefile, MakefileClang, MakefileTCC, MakefileX64, MakefileX64Debug]
+        task: make
+        vars: {CONFIG: "{{.CONFIG}}"}
     silent: false
+
+  make:
+    vars:
+      MSYS_SYS: mingw64
+      MSYS_ENV: x86_64
+      MINGW_PACKAGE_PREFIX: mingw-w64-x86_64
+      RUN_UNIX: /usr/bin/env bash -c
+      RUN_MSYS2: msys2 -no-start -here -{{.MSYS_SYS}} -shell bash -c
+      RUN: '{{if eq .OS "Windows_NT"}}{{.RUN_MSYS2}}{{else}}{{.RUN_UNIX}}{{end}}'
+    cmds:
+      - cmd: |
+          git add .
+      - cmd: |
+          git clean -xfd
+      - cmd: |
+          {{.RUN}} "make -f{{.CONFIG | default "Makefile"}}"
 
   build-win32-release:
     cmds:
